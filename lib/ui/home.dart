@@ -4,7 +4,6 @@ import 'package:picktock/ui/option.dart';
 import 'package:provider/provider.dart';
 import 'package:picktock/ui/ejemplo/Ejemplo2.dart';
 
-
 class Home extends StatelessWidget {
   Home({Key? key}) : super(key: key);
 
@@ -23,36 +22,69 @@ class Home extends StatelessWidget {
               SideBar(context, menuProvider),
               if (menuProvider.menu == "Inicio")
                 Expanded(
-                  child: Center(
+                  child: Container(
+                    constraints: BoxConstraints.expand(),
+                    decoration: const BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage("assets/textures/background.jpg"),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
                     child: Prueba(),
                   ),
                 ),
               if (menuProvider.menu == "Perfil")
                 Expanded(
-                  child: Center(
+                  child: Container(
+                    constraints: BoxConstraints.expand(),
+                    decoration: const BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage("assets/textures/background.jpg"),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
                     child: Text("Perfil"),
                   ),
                 ),
               if (menuProvider.menu == "Pictograma")
                 Expanded(
-                  child: Center(
-                    child: Text("Pictograma"),
+                  child: Container(
+                    constraints: BoxConstraints.expand(),
+                    decoration: const BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage("assets/textures/background.jpg"),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    child:  Text("Pictograma"),
                   ),
                 ),
-
               if (menuProvider.menu == "Agregar")
                 Expanded(
-                  child: Center(
+                  child: Container(
+                    constraints: BoxConstraints.expand(),
+                    decoration: const BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage("assets/textures/background.jpg"),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
                     child: Text("Agregar"),
                   ),
                 ),
               if (menuProvider.menu == "Configuracion")
                 Expanded(
-                  child: Center(
+                  child: Container(
+                    constraints: BoxConstraints.expand(),
+                    decoration: const BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage("assets/textures/background.jpg"),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
                     child: Text("Configuracion"),
                   ),
                 ),
-
             ],
           ),
         ));
