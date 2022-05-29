@@ -39,6 +39,20 @@ class Home extends StatelessWidget {
                     child: Text("Pictograma"),
                   ),
                 ),
+
+              if (menuProvider.menu == "Agregar")
+                Expanded(
+                  child: Center(
+                    child: Text("Agregar"),
+                  ),
+                ),
+              if (menuProvider.menu == "Configuracion")
+                Expanded(
+                  child: Center(
+                    child: Text("Configuracion"),
+                  ),
+                ),
+
             ],
           ),
         ));
