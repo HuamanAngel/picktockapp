@@ -1,8 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class Registro extends StatelessWidget {
-  const Registro({Key? key}) : super(key: key);
+class Registro extends StatefulWidget {
+  @override
+  State<Registro> createState() => _RegistroUsuario();
+}
+
+final RegExp _emailRegExp = RegExp(
+    r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9\-\_]+(\.[a-zA-Z]+)*$");
+
+bool _esEmail(String str) {
+  return _emailRegExp.hasMatch(str.toLowerCase());
+}
+
+class _RegistroUsuario extends State<Registro> {
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -25,25 +37,38 @@ class Registro extends StatelessWidget {
           color: Colors.black,
           thickness: 2.5,
         ),
-        CampotextoUser(),
-        CampotextoEmail(),
-        CampotextoPassword(),
-        CampotextoPasswordRepeat(),
-        Container(
-          //margin: EdgeInsets.only(top: 20),
-          decoration: BoxDecoration(
-            color: Colors.blueAccent,
-            borderRadius: BorderRadius.all(Radius.circular(10)),
+        Form(
+          key: _formKey,
+          child: Column(
+            children: <Widget>[
+              CampotextoUser(),
+              CampotextoEmail(),
+              CampotextoPassword(),
+              CampotextoPasswordRepeat(),
+              Container(
+                //margin: EdgeInsets.only(top: 20),
+                decoration: BoxDecoration(
+                  color: Colors.blueAccent,
+                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                ),
+                padding: EdgeInsets.all(5),
+                child: FlatButton(
+                    child: Text(
+                      "Registrarse",
+                      style: TextStyle(color: Colors.white, fontSize: 20),
+                    ),
+                    onPressed: () {
+                      if (_formKey.currentState!.validate()) {
+                        Scaffold.of(context).showSnackBar(
+                            SnackBar(content: Text("Accesando al Sistema")));
+                      }
+                    }),
+              )
+            ],
           ),
-          padding: EdgeInsets.all(5),
-          child: FlatButton(
-              child: Text(
-                "Registrarse",
-                style: TextStyle(color: Colors.white, fontSize: 20),
-              ),
-              onPressed: () {}),
         ),
-        Divider(color: Colors.black),
+
+        /* Divider(color: Colors.black),
         Padding(
           padding: EdgeInsets.only(bottom: 5, top: 5),
           child: Text(
@@ -69,7 +94,7 @@ class Registro extends StatelessWidget {
                     color: Colors.black, fontSize: 20, fontFamily: 'Roboto'),
               ),
               onPressed: () {}),
-        )
+        ) */
       ]),
     );
   }
@@ -84,7 +109,12 @@ Widget CampotextoUser() {
       borderRadius:
           BorderRadius.all(Radius.circular(20)), // set rounded corner radius
     ),
-    child: TextField(
+    child: TextFormField(
+      validator: (value) {
+        if (value!.isEmpty) {
+          return 'Ingrese el nombre de usuario';
+        }
+      },
       decoration: InputDecoration(
         hintText: 'Nombre de usuario',
         border: InputBorder.none,
@@ -103,12 +133,17 @@ Widget CampotextoEmail() {
       borderRadius:
           BorderRadius.all(Radius.circular(20)), // set rounded corner radius
     ),
-    child: TextField(
+    child: TextFormField(
       decoration: InputDecoration(
         hintText: 'Email',
         border: InputBorder.none,
         suffixIcon: Icon(Icons.mail),
       ),
+      validator: (value) {
+        if (!_esEmail(value.toString())) {
+          return 'Ingrese un email correcto';
+        }
+      },
     ),
   );
 }
@@ -122,13 +157,18 @@ Widget CampotextoPassword() {
       borderRadius:
           BorderRadius.all(Radius.circular(20)), // set rounded corner radius
     ),
-    child: TextField(
+    child: TextFormField(
       decoration: InputDecoration(
         hintText: 'Contraseña',
         border: InputBorder.none,
         suffixIcon: Icon(Icons.lock),
       ),
       obscureText: true,
+      validator: (value) {
+        if (value!.isEmpty) {
+          return 'Ingrese una contraseña';
+        }
+      },
     ),
   );
 }
@@ -142,13 +182,18 @@ Widget CampotextoPasswordRepeat() {
       borderRadius:
           BorderRadius.all(Radius.circular(20)), // set rounded corner radius
     ),
-    child: TextField(
+    child: TextFormField(
       decoration: InputDecoration(
         hintText: 'Confirmar contraseña',
         border: InputBorder.none,
         suffixIcon: Icon(Icons.lock),
       ),
       obscureText: true,
+      validator: (value) {
+        if (value!.isEmpty) {
+          return 'Ingrese una contraseña';
+        }
+      },
     ),
   );
 }
