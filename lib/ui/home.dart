@@ -5,6 +5,7 @@ import 'package:picktock/ui/option.dart';
 import 'package:picktock/ui/perfil/dash.dart';
 import 'package:provider/provider.dart';
 import 'package:picktock/ui/ejemplo/Ejemplo2.dart';
+import 'package:picktock/ui/login/crear_usuario.dart';
 import 'package:picktock/ui/pictograma/pictograma.dart';
 import 'package:picktock/ui/comunidad/dash.dart';
 import 'package:picktock/ui/comunidad/pendiente.dart';
@@ -25,6 +26,19 @@ class Home extends StatelessWidget {
           body: Row(
             children: [
               SideBar(context, menuProvider),
+              if (menuProvider.menu == "Pictograma")
+                Expanded(
+                  child: Container(
+                    constraints: BoxConstraints.expand(),
+                    decoration: const BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage("assets/textures/background.jpg"),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    child: Text("Pictograma"),
+                  ),
+                ),
               Expanded(child: _routes(menuProvider: menuProvider))
 
               // Ruta para comunidad
@@ -69,6 +83,17 @@ Widget _routes({required menuProvider}) {
       ),
       child: Pictograma(),
     );
+  if (menuProvider.menu == "REGISTRO")
+    return Container(
+      constraints: BoxConstraints.expand(),
+      decoration: const BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage("assets/textures/background.jpg"),
+          fit: BoxFit.cover,
+        ),
+      ),
+      child: Registro(),
+    );
   if (menuProvider.menu == "Agregar")
     return Container(
       constraints: BoxConstraints.expand(),
@@ -91,6 +116,7 @@ Widget _routes({required menuProvider}) {
       ),
       child: Text("Configuracion"),
     );
+
   if (menuProvider.menu == "Comunidad")
     return Container(
       constraints: BoxConstraints.expand(),
@@ -113,7 +139,7 @@ Widget _routes({required menuProvider}) {
         ),
       ),
       child: Text("Contribuir"),
-    );    
+    );
 
   if (menuProvider.menu == "Comunidad/Pendiente")
     return Container(
@@ -125,7 +151,7 @@ Widget _routes({required menuProvider}) {
         ),
       ),
       child: PendienteComunity(),
-    );  
+    );
 
   if (menuProvider.menu == "Comunidad/Donacion")
     return Container(
@@ -137,7 +163,7 @@ Widget _routes({required menuProvider}) {
         ),
       ),
       child: Text("Donacion"),
-    );      
+    );
   if (menuProvider.menu == "Comunidad/Pendiente/idpictograma")
     return Container(
       constraints: BoxConstraints.expand(),
@@ -148,16 +174,16 @@ Widget _routes({required menuProvider}) {
         ),
       ),
       child: EvaluateComunity(),
-    );      
+    );
 
-    
-  // Widget widget  = menuRoute(context: context, textMenu: "Comunidad/Donacion", widget: Text("Donacion"));        
+  // Widget widget  = menuRoute(context: context, textMenu: "Comunidad/Donacion", widget: Text("Donacion"));
 
   return SizedBox.shrink();
 }
 
 // Rutas comunity
-Widget menuRoute({required context, required textMenu, required Widget widget }) {
+Widget menuRoute(
+    {required context, required textMenu, required Widget widget}) {
   final menuProvider = Provider.of<MenuProvider>(context);
   if (menuProvider.menu == textMenu) {
     return (Container(

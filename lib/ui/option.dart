@@ -37,22 +37,31 @@ Widget SideBar(BuildContext context, MenuProvider menuProvider) {
           color: Colors.white,
           thickness: 1,
         ),
-
         SideBarOption(
-            text: "Comunidad",
-            icon: Icons.people,
+            text: "REGISTRO",
+            icon: Icons.photo_library,
             menuProvider: menuProvider),
         const Divider(
           color: Colors.white,
           thickness: 1,
-        ),        
-        const Spacer(),
-        SideBarOptionBottom(text: "Agregar", icon: Icons.add, menuProvider: menuProvider),
+        ),
+        SideBarOption(
+            text: "Comunidad", icon: Icons.people, menuProvider: menuProvider),
         const Divider(
           color: Colors.white,
           thickness: 1,
         ),
-        SideBarOptionBottom(text: "Configuracion", icon: Icons.settings, menuProvider: menuProvider),
+        const Spacer(),
+        SideBarOptionBottom(
+            text: "Agregar", icon: Icons.add, menuProvider: menuProvider),
+        const Divider(
+          color: Colors.white,
+          thickness: 1,
+        ),
+        SideBarOptionBottom(
+            text: "Configuracion",
+            icon: Icons.settings,
+            menuProvider: menuProvider),
       ],
     ),
   );
@@ -76,7 +85,10 @@ Widget SideBarOption(
   );
 }
 
-Widget SideBarOptionBottom({required String text, required IconData icon,required MenuProvider menuProvider}) {
+Widget SideBarOptionBottom(
+    {required String text,
+    required IconData icon,
+    required MenuProvider menuProvider}) {
   return InkWell(
     onTap: () {
       menuProvider.menu = text;
