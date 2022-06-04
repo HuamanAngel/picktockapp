@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:picktock/ui/option.dart';
 import 'package:provider/provider.dart';
 import 'package:picktock/ui/ejemplo/Ejemplo2.dart';
+import 'package:picktock/ui/login/crear_usuario.dart';
 
 class Home extends StatelessWidget {
   Home({Key? key}) : super(key: key);
@@ -56,7 +57,7 @@ class Home extends StatelessWidget {
                         fit: BoxFit.cover,
                       ),
                     ),
-                    child:  Text("Pictograma"),
+                    child: Text("Pictograma"),
                   ),
                 ),
               if (menuProvider.menu == "Agregar")
@@ -83,6 +84,19 @@ class Home extends StatelessWidget {
                       ),
                     ),
                     child: Text("Configuracion"),
+                  ),
+                ),
+              if (menuProvider.menu == "REGISTRO")
+                Expanded(
+                  child: Container(
+                    constraints: BoxConstraints.expand(),
+                    decoration: const BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage("assets/textures/background.jpg"),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    child: Registro(),
                   ),
                 ),
             ],
