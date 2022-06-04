@@ -37,6 +37,15 @@ Widget SideBar(BuildContext context, MenuProvider menuProvider) {
           color: Colors.white,
           thickness: 1,
         ),
+
+        SideBarOption(
+            text: "Comunidad",
+            icon: Icons.people,
+            menuProvider: menuProvider),
+        const Divider(
+          color: Colors.white,
+          thickness: 1,
+        ),        
         const Spacer(),
         SideBarOptionBottom(text: "Agregar", icon: Icons.add, menuProvider: menuProvider),
         const Divider(
