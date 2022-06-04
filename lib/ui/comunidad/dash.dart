@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-
+import 'package:picktock/domain/provider/menuProvider.dart';
+import 'package:provider/provider.dart';
+import 'package:picktock/styles/style.dart';
+import 'package:picktock/ui/widgets/title.dart';
 class Comunidad extends StatefulWidget {
   Comunidad({Key? key}) : super(key: key);
   @override
@@ -9,17 +12,14 @@ class Comunidad extends StatefulWidget {
 class _ComunidadState extends State<Comunidad> {
   @override
   Widget build(BuildContext context) {
+    final menuProvider = Provider.of<MenuProvider>(context);
     return Container(
-      padding: EdgeInsets.only(left: 10, right: 10, top: 20, bottom: 20),
+      padding: styleContainer1['padding'],
       child: Column(
         children: [
           Container(
             margin: EdgeInsets.only(top: 5, bottom: 10),
-            child: Text(
-              "Seleccione una opcion",
-              textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            ),
+            child: titleFirst(textTitle: "Seleccione una opcion"),
           ),
           Container(
             margin: EdgeInsets.only(bottom: 10),
@@ -29,9 +29,18 @@ class _ComunidadState extends State<Comunidad> {
               style: TextStyle(fontSize: 15, fontWeight: FontWeight.normal),
             ),
           ),
-          _buildMenuItem(text: "¿Puedo Contribuir?", onPressed: () {}),
-          _buildMenuItem(text: "Pictogramas pendientes", onPressed: () {}),
-          _buildMenuItem(text: "!! Donación ¡¡", onPressed: () {}),
+          _buildMenuItem(
+              text: "¿Puedo Contribuir?",
+              route: "Comunidad/Contribuir",
+              MenuProvider: menuProvider,context: context),
+          _buildMenuItem(
+              text: "Pictogramas pendientes",
+              route: "Comunidad/Pendiente",
+              MenuProvider: menuProvider,context: context),
+          _buildMenuItem(
+              text: "!! Donación ¡¡",
+              route: "Comunidad/Donacion",
+              MenuProvider: menuProvider,context: context),
         ],
       ),
     );
@@ -39,8 +48,7 @@ class _ComunidadState extends State<Comunidad> {
 }
 
 Widget _buildMenuItem(
-    {required String text,
-    required Function onPressed}) {
+    {required String text, required String route, required MenuProvider,required context}) {
   return Container(
     margin: EdgeInsets.only(left: 10, right: 10, top: 20, bottom: 20),
     // padding: EdgeInsets.only(left: 10, right: 10, top: 20, bottom: 20),
@@ -52,13 +60,15 @@ Widget _buildMenuItem(
           borderRadius: BorderRadius.circular(12),
         ),
       ),
-      onPressed: () {},
+      onPressed: () {
+        MenuProvider.menu = route;
+      },
       child: Padding(
         padding: EdgeInsets.all(10.0),
         child: Container(
           child: Text(
             text,
-            style: TextStyle(fontSize: 20 ,color: Colors.black),
+            style: TextStyle(fontSize: 20, color: Colors.black),
           ),
         ),
       ),
