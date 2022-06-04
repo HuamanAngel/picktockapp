@@ -2,6 +2,7 @@ import 'package:picktock/domain/provider/menuProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:picktock/ui/comunidad/evaluar.dart';
 import 'package:picktock/ui/option.dart';
+import 'package:picktock/ui/perfil/dash.dart';
 import 'package:provider/provider.dart';
 import 'package:picktock/ui/ejemplo/Ejemplo2.dart';
 import 'package:picktock/ui/pictograma/pictograma.dart';
@@ -55,7 +56,7 @@ Widget _routes({required menuProvider}) {
           fit: BoxFit.cover,
         ),
       ),
-      child: Text("Perfil"),
+      child: Perfil(),
     );
   if (menuProvider.menu == "Pictograma")
     return Container(
