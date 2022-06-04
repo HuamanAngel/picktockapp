@@ -4,6 +4,7 @@ import 'package:picktock/ui/option.dart';
 import 'package:provider/provider.dart';
 import 'package:picktock/ui/ejemplo/Ejemplo2.dart';
 import 'package:picktock/ui/categoria/categoria.dart';
+import 'package:picktock/ui/login/login.dart';
 
 class Home extends StatelessWidget {
   Home({Key? key}) : super(key: key);
@@ -73,6 +74,19 @@ class Home extends StatelessWidget {
                     child: Text("Agregar"),
                   ),
                 ),
+              if (menuProvider.menu == "Login")
+                Expanded(
+                  child: Container(
+                    constraints: BoxConstraints.expand(),
+                    decoration: const BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage("assets/textures/background.jpg"),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    child: Login(),
+                  ),
+                ),
               if (menuProvider.menu == "Configuracion")
                 Expanded(
                   child: Container(
@@ -88,7 +102,8 @@ class Home extends StatelessWidget {
                 ),
               if (menuProvider.menu == "Categoria")
                 Expanded(
-                  child: Center(
+                  child: Container(
+                    constraints: BoxConstraints.expand(),
                     child: AddCategoria(),
                   ),
                 ),

@@ -15,6 +15,12 @@ class AddCategoria extends StatelessWidget {
           children: <Widget>[
             Expanded(
               child: Container(
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage("assets/textures/background.jpg"),
+                    fit: BoxFit.cover,
+                  ),
+                ),
                 padding: const EdgeInsets.all(20),
                 alignment: Alignment.center,
                 child: AddirScreen(),
