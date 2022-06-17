@@ -78,11 +78,8 @@ class Home extends StatelessWidget {
                 Expanded(
                   child: Container(
                     constraints: BoxConstraints.expand(),
-                    decoration: const BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage("assets/textures/background.jpg"),
-                        fit: BoxFit.cover,
-                      ),
+                    decoration: BoxDecoration(
+                      color: Colors.amber.shade100,
                     ),
                     child: Login(),
                   ),
