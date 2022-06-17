@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
 class Login extends StatefulWidget {
@@ -75,7 +78,7 @@ class _LoginState extends State<Login> {
             thickness: 1,
           ),
           Padding(
-            padding: EdgeInsets.all(5),
+            padding: EdgeInsets.all(20),
             child: Text(
               "¿No tienes una cuenta?",
               style: TextStyle(
@@ -84,14 +87,25 @@ class _LoginState extends State<Login> {
               ),
             ),
           ),
-          /*Container(
-            decoration: BoxDecoration(
-              color: Colors.blueAccent,
-              borderRadius: BorderRadius.circular(10),
-            ),
-            padding: EdgeInsets.all(15),
-            margin: EdgeInsets.all(15),
-          )*/
+          Container(
+              width: 200,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  FloatingActionButton(
+                    child: Icon(FontAwesomeIcons.google),
+                    onPressed: null,
+                  ),
+                  FloatingActionButton(
+                      backgroundColor: Color(0xff3b5998),
+                      child: Icon(FontAwesomeIcons.facebook),
+                      onPressed: null),
+                  FloatingActionButton(
+                      backgroundColor: Color(0xff00aced),
+                      child: Icon(FontAwesomeIcons.twitter),
+                      onPressed: null)
+                ],
+              ))
         ],
       ),
     );
