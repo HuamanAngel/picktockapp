@@ -2,9 +2,9 @@ import 'package:picktock/domain/provider/menuProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:picktock/ui/option.dart';
 import 'package:provider/provider.dart';
-import 'package:picktock/ui/ejemplo/Ejemplo2.dart';
 import 'package:picktock/ui/categoria/categoria.dart';
 import 'package:picktock/ui/login/login.dart';
+import "package:picktock/ui/informacion/informacion.dart";
 
 class Home extends StatelessWidget {
   Home({Key? key}) : super(key: key);
@@ -32,7 +32,7 @@ class Home extends StatelessWidget {
                         fit: BoxFit.cover,
                       ),
                     ),
-                    child: Prueba(),
+                    child: Login(),
                   ),
                 ),
               if (menuProvider.menu == "Perfil")
@@ -101,7 +101,18 @@ class Home extends StatelessWidget {
                 Expanded(
                   child: Container(
                     constraints: BoxConstraints.expand(),
+                    decoration: BoxDecoration(color: Colors.amber.shade100),
                     child: AddCategoria(),
+                  ),
+                ),
+              if (menuProvider.menu == "Informacion")
+                Expanded(
+                  child: Container(
+                    constraints: BoxConstraints.expand(),
+                    decoration: BoxDecoration(
+                      color: Colors.amber.shade100,
+                    ),
+                    child: AboutUs(),
                   ),
                 ),
             ],

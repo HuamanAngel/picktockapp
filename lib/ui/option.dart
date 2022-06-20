@@ -62,6 +62,14 @@ Widget SideBar(BuildContext context, MenuProvider menuProvider) {
             text: "Configuracion",
             icon: Icons.settings,
             menuProvider: menuProvider),
+        const Divider(
+          color: Colors.white,
+          thickness: 1,
+        ),
+        SideBarOptionBottom(
+            text: "Informacion",
+            icon: Icons.settings,
+            menuProvider: menuProvider),
       ],
     ),
   );

@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
@@ -27,7 +26,7 @@ class _LoginState extends State<Login> {
         borderRadius: BorderRadius.circular(50),
       ),
       margin:
-          const EdgeInsets.only(top: 150, left: 300, right: 300, bottom: 300),
+          const EdgeInsets.only(top: 200, left: 300, right: 300, bottom: 200),
       child: Column(
         children: [
           Padding(
