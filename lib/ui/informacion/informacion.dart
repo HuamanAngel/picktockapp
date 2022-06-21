@@ -54,7 +54,7 @@ class _AboutUsState extends State<AboutUs> {
           padding: EdgeInsets.all(20),
           child: Text("Contáctanos: picktockteam@gmail.com",
               style: TextStyle(
-                fontSize: 20,
+                fontSize: 22,
                 fontWeight: FontWeight.bold,
               )),
         ),

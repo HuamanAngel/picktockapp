@@ -51,6 +51,32 @@ Widget SideBar(BuildContext context, MenuProvider menuProvider) {
           color: Colors.white,
           thickness: 1,
         ),
+        SideBarOptionBottom(
+            text: "Favoritos", icon: Icons.star, menuProvider: menuProvider),
+        const Divider(
+          color: Colors.white,
+          thickness: 1,
+        ),
+        SideBarOptionBottom(
+            text: "Editar", icon: Icons.edit, menuProvider: menuProvider),
+        const Divider(
+          color: Colors.white,
+          thickness: 1,
+        ),
+        SideBarOptionBottom(
+            text: "Compartir", icon: Icons.share, menuProvider: menuProvider),
+        const Divider(
+          color: Colors.white,
+          thickness: 1,
+        ),
+        SideBarOptionBottom(
+            text: "Editados",
+            icon: Icons.edit_attributes,
+            menuProvider: menuProvider),
+        const Divider(
+          color: Colors.white,
+          thickness: 1,
+        ),
         const Spacer(),
         SideBarOptionBottom(
             text: "Login", icon: Icons.exit_to_app, menuProvider: menuProvider),

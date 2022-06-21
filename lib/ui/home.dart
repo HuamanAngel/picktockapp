@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:picktock/ui/categoria/categoria.dart';
 import 'package:picktock/ui/login/login.dart';
 import "package:picktock/ui/informacion/informacion.dart";
+import 'package:picktock/ui/favorito/favorito.dart';
 
 class Home extends StatelessWidget {
   Home({Key? key}) : super(key: key);
@@ -82,6 +83,16 @@ class Home extends StatelessWidget {
                       color: Colors.amber.shade100,
                     ),
                     child: Login(),
+                  ),
+                ),
+              if (menuProvider.menu == "Favoritos")
+                Expanded(
+                  child: Container(
+                    constraints: BoxConstraints.expand(),
+                    decoration: BoxDecoration(
+                      color: Colors.amber.shade100,
+                    ),
+                    child: Favorito(),
                   ),
                 ),
               if (menuProvider.menu == "Configuracion")
