@@ -1,8 +1,11 @@
 import 'package:picktock/domain/provider/menuProvider.dart';
 import 'package:flutter/material.dart';
+import 'package:picktock/ui/enviarsugerencias/enviarSugerencias.dart';
 import 'package:picktock/ui/option.dart';
 import 'package:provider/provider.dart';
-import 'package:picktock/ui/ejemplo/Ejemplo2.dart';
+import 'package:picktock/ui/addpicto/addPicto.dart';
+import 'package:picktock/ui/cambiarvoz/cambiarVoz.dart';
+import 'package:picktock/ui/pictoglobales/seccionGlobales.dart';
 
 class Home extends StatelessWidget {
   Home({Key? key}) : super(key: key);
@@ -22,67 +25,26 @@ class Home extends StatelessWidget {
               SideBar(context, menuProvider),
               if (menuProvider.menu == "Inicio")
                 Expanded(
-                  child: Container(
-                    constraints: BoxConstraints.expand(),
-                    decoration: const BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage("assets/textures/background.jpg"),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                    child: Prueba(),
+                  child: Center(
+                    child: Sugerencia(),
                   ),
                 ),
               if (menuProvider.menu == "Perfil")
                 Expanded(
-                  child: Container(
-                    constraints: BoxConstraints.expand(),
-                    decoration: const BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage("assets/textures/background.jpg"),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                    child: Text("Perfil"),
+                  child: Center(
+                    child: Voz(),
                   ),
                 ),
               if (menuProvider.menu == "Pictograma")
                 Expanded(
-                  child: Container(
-                    constraints: BoxConstraints.expand(),
-                    decoration: const BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage("assets/textures/background.jpg"),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                    child:  Text("Pictograma"),
+                  child: Center(
+                    child: Text("Pictograma"),
                   ),
                 ),
-              if (menuProvider.menu == "Agregar")
+              if (menuProvider.menu == "Globales")
                 Expanded(
-                  child: Container(
-                    constraints: BoxConstraints.expand(),
-                    decoration: const BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage("assets/textures/background.jpg"),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                    child: Text("Agregar"),
-                  ),
-                ),
-              if (menuProvider.menu == "Configuracion")
-                Expanded(
-                  child: Container(
-                    constraints: BoxConstraints.expand(),
-                    decoration: const BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage("assets/textures/background.jpg"),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                    child: Text("Configuracion"),
+                  child: Center(
+                    child: Globales(),
                   ),
                 ),
             ],

@@ -31,14 +31,23 @@ class Prueba extends StatelessWidget {
                     style: TextStyle(color: Colors.black, fontSize: 25),
                   ),
                 ),
-                TextField(
+                TextFormField(
                   decoration: InputDecoration(
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20.0)
                   ),
-                  labelText: 'Ingresa un titulo'
+
                   ),
+                    validator: (value){
+                      if(value!.isEmpty){
+                        return 'Ingrese el titulo';
+                      }
+
+                    }
+
+
                 ),
+
               Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
@@ -54,7 +63,9 @@ class Prueba extends StatelessWidget {
                       child: new Text(value),
                     );
                   }).toList(),
-                  onChanged: (_) {},
+                  onChanged: (_) {
+
+                  },
 
                 ),
 

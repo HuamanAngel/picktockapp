@@ -37,13 +37,19 @@ Widget SideBar(BuildContext context, MenuProvider menuProvider) {
           color: Colors.white,
           thickness: 1,
         ),
-        const Spacer(),
-        SideBarOptionBottom(text: "Agregar", icon: Icons.add, menuProvider: menuProvider),
+        SideBarOption(
+            text: "Globales", icon: Icons.person_pin_circle_sharp, menuProvider: menuProvider),
         const Divider(
           color: Colors.white,
           thickness: 1,
         ),
-        SideBarOptionBottom(text: "Configuracion", icon: Icons.settings, menuProvider: menuProvider),
+        const Spacer(),
+        SideBarOptionBottom(text: "Agregar", icon: Icons.add),
+        const Divider(
+          color: Colors.white,
+          thickness: 1,
+        ),
+        SideBarOptionBottom(text: "Configuracion", icon: Icons.settings),
       ],
     ),
   );
@@ -53,31 +59,26 @@ Widget SideBarOption(
     {required String text,
     required IconData icon,
     required MenuProvider menuProvider}) {
-  return InkWell(
-    onTap: () {
-      menuProvider.menu = text;
-    },
-    child: Container(
-      padding: EdgeInsets.only(left: 10, right: 10),
-      child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-        Text(text, style: TextStyle(color: Colors.white)),
-        Icon(icon, color: Colors.white),
-      ]),
-    ),
+  return Container(
+    padding: EdgeInsets.only(left: 10, right: 10),
+    child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+      ElevatedButton(
+        child: Text(text, style: TextStyle(color: Colors.white)),
+        onPressed: () {
+          menuProvider.menu = text;
+        },
+      ),
+      Icon(icon, color: Colors.white),
+    ]),
   );
 }
 
-Widget SideBarOptionBottom({required String text, required IconData icon,required MenuProvider menuProvider}) {
-  return InkWell(
-    onTap: () {
-      menuProvider.menu = text;
-    },
-    child: Container(
-      padding: EdgeInsets.only(left: 10, right: 10),
-      child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-        Text(text, style: TextStyle(color: Colors.white)),
-        Icon(icon, color: Colors.white),
-      ]),
-    ),
+Widget SideBarOptionBottom({required String text, required IconData icon}) {
+  return Container(
+    padding: EdgeInsets.only(left: 10, right: 10),
+    child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+      Text(text, style: TextStyle(color: Colors.white)),
+      Icon(icon, color: Colors.white),
+    ]),
   );
 }
