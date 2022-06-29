@@ -1,6 +1,7 @@
 import 'package:picktock/domain/provider/menuProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:picktock/ui/comunidad/evaluar.dart';
+import 'package:picktock/ui/enviarsugerencias/enviarSugerencias.dart';
 import 'package:picktock/ui/option.dart';
 import 'package:picktock/ui/perfil/dash.dart';
 import 'package:provider/provider.dart';
@@ -13,6 +14,9 @@ import 'package:picktock/ui/categoria/categoria.dart';
 import 'package:picktock/ui/login/login.dart';
 import "package:picktock/ui/informacion/informacion.dart";
 import 'package:picktock/ui/favorito/favorito.dart';
+import 'package:picktock/ui/addpicto/addPicto.dart';
+import 'package:picktock/ui/cambiarvoz/cambiarVoz.dart';
+import 'package:picktock/ui/pictoglobales/seccionGlobales.dart';
 
 class Home extends StatelessWidget {
   Home({Key? key}) : super(key: key);
@@ -47,9 +51,31 @@ Widget _routes({required menuProvider}) {
           fit: BoxFit.cover,
         ),
       ),
-      child: Login(),
+      child: Sugerencia(),
     );
-    
+  if (menuProvider.menu == "Globales")
+    return Container(
+      constraints: BoxConstraints.expand(),
+      decoration: const BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage("assets/textures/background.jpg"),
+          fit: BoxFit.cover,
+        ),
+      ),
+      child: Globales(),
+    );
+  if (menuProvider.menu == "Voz")
+    return Container(
+      constraints: BoxConstraints.expand(),
+      decoration: const BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage("assets/textures/background.jpg"),
+          fit: BoxFit.cover,
+        ),
+      ),
+      child: Voz(),
+    );    
+
   if (menuProvider.menu == "Informacion")
     return Container(
       constraints: BoxConstraints.expand(),

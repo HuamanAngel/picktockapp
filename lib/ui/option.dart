@@ -37,7 +37,14 @@ Widget SideBar(BuildContext context, MenuProvider menuProvider) {
           color: Colors.white,
           thickness: 1,
         ),
-
+        SideBarOption(
+            text: "Voz",
+            icon: Icons.photo_library,
+            menuProvider: menuProvider),
+        const Divider(
+          color: Colors.white,
+          thickness: 1,
+        ),
         SideBarOption(
             text: "REGISTRO",
             icon: Icons.photo_library,
@@ -59,7 +66,13 @@ Widget SideBar(BuildContext context, MenuProvider menuProvider) {
         const Divider(
           color: Colors.white,
           thickness: 1,
-        ),              
+        ),             
+        SideBarOption(
+            text: "Globales", icon: Icons.person_pin_circle_sharp, menuProvider: menuProvider),         
+        const Divider(
+          color: Colors.white,
+          thickness: 1,
+        ),             
         SideBarOptionBottom(
             text: "Agregar", icon: Icons.add, menuProvider: menuProvider),
         const Divider(
