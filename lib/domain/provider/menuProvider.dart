@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 class MenuProvider extends ChangeNotifier {
   // Estado actual
   String _menu = "Inicio";
@@ -13,6 +12,3 @@ class MenuProvider extends ChangeNotifier {
     notifyListeners();
   }
 }
-
-
-

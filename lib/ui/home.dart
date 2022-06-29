@@ -4,11 +4,15 @@ import 'package:picktock/ui/comunidad/evaluar.dart';
 import 'package:picktock/ui/option.dart';
 import 'package:picktock/ui/perfil/dash.dart';
 import 'package:provider/provider.dart';
-import 'package:picktock/ui/ejemplo/Ejemplo2.dart';
+// import 'package:picktock/ui/ejemplo/Ejemplo2.dart';
 import 'package:picktock/ui/login/crear_usuario.dart';
 import 'package:picktock/ui/pictograma/pictograma.dart';
 import 'package:picktock/ui/comunidad/dash.dart';
 import 'package:picktock/ui/comunidad/pendiente.dart';
+import 'package:picktock/ui/categoria/categoria.dart';
+import 'package:picktock/ui/login/login.dart';
+import "package:picktock/ui/informacion/informacion.dart";
+import 'package:picktock/ui/favorito/favorito.dart';
 
 class Home extends StatelessWidget {
   Home({Key? key}) : super(key: key);
@@ -26,23 +30,7 @@ class Home extends StatelessWidget {
           body: Row(
             children: [
               SideBar(context, menuProvider),
-              if (menuProvider.menu == "Pictograma")
-                Expanded(
-                  child: Container(
-                    constraints: BoxConstraints.expand(),
-                    decoration: const BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage("assets/textures/background.jpg"),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                    child: Text("Pictograma"),
-                  ),
-                ),
-              Expanded(child: _routes(menuProvider: menuProvider))
-
-              // Ruta para comunidad
-              // comunityRoute(context: context, textMenu: "contribuir"),
+              Expanded(child: _routes(menuProvider: menuProvider))              // comunityRoute(context: context, textMenu: "contribuir"),
             ],
           ),
         ));
@@ -59,8 +47,57 @@ Widget _routes({required menuProvider}) {
           fit: BoxFit.cover,
         ),
       ),
-      child: Prueba(),
+      child: Login(),
     );
+    
+  if (menuProvider.menu == "Informacion")
+    return Container(
+      constraints: BoxConstraints.expand(),
+      decoration: BoxDecoration(
+        color: Colors.amber.shade100,
+        image: DecorationImage(
+          image: AssetImage("assets/textures/background.jpg"),
+          fit: BoxFit.cover,
+        ),
+      ),
+      child: AboutUs(),
+    );
+  if (menuProvider.menu == "Login")
+    return Container(
+      constraints: BoxConstraints.expand(),
+      decoration: const BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage("assets/textures/background.jpg"),
+          fit: BoxFit.cover,
+        ),
+      ),
+      child: Login(),
+    );
+
+  if (menuProvider.menu == "Categoria")
+    return Container(
+      constraints: BoxConstraints.expand(),
+      decoration: const BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage("assets/textures/background.jpg"),
+          fit: BoxFit.cover,
+        ),
+      ),
+      child: AddCategoria(),
+    );
+
+  if (menuProvider.menu == "Favoritos")
+    return Container(
+      constraints: BoxConstraints.expand(),
+      decoration: BoxDecoration(
+        color: Colors.amber.shade200,
+        image: DecorationImage(
+          image: AssetImage("assets/textures/background.jpg"),
+          fit: BoxFit.cover,
+        ),
+      ),
+      child: Favorito(),
+    );    
   if (menuProvider.menu == "Perfil")
     return Container(
       constraints: BoxConstraints.expand(),
