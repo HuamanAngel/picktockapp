@@ -1,6 +1,8 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:picktock/data/models/user.dart';
+import 'package:picktock/domain/provider/auth_provider.dart';
+import 'package:picktock/domain/provider/menuProvider.dart';
 import 'package:provider/provider.dart';
 
 class Login extends StatefulWidget {
@@ -17,9 +19,15 @@ bool _esEmail(String str) {
 
 class _LoginState extends State<Login> {
   final _formKey = GlobalKey<FormState>();
+  final controllerEmail = TextEditingController();
+  final controllerPassword = TextEditingController();
+  bool _isLoading = false;
+  setLoading(bool state) => setState(() => _isLoading = state);
 
   @override
   Widget build(BuildContext context) {
+    final authProvider = Provider.of<AuthProvider>(context);
+    final menuProvider = Provider.of<MenuProvider>(context);
     return Container(
       decoration: BoxDecoration(
         color: Colors.blue.shade200,
@@ -57,21 +65,35 @@ class _LoginState extends State<Login> {
               ),
               padding: EdgeInsets.all(15),
               margin: EdgeInsets.all(15),
-              child: FlatButton.icon(
-                onPressed: () {
-                  if (_formKey.currentState!.validate()) {
-                    Navigator.pushNamed(context, '/home');
-                  }
-                },
-                icon: Icon(
-                  Icons.arrow_forward,
-                  color: Colors.white,
-                ),
-                label: Text(
-                  "Iniciar Sesión",
-                  style: TextStyle(fontSize: 20, color: Colors.white),
-                ),
-              )),
+              child: _isLoading
+                  ? CircularProgressIndicator()
+                  : FlatButton.icon(
+                      onPressed: () async {
+                        if (_formKey.currentState!.validate()) {
+                          setLoading(true);
+                          User user = await AuthProvider.login(
+                              controllerEmail.text, controllerPassword.text);
+                          print(user);
+                          // print(user.);
+                          if (user.id != -1) {
+                            authProvider.user = user;
+                            // Redirige a la pantalla principal
+                            setLoading(false);
+                            menuProvider.menu = "Inicio";
+                          } else {
+                            setLoading(false);
+                          }
+                        }
+                      },
+                      icon: Icon(
+                        Icons.arrow_forward,
+                        color: Colors.white,
+                      ),
+                      label: Text(
+                        "Iniciar Sesión",
+                        style: TextStyle(fontSize: 20, color: Colors.white),
+                      ),
+                    )),
           Divider(
             color: Colors.black,
             thickness: 1,
@@ -119,6 +141,7 @@ class _LoginState extends State<Login> {
         borderRadius: BorderRadius.circular(20),
       ),
       child: TextFormField(
+          controller: controllerEmail,
           validator: (value) {
             if (value!.isEmpty) {
               return 'Por favor ingrese un email';
@@ -161,11 +184,12 @@ class _LoginState extends State<Login> {
           ),
         ),
         obscureText: true,
+        controller: controllerPassword,
         validator: (value) {
           if (value!.isEmpty) {
             return 'Por favor ingrese una contraseña';
-          } else if (value.length < 6) {
-            return 'Por favor ingrese una contraseña valida';
+          } else if (value.length < 5) {
+            return 'Por favor ingrese una contraseña con mas caracteres';
           }
         },
       ),
