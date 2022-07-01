@@ -48,7 +48,7 @@ class Home extends StatelessWidget {
                     child: Globales(),
                   ),
                 ),
-              Expanded(child: _routes(menuProvider: menuProvider))
+              //Expanded(child: _routes(menuProvider: menuProvider))
 
               // Ruta para comunidad
               // comunityRoute(context: context, textMenu: "contribuir"),
