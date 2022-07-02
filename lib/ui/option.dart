@@ -38,6 +38,34 @@ Widget SideBar(BuildContext context, MenuProvider menuProvider) {
           thickness: 1,
         ),
         SideBarOption(
+            text: "Voz", icon: Icons.photo_library, menuProvider: menuProvider),
+        const Divider(
+          color: Colors.white,
+          thickness: 1,
+        ),
+        SideBarOption(
+            text: "REGISTRO",
+            icon: Icons.photo_library,
+            menuProvider: menuProvider),
+        const Divider(
+          color: Colors.white,
+          thickness: 1,
+        ),
+        SideBarOption(
+            text: "Categoria",
+            icon: Icons.category,
+            menuProvider: menuProvider),
+        const Divider(
+          color: Colors.white,
+          thickness: 1,
+        ),
+        SideBarOption(
+            text: "Comunidad", icon: Icons.people, menuProvider: menuProvider),
+        const Divider(
+          color: Colors.white,
+          thickness: 1,
+        ),
+        SideBarOption(
             text: "Globales",
             icon: Icons.person_pin_circle_sharp,
             menuProvider: menuProvider),
@@ -45,13 +73,63 @@ Widget SideBar(BuildContext context, MenuProvider menuProvider) {
           color: Colors.white,
           thickness: 1,
         ),
-        const Spacer(),
-        SideBarOptionBottom(text: "Agregar", icon: Icons.add),
+        SideBarOptionBottom(
+            text: "Agregar", icon: Icons.add, menuProvider: menuProvider),
         const Divider(
           color: Colors.white,
           thickness: 1,
         ),
-        SideBarOptionBottom(text: "Configuracion", icon: Icons.settings),
+        SideBarOptionBottom(
+            text: "Favoritos", icon: Icons.star, menuProvider: menuProvider),
+        const Divider(
+          color: Colors.white,
+          thickness: 1,
+        ),
+        SideBarOptionBottom(
+            text: "Editar", icon: Icons.edit, menuProvider: menuProvider),
+        const Divider(
+          color: Colors.white,
+          thickness: 1,
+        ),
+        SideBarOptionBottom(
+            text: "Compartir", icon: Icons.share, menuProvider: menuProvider),
+        const Divider(
+          color: Colors.white,
+          thickness: 1,
+        ),
+        SideBarOptionBottom(
+            text: "Editados",
+            icon: Icons.edit_attributes,
+            menuProvider: menuProvider),
+        const Divider(
+          color: Colors.white,
+          thickness: 1,
+        ),
+        const Spacer(),
+        SideBarOptionBottom(
+            text: "Agregar", icon: Icons.add, menuProvider: menuProvider),
+        const Divider(
+          color: Colors.white,
+          thickness: 1,
+        ),
+        SideBarOptionBottom(
+            text: "Login", icon: Icons.exit_to_app, menuProvider: menuProvider),
+        const Divider(
+          color: Colors.white,
+          thickness: 1,
+        ),
+        SideBarOptionBottom(
+            text: "Configuracion",
+            icon: Icons.settings,
+            menuProvider: menuProvider),
+        const Divider(
+          color: Colors.white,
+          thickness: 1,
+        ),
+        SideBarOptionBottom(
+            text: "Informacion",
+            icon: Icons.settings,
+            menuProvider: menuProvider),
       ],
     ),
   );
@@ -61,26 +139,34 @@ Widget SideBarOption(
     {required String text,
     required IconData icon,
     required MenuProvider menuProvider}) {
-  return Container(
-    padding: EdgeInsets.only(left: 10, right: 10),
-    child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-      ElevatedButton(
-        child: Text(text, style: TextStyle(color: Colors.white)),
-        onPressed: () {
-          menuProvider.menu = text;
-        },
-      ),
-      Icon(icon, color: Colors.white),
-    ]),
+  return InkWell(
+    onTap: () {
+      menuProvider.menu = text;
+    },
+    child: Container(
+      padding: EdgeInsets.only(left: 10, right: 10),
+      child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+        Text(text, style: TextStyle(color: Colors.white)),
+        Icon(icon, color: Colors.white),
+      ]),
+    ),
   );
 }
 
-Widget SideBarOptionBottom({required String text, required IconData icon}) {
-  return Container(
-    padding: EdgeInsets.only(left: 10, right: 10),
-    child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-      Text(text, style: TextStyle(color: Colors.white)),
-      Icon(icon, color: Colors.white),
-    ]),
+Widget SideBarOptionBottom(
+    {required String text,
+    required IconData icon,
+    required MenuProvider menuProvider}) {
+  return InkWell(
+    onTap: () {
+      menuProvider.menu = text;
+    },
+    child: Container(
+      padding: EdgeInsets.only(left: 10, right: 10),
+      child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+        Text(text, style: TextStyle(color: Colors.white)),
+        Icon(icon, color: Colors.white),
+      ]),
+    ),
   );
 }

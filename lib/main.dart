@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:picktock/domain/provider/auth_provider.dart';
 import 'package:picktock/domain/provider/comunityProvider.dart';
 import 'package:provider/provider.dart';
 import 'package:picktock/domain/provider/menuProvider.dart';
@@ -19,6 +20,9 @@ class PickTock extends StatelessWidget {
         ),
         ChangeNotifierProvider<ComunityProvider>(
           create: (_) => ComunityProvider(),
+        ),
+        ChangeNotifierProvider<AuthProvider>(
+          create: (_) => AuthProvider(),
         ),
       ],
       child: MaterialApp(
