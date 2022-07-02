@@ -80,8 +80,19 @@ class _LoginState extends State<Login> {
                               // Redirige a la pantalla principal
                               setLoading(false);
                               menuProvider.menu = "Inicio";
+                              Scaffold.of(context)
+                                  .showSnackBar(const SnackBar(
+                                content: Text('Logeado correctamente'),
+                                backgroundColor: Colors.green,
+                              ));
+
                             } else {
                               setLoading(false);
+                              Scaffold.of(context)
+                                  .showSnackBar(const SnackBar(
+                                content: Text('Credenciales no validas'),
+                                backgroundColor: Colors.red,
+                              ));
                             }
                           }
                         },
