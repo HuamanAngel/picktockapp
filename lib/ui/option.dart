@@ -5,7 +5,8 @@ import 'package:picktock/domain/provider/menuProvider.dart';
 Widget SideBar(BuildContext context, MenuProvider menuProvider) {
   return Container(
     decoration: const BoxDecoration(
-      color: Color.fromRGBO(33, 154, 235, 1),
+      color: Colors.blue,
+      // color: Color.fromARGB(255, 177, 147, 57),
     ),
     width: 200,
     child: Column(
@@ -38,13 +39,13 @@ Widget SideBar(BuildContext context, MenuProvider menuProvider) {
           thickness: 1,
         ),
         SideBarOption(
-            text: "Voz", icon: Icons.photo_library, menuProvider: menuProvider),
+            text: "Voz", icon: Icons.mic, menuProvider: menuProvider),
         const Divider(
           color: Colors.white,
           thickness: 1,
         ),
         SideBarOption(
-            text: "REGISTRO",
+            text: "Registro",
             icon: Icons.photo_library,
             menuProvider: menuProvider),
         const Divider(
@@ -119,15 +120,7 @@ Widget SideBar(BuildContext context, MenuProvider menuProvider) {
           thickness: 1,
         ),
         SideBarOptionBottom(
-            text: "Configuracion",
-            icon: Icons.settings,
-            menuProvider: menuProvider),
-        const Divider(
-          color: Colors.white,
-          thickness: 1,
-        ),
-        SideBarOptionBottom(
-            text: "Configuracion",
+            text: "Configuración",
             icon: Icons.settings,
             menuProvider: menuProvider),
         const Divider(
@@ -136,7 +129,7 @@ Widget SideBar(BuildContext context, MenuProvider menuProvider) {
         ),
         SideBarOptionBottom(
             text: "Informacion",
-            icon: Icons.settings,
+            icon: Icons.info,
             menuProvider: menuProvider),
       ],
     ),

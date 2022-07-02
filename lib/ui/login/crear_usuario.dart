@@ -20,7 +20,15 @@ class _RegistroUsuario extends State<Registro> {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          color: Colors.blue.shade200, borderRadius: BorderRadius.circular(35)),
+        color: Color.fromARGB(255, 255, 193, 7).withAlpha(255),
+        borderRadius: BorderRadius.circular(35),
+        boxShadow: [
+          BoxShadow(
+              color: Colors.black.withAlpha(150),
+              blurRadius: 5,
+              offset: Offset(10, 10))
+        ],
+      ),
       margin: EdgeInsets.only(top: 50, left: 100, right: 100, bottom: 50),
       child: Column(children: [
         Padding(
@@ -28,13 +36,15 @@ class _RegistroUsuario extends State<Registro> {
           child: Text(
             "Crear nueva cuenta",
             style: TextStyle(
+              fontWeight: FontWeight.bold,
+              color: Color.fromARGB(255, 0, 0, 0),
               fontSize: 25,
               fontFamily: 'Arial',
             ),
           ),
         ),
         Divider(
-          color: Colors.black,
+          color: Colors.white,
           thickness: 2.5,
         ),
         Form(

@@ -19,7 +19,7 @@ class _AgregarState extends State<Agregar> {
         body: Container(
           decoration: BoxDecoration(
               boxShadow: [BoxShadow(
-                color: Colors.blue.shade200,
+                color: Color.fromARGB(255, 255, 193, 7),
               )]
           ),
 
