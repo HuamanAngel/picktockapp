@@ -67,33 +67,6 @@ class _RegistroUsuario extends State<Registro> {
             ],
           ),
         ),
-
-        /* Divider(color: Colors.black),
-        Padding(
-          padding: EdgeInsets.only(bottom: 5, top: 5),
-          child: Text(
-            "O continuar con",
-            style: TextStyle(
-              fontSize: 15,
-              fontFamily: 'Arial',
-            ),
-          ),
-        ),
-        Container(
-          //margin: EdgeInsets.only(top: 20),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.all(Radius.circular(10)),
-          ),
-          padding: EdgeInsets.all(5),
-          child: FlatButton(
-              child: Text(
-                "Google",
-                style: TextStyle(
-                    color: Colors.black, fontSize: 20, fontFamily: 'Roboto'),
-              ),
-              onPressed: () {}),
-        ) */
       ]),
     );
   }

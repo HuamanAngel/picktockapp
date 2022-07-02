@@ -37,7 +37,10 @@ class Home extends StatelessWidget {
           body: Row(
             children: [
               SideBar(context, menuProvider),
-              Expanded(child: _routes(menuProvider: menuProvider))              // comunityRoute(context: context, textMenu: "contribuir"),
+              Expanded(
+                  child: _routes(
+                      menuProvider:
+                          menuProvider)) // comunityRoute(context: context, textMenu: "contribuir"),
             ],
           ),
         ));
@@ -77,7 +80,7 @@ Widget _routes({required menuProvider}) {
         ),
       ),
       child: Voz(),
-    );    
+    );
 
   if (menuProvider.menu == "Informacion")
     return Container(
@@ -126,12 +129,9 @@ Widget _routes({required menuProvider}) {
         ),
       ),
       child: Favorito(),
-      // child: Prueba(),
     );    
   if (menuProvider.menu == "Perfil")
-    return Container(
       constraints: BoxConstraints.expand(),
-      decoration: const BoxDecoration(
         image: DecorationImage(
           image: AssetImage("assets/textures/background.jpg"),
           fit: BoxFit.cover,

@@ -38,9 +38,7 @@ Widget SideBar(BuildContext context, MenuProvider menuProvider) {
           thickness: 1,
         ),
         SideBarOption(
-            text: "Voz",
-            icon: Icons.photo_library,
-            menuProvider: menuProvider),
+            text: "Voz", icon: Icons.photo_library, menuProvider: menuProvider),
         const Divider(
           color: Colors.white,
           thickness: 1,
@@ -56,23 +54,25 @@ Widget SideBar(BuildContext context, MenuProvider menuProvider) {
         SideBarOption(
             text: "Categoria",
             icon: Icons.category,
-            menuProvider: menuProvider),      
+            menuProvider: menuProvider),
         const Divider(
           color: Colors.white,
           thickness: 1,
-        ),              
+        ),
         SideBarOption(
             text: "Comunidad", icon: Icons.people, menuProvider: menuProvider),
         const Divider(
           color: Colors.white,
           thickness: 1,
-        ),             
+        ),
         SideBarOption(
-            text: "Globales", icon: Icons.person_pin_circle_sharp, menuProvider: menuProvider),         
+            text: "Globales",
+            icon: Icons.person_pin_circle_sharp,
+            menuProvider: menuProvider),
         const Divider(
           color: Colors.white,
           thickness: 1,
-        ),             
+        ),
         SideBarOptionBottom(
             text: "Agregar", icon: Icons.add, menuProvider: menuProvider),
         const Divider(
@@ -111,7 +111,7 @@ Widget SideBar(BuildContext context, MenuProvider menuProvider) {
         const Divider(
           color: Colors.white,
           thickness: 1,
-        ),            
+        ),
         SideBarOptionBottom(
             text: "Login", icon: Icons.exit_to_app, menuProvider: menuProvider),
         const Divider(
