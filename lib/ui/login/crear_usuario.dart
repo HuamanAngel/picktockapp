@@ -86,7 +86,6 @@ class _RegistroUsuario extends State<Registro> {
             borderRadius: BorderRadius.all(Radius.circular(10)),
           ),
           padding: EdgeInsets.all(5),
-
           child: FlatButton(
               child: Text(
                 "Google",

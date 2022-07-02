@@ -33,101 +33,102 @@ class _LoginState extends State<Login> {
         color: Colors.blue.shade200,
         borderRadius: BorderRadius.circular(50),
       ),
-      margin:
-          const EdgeInsets.only(top: 200, left: 300, right: 300, bottom: 200),
-      child: Column(
-        children: [
-          Padding(
-            padding: EdgeInsets.all(20),
-            child: Text(
-              "Login",
-              style: TextStyle(
-                fontSize: 30,
-                fontWeight: FontWeight.bold,
+      margin: const EdgeInsets.all(50),
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            Padding(
+              padding: EdgeInsets.all(20),
+              child: Text(
+                "Login",
+                style: TextStyle(
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
-          ),
-          Divider(
-            color: Colors.black,
-            thickness: 1,
-          ),
-          Form(
-            key: _formKey,
-            child: Column(children: <Widget>[
-              _emailField(),
-              _passwordField(),
-            ]),
-          ),
-          Container(
-              decoration: BoxDecoration(
-                color: Colors.blueAccent,
-                borderRadius: BorderRadius.circular(10),
-              ),
-              padding: EdgeInsets.all(15),
-              margin: EdgeInsets.all(15),
-              child: _isLoading
-                  ? CircularProgressIndicator()
-                  : FlatButton.icon(
-                      onPressed: () async {
-                        if (_formKey.currentState!.validate()) {
-                          setLoading(true);
-                          User user = await AuthProvider.login(
-                              controllerEmail.text, controllerPassword.text);
-                          print(user);
-                          // print(user.);
-                          if (user.id != -1) {
-                            authProvider.user = user;
-                            // Redirige a la pantalla principal
-                            setLoading(false);
-                            menuProvider.menu = "Inicio";
-                          } else {
-                            setLoading(false);
+            Divider(
+              color: Colors.black,
+              thickness: 1,
+            ),
+            Form(
+              key: _formKey,
+              child: Column(children: <Widget>[
+                _emailField(),
+                _passwordField(),
+              ]),
+            ),
+            Container(
+                decoration: BoxDecoration(
+                  color: Colors.blueAccent,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                padding: EdgeInsets.all(15),
+                margin: EdgeInsets.all(15),
+                child: _isLoading
+                    ? CircularProgressIndicator()
+                    : FlatButton.icon(
+                        onPressed: () async {
+                          if (_formKey.currentState!.validate()) {
+                            setLoading(true);
+                            User user = await AuthProvider.login(
+                                controllerEmail.text, controllerPassword.text);
+                            print(user);
+                            // print(user.);
+                            if (user.id != -1) {
+                              authProvider.user = user;
+                              // Redirige a la pantalla principal
+                              setLoading(false);
+                              menuProvider.menu = "Inicio";
+                            } else {
+                              setLoading(false);
+                            }
                           }
-                        }
-                      },
-                      icon: Icon(
-                        Icons.arrow_forward,
-                        color: Colors.white,
-                      ),
-                      label: Text(
-                        "Iniciar Sesión",
-                        style: TextStyle(fontSize: 20, color: Colors.white),
-                      ),
-                    )),
-          Divider(
-            color: Colors.black,
-            thickness: 1,
-          ),
-          Padding(
-            padding: EdgeInsets.all(20),
-            child: Text(
-              "¿No tienes una cuenta?",
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
+                        },
+                        icon: Icon(
+                          Icons.arrow_forward,
+                          color: Colors.white,
+                        ),
+                        label: Text(
+                          "Iniciar Sesión",
+                          style: TextStyle(fontSize: 20, color: Colors.white),
+                        ),
+                      )),
+            Divider(
+              color: Colors.black,
+              thickness: 1,
+            ),
+            Container(
+              padding: EdgeInsets.all(20),
+              child: Text(
+                "¿No tienes una cuenta?",
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
-          ),
-          Container(
-              width: 200,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  FloatingActionButton(
-                    child: Icon(FontAwesomeIcons.google),
-                    onPressed: null,
-                  ),
-                  FloatingActionButton(
-                      backgroundColor: Color(0xff3b5998),
-                      child: Icon(FontAwesomeIcons.facebook),
-                      onPressed: null),
-                  FloatingActionButton(
-                      backgroundColor: Color(0xff00aced),
-                      child: Icon(FontAwesomeIcons.twitter),
-                      onPressed: null)
-                ],
-              ))
-        ],
+            Container(
+                width: 200,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    FloatingActionButton(
+                      child: Icon(FontAwesomeIcons.google),
+                      onPressed: null,
+                    ),
+                    FloatingActionButton(
+                        backgroundColor: Color(0xff3b5998),
+                        child: Icon(FontAwesomeIcons.facebook),
+                        onPressed: null),
+                    FloatingActionButton(
+                        backgroundColor: Color(0xff00aced),
+                        child: Icon(FontAwesomeIcons.twitter),
+                        onPressed: null)
+                  ],
+                ))
+          ],
+        ),
       ),
     );
   }
