@@ -131,7 +131,9 @@ Widget _routes({required menuProvider}) {
       child: Favorito(),
     );    
   if (menuProvider.menu == "Perfil")
+    return Container(
       constraints: BoxConstraints.expand(),
+      decoration: BoxDecoration(
         image: DecorationImage(
           image: AssetImage("assets/textures/background.jpg"),
           fit: BoxFit.cover,
