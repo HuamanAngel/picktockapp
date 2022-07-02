@@ -46,14 +46,6 @@ class _PictogramaState extends State<Pictograma> {
                 ),
                 flex: 6,
                ),
-              Expanded(
-                child:ordenar(icon: Icons.sort,text: "Alfabeto"),
-                flex: 1,
-              ),
-              Expanded(
-                child:ordenar(icon: Icons.sort,text: "Recientes"),
-                flex: 1,
-              ),
               ],
           ),
           Row(

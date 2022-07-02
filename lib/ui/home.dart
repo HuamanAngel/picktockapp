@@ -19,8 +19,6 @@ import 'package:picktock/ui/cambiarvoz/cambiarVoz.dart';
 import 'package:picktock/ui/pictoglobales/seccionGlobales.dart';
 import 'package:picktock/ui/pictograma/Agregar.dart';
 
-
-
 class Home extends StatelessWidget {
   Home({Key? key}) : super(key: key);
 
@@ -38,9 +36,8 @@ class Home extends StatelessWidget {
             children: [
               SideBar(context, menuProvider),
               Expanded(
-                  child: _routes(
-                      menuProvider:
-                          menuProvider)) // comunityRoute(context: context, textMenu: "contribuir"),
+                child: _routes(menuProvider: menuProvider),
+              ) // comunityRoute(context: context, textMenu: "contribuir"),
             ],
           ),
         ));
@@ -129,7 +126,7 @@ Widget _routes({required menuProvider}) {
         ),
       ),
       child: Favorito(),
-    );    
+    );
   if (menuProvider.menu == "Perfil")
     return Container(
       constraints: BoxConstraints.expand(),
@@ -152,7 +149,7 @@ Widget _routes({required menuProvider}) {
       ),
       child: Pictograma(),
     );
-  if (menuProvider.menu == "REGISTRO")
+  if (menuProvider.menu == "Registro")
     return Container(
       constraints: BoxConstraints.expand(),
       decoration: const BoxDecoration(

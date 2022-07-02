@@ -14,7 +14,7 @@ class _EnviarSugerencia extends State<Sugerencia> {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          color: Colors.blue.shade200, borderRadius: BorderRadius.circular(35)),
+          color: Color.fromARGB(255, 255, 193, 7), borderRadius: BorderRadius.circular(35)),
       margin: EdgeInsets.only(top: 50, left: 100, right: 100, bottom: 50),
       child: Column(children: [
         Padding(

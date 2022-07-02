@@ -15,7 +15,7 @@ class Prueba extends StatelessWidget {
         body: Container(
           decoration: BoxDecoration(boxShadow: [
             BoxShadow(
-              color: Colors.blue.shade200,
+              color: Colors.blue,
             )
           ]),
           margin: EdgeInsets.only(top: 50, left: 20, right: 20, bottom: 50),

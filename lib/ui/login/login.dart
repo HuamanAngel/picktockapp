@@ -30,7 +30,7 @@ class _LoginState extends State<Login> {
     final menuProvider = Provider.of<MenuProvider>(context);
     return Container(
       decoration: BoxDecoration(
-        color: Colors.blue.shade200,
+        color: Color.fromARGB(255, 255, 193, 7),
         borderRadius: BorderRadius.circular(50),
       ),
       margin: const EdgeInsets.all(50),
