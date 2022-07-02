@@ -1,7 +1,7 @@
 class User {
   late int id;
   late String email;
-  // String token;
+  late dynamic token;
   late String name;
   late String lastname;
   late String createdAt;
@@ -9,23 +9,22 @@ class User {
   User({
     required this.id,
     required this.email,
-    // required this.token,
+    required this.token,
     required this.name,
     required this.lastname,
     required this.createdAt,
     required this.userNivelTea,
   });
 
-  User.nullable(){
-    this.id=-1;
+  User.nullable() {
+    this.id = -1;
   }
-
 
   static User fromJson(Map<dynamic, dynamic> json) {
     return User(
       id: json['id'],
       email: json['email'],
-      // token: json['token'],
+      token: json['token'],
       name: json['name'],
       lastname: json['lastname'],
       createdAt: json['created_at'],

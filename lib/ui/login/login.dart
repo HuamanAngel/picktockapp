@@ -4,6 +4,7 @@ import 'package:picktock/data/models/user.dart';
 import 'package:picktock/domain/provider/auth_provider.dart';
 import 'package:picktock/domain/provider/menuProvider.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -28,6 +29,7 @@ class _LoginState extends State<Login> {
   Widget build(BuildContext context) {
     final authProvider = Provider.of<AuthProvider>(context);
     final menuProvider = Provider.of<MenuProvider>(context);
+    final storage = FlutterSecureStorage();
     return Container(
       decoration: BoxDecoration(
         color: Colors.blue.shade200,
@@ -73,7 +75,30 @@ class _LoginState extends State<Login> {
                           setLoading(true);
                           User user = await AuthProvider.login(
                               controllerEmail.text, controllerPassword.text);
+                          if (user != null) {
+                            await storage.write(
+                                key: "token", value: user.token);
+                            await menuProvider.menu;
+                            Navigator.pushNamed(context, "/home");
+                          } else {
+                            setLoading(false);
+                            showDialog(
+                                context: context,
+                                builder: (context) => AlertDialog(
+                                      title: Text("Error"),
+                                      content: Text(
+                                          "Usuario o contraseña incorrectos"),
+                                      actions: <Widget>[
+                                        FlatButton(
+                                          child: Text("Ok"),
+                                          onPressed: () =>
+                                              Navigator.pop(context),
+                                        )
+                                      ],
+                                    ));
+                          }
                           print(user);
+
                           // print(user.);
                           if (user.id != -1) {
                             authProvider.user = user;
