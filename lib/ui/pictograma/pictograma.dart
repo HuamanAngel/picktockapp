@@ -68,8 +68,8 @@ class _PictogramaState extends State<Pictograma> {
             children: [
               Picto(),
               Picto(),
-              Picto(),
-              Picto(),
+              // Picto(),
+              // Picto(),
             ],
           ),
           Row(
@@ -116,6 +116,7 @@ Widget Picto() {
           ),
           Container(
             padding: EdgeInsets.all(20.0),
+            height: 200,
             child: Image.asset('assets/imagen.jpg'),
           ),
 
@@ -126,16 +127,16 @@ Widget Picto() {
                   overflow: TextOverflow.ellipsis
               )
           ),
-          Container(
-         child: FlatButton(
-          child: Text(
-           "Cambiar Calificación",
-          style: TextStyle(color: Colors.white, fontSize: 20),
-            ),
-         color: Colors.green,
-         onPressed: () {}
-         )
-          )
+        //   Container(
+        //  child: FlatButton(
+        //   child: Text(
+        //    "Cambiar Calificación",
+        //   style: TextStyle(color: Colors.white, fontSize: 20),
+        //     ),
+        //  color: Colors.green,
+        //  onPressed: () {}
+        //  )
+          // )
         ],
       )
   );
