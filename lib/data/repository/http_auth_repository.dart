@@ -23,18 +23,18 @@ class HttpAuthRepository extends AbstractAuth {
           "password": password,
         }),
       );
+      print(response.statusCode);
       if (response.statusCode == 200) {
         dynamic jsonData = jsonDecode(response.body);
         jsonData = jsonData['data'];
         User user = User.fromJson(jsonData);
-        print("En caso de exito enviar a una rutae");
+        print("En caso de exito enviar a una ruta");
         return user;
       } else if (response.statusCode == 422) {
-        print("Validaciones");
+        print("Error en las Validaciones");
         return User.nullable();
-
-      } else {
-        print("Error no encontrado");
+      } else if (response.statusCode == 401) {
+        print("Error de credenciales");
         return User.nullable();
       }
     } catch (e) {
@@ -51,8 +51,44 @@ class HttpAuthRepository extends AbstractAuth {
   }
 
   @override
-  Future<bool> register(User user) {
-    // TODO: implement register
-    throw UnimplementedError();
+  Future<bool> register(User user, String password) async {
+    try {
+      String url = baseUri + "/api/auth/signup";
+      final response = await http.post(
+        Uri.parse(url),
+        headers: {
+          'Content-type': 'application/json',
+          "Accept": "application/json",
+          // 'Authorization': "Bearer $token",
+        },
+        body: jsonEncode({
+          "name": user.name,
+          "lastname": user.lastname,
+          "email": user.email,
+          "password": password,
+          "user_nivel_tea": user.userNivelTea
+        }),
+      );
+      print(user.email);
+      if (response.statusCode == 201) {
+        dynamic jsonData = jsonDecode(response.body);
+        jsonData = jsonData['message'];
+        print(jsonData);
+        print("Registrado correctamente");
+        return true;
+      } else if (response.statusCode == 422) {
+        dynamic jsonData = jsonDecode(response.body);
+        print(jsonData);
+        print("Error en Validaciones");
+        return false;
+      } else {
+        dynamic jsonData = jsonDecode(response.body);
+        print(jsonData);
+        print("Error no encontrado");
+        return false;
+      }
+    } catch (e) {
+      throw Exception(e);
+    }
   }
 }

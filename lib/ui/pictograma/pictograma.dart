@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:picktock/ui/pictograma/cambiarvoz.dart';
 
 class Pictograma extends StatefulWidget {
   const Pictograma({Key? key}) : super(key: key);
@@ -17,6 +19,8 @@ class _PictogramaState extends State<Pictograma> {
         children: [
           Row(
             children: [
+              ordenar(icon: Icons.sort,text: "Alfabeto"),              
+              ordenar(icon: Icons.sort,text: "Recientes"),              
               Expanded(
                 child: Container(
                   decoration: BoxDecoration(
@@ -40,11 +44,46 @@ class _PictogramaState extends State<Pictograma> {
                     ),
                   ),
                 ),
-              ),
-            ordenar(icon: Icons.sort,text: "Alfabeto"),              
-            ordenar(icon: Icons.sort,text: "Recientes"),              
+                flex: 6,
+               ),
+              ],
+          ),
+          Row(
+             children: [
+              Spacer(),
+              Container(
+                  margin: EdgeInsets.only( left: 50),
+                 child: FlatButton(
+                     child: Text(
+                       "Combinar Pictograma",
+                       style: TextStyle(color: Colors.white, fontSize: 20),
+                     ),
+                     color: Colors.green,
+                     onPressed: () {}
+                   )
+               )
+             ]
+          ),
+          Row(
+            children: [
+              Picto(),
+              Picto(),
+              // Picto(),
+              // Picto(),
             ],
           ),
+          Row(
+            children: [
+              Spacer(),
+              Voz(),
+              ]
+          ),
+         /* Row(
+              child: Container(
+                child: paginacion(),
+              ),
+          ),
+*/
         ],
       ),
     );
@@ -63,3 +102,44 @@ Widget ordenar({required IconData icon, required String text}) {
         )),
   );
 }
+Widget Picto() {
+  return Container(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Container(
+              margin: EdgeInsets.only(top: 40),
+              child: Text('Saluda',
+                  style: TextStyle(fontSize: 20),
+                  overflow: TextOverflow.ellipsis
+              )
+          ),
+          Container(
+            padding: EdgeInsets.all(20.0),
+            height: 200,
+            child: Image.asset('assets/imagen.jpg'),
+          ),
+
+          Container(
+              margin: EdgeInsets.only(top: 15, bottom: 10),
+              child: Text('Calificación: 3',
+                  style: TextStyle(fontSize: 20),
+                  overflow: TextOverflow.ellipsis
+              )
+          ),
+        //   Container(
+        //  child: FlatButton(
+        //   child: Text(
+        //    "Cambiar Calificación",
+        //   style: TextStyle(color: Colors.white, fontSize: 20),
+        //     ),
+        //  color: Colors.green,
+        //  onPressed: () {}
+        //  )
+          // )
+        ],
+      )
+  );
+}
+
+

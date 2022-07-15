@@ -32,134 +32,130 @@ class _LoginState extends State<Login> {
     final storage = FlutterSecureStorage();
     return Container(
       decoration: BoxDecoration(
-        color: Colors.blue.shade200,
+        color: Color.fromARGB(255, 255, 193, 7),
         borderRadius: BorderRadius.circular(50),
       ),
-      margin:
-          const EdgeInsets.only(top: 200, left: 300, right: 300, bottom: 200),
-      child: Column(
-        children: [
-          Padding(
-            padding: EdgeInsets.all(20),
-            child: Text(
-              "Login",
-              style: TextStyle(
-                fontSize: 30,
-                fontWeight: FontWeight.bold,
+      margin: const EdgeInsets.all(50),
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            Padding(
+              padding: EdgeInsets.all(20),
+              child: Text(
+                "Login",
+                style: TextStyle(
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
-          ),
-          Divider(
-            color: Colors.black,
-            thickness: 1,
-          ),
-          Form(
-            key: _formKey,
-            child: Column(children: <Widget>[
-              _emailField(),
-              _passwordField(),
-            ]),
-          ),
-          Container(
-              decoration: BoxDecoration(
-                color: Colors.blueAccent,
-                borderRadius: BorderRadius.circular(10),
-              ),
-              padding: EdgeInsets.all(15),
-              margin: EdgeInsets.all(15),
-              child: _isLoading
-                  ? CircularProgressIndicator()
-                  : FlatButton.icon(
-                      onPressed: () async {
-                        if (_formKey.currentState!.validate()) {
-                          setLoading(true);
-                          User user = await AuthProvider.login(
-                              controllerEmail.text, controllerPassword.text);
-                          if (user != null) {
-                            await storage.write(
-                                key: "token", value: user.token);
-                            await menuProvider.menu;
-                            Navigator.pushNamed(context, "/home");
-                          } else {
-                            setLoading(false);
-                            showDialog(
-                                context: context,
-                                builder: (context) => AlertDialog(
-                                      title: Text("Error"),
-                                      content: Text(
-                                          "Usuario o contraseña incorrectos"),
-                                      actions: <Widget>[
-                                        FlatButton(
-                                          child: Text("Ok"),
-                                          onPressed: () =>
-                                              Navigator.pop(context),
-                                        )
-                                      ],
-                                    ));
-                          }
-                          print(user);
-
-                          // print(user.);
-                          if (user.id != -1) {
-                            authProvider.user = user;
-                            // Redirige a la pantalla principal
-                            setLoading(false);
-                            menuProvider.menu = "Inicio";
-                          } else {
-                            setLoading(false);
-                          }
-                        }
-                      },
-                      icon: Icon(
-                        Icons.arrow_forward,
-                        color: Colors.white,
-                      ),
-                      label: Text(
-                        "Iniciar Sesión",
-                        style: TextStyle(fontSize: 20, color: Colors.white),
-                      ),
-                    )),
-          Divider(
-            color: Colors.black,
-            thickness: 1,
-          ),
-          Padding(
-            padding: EdgeInsets.all(20),
-            child: Text(
-              "¿No tienes una cuenta?",
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
+            Divider(
+              color: Colors.black,
+              thickness: 1,
+            ),
+            Form(
+              key: _formKey,
+              child: Container(
+                margin:
+                    EdgeInsets.only(top: 10, left: 40, right: 40, bottom: 10),
+                padding: EdgeInsets.all(5),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.all(
+                      Radius.circular(20)), // set rounded corner radius
+                ),
+                child: Column(children: <Widget>[
+                  _emailField(),
+                  _passwordField(),
+                ]),
               ),
             ),
-          ),
-          Container(
-              width: 200,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  FloatingActionButton(
-                    child: Icon(FontAwesomeIcons.google),
-                    onPressed: null,
-                  ),
-                  FloatingActionButton(
-                      backgroundColor: Color(0xff3b5998),
-                      child: Icon(FontAwesomeIcons.facebook),
-                      onPressed: null),
-                  FloatingActionButton(
-                      backgroundColor: Color(0xff00aced),
-                      child: Icon(FontAwesomeIcons.twitter),
-                      onPressed: null)
-                ],
-              ))
-        ],
+            Container(
+                decoration: BoxDecoration(
+                  color: Colors.blueAccent,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                padding: EdgeInsets.all(15),
+                margin: EdgeInsets.all(15),
+                child: _isLoading
+                    ? CircularProgressIndicator()
+                    : FlatButton.icon(
+                        onPressed: () async {
+                          if (_formKey.currentState!.validate()) {
+                            setLoading(true);
+                            User user = await AuthProvider.login(
+                                controllerEmail.text, controllerPassword.text);
+                            print(user.id);
+                            // print(user.);
+                            if (user.id != -1) {
+                              authProvider.user = user;
+                              // Redirige a la pantalla principal
+                              setLoading(false);
+                              menuProvider.menu = "Inicio";
+                              Scaffold.of(context).showSnackBar(const SnackBar(
+                                content: Text('Logeado correctamente'),
+                                backgroundColor: Colors.green,
+                              ));
+                            } else {
+                              setLoading(false);
+                              Scaffold.of(context).showSnackBar(const SnackBar(
+                                content: Text('Credenciales no validas'),
+                                backgroundColor: Colors.red,
+                              ));
+                            }
+                          }
+                        },
+                        icon: Icon(
+                          Icons.arrow_forward,
+                          color: Colors.white,
+                        ),
+                        label: Text(
+                          "Iniciar Sesión",
+                          style: TextStyle(fontSize: 20, color: Colors.white),
+                        ),
+                      )),
+            Divider(
+              color: Colors.black,
+              thickness: 1,
+            ),
+            Container(
+              padding: EdgeInsets.all(20),
+              child: Text(
+                "¿No tienes una cuenta?",
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            Container(
+                width: 200,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    FloatingActionButton(
+                      child: Icon(FontAwesomeIcons.google),
+                      onPressed: null,
+                    ),
+                    FloatingActionButton(
+                        backgroundColor: Color(0xff3b5998),
+                        child: Icon(FontAwesomeIcons.facebook),
+                        onPressed: null),
+                    FloatingActionButton(
+                        backgroundColor: Color(0xff00aced),
+                        child: Icon(FontAwesomeIcons.twitter),
+                        onPressed: null)
+                  ],
+                ))
+          ],
+        ),
       ),
     );
   }
 
   Widget _emailField() {
     return Container(
-      margin: EdgeInsets.only(top: 20, bottom: 20, left: 40, right: 40),
+      margin: EdgeInsets.only(top: 12, bottom: 12, left: 40, right: 40),
       padding: EdgeInsets.all(10),
       decoration: BoxDecoration(
         color: Colors.white,
@@ -175,13 +171,13 @@ class _LoginState extends State<Login> {
             }
           },
           decoration: InputDecoration(
-            hintText: "Corre Electrónico",
+            hintText: "Correo Electrónico",
             suffixIcon: Icon(
               Icons.person,
               size: 35,
             ),
             hintStyle: TextStyle(
-              fontSize: 20,
+              fontSize: 18,
               fontWeight: FontWeight.bold,
             ),
           )),
@@ -190,7 +186,7 @@ class _LoginState extends State<Login> {
 
   Widget _passwordField() {
     return Container(
-      margin: EdgeInsets.only(top: 20, bottom: 20, left: 40, right: 40),
+      margin: EdgeInsets.only(top: 12, bottom: 12, left: 40, right: 40),
       padding: EdgeInsets.all(10),
       decoration: BoxDecoration(
         color: Colors.white,
@@ -204,7 +200,7 @@ class _LoginState extends State<Login> {
             size: 35,
           ),
           hintStyle: TextStyle(
-            fontSize: 20,
+            fontSize: 18,
             fontWeight: FontWeight.bold,
           ),
         ),
