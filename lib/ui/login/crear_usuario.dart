@@ -27,7 +27,7 @@ class _RegistroUsuario extends State<Registro> {
     final authProvider = Provider.of<AuthProvider>(context);
     return Container(
       decoration: BoxDecoration(
-        color: Color.fromARGB(255, 255, 193, 7).withAlpha(255),
+        color: Color.fromARGB(255, 255, 193, 7),
         borderRadius: BorderRadius.circular(35),
         boxShadow: [
           BoxShadow(
@@ -58,10 +58,24 @@ class _RegistroUsuario extends State<Registro> {
           key: _formKey,
           child: Column(
             children: <Widget>[
-              CampotextoUser(controllerName),
-              CampotextoLastname(controllerLastname),
-              CampotextoEmail(controllerEmail),
-              CampotextoPassword(controllerPassword),
+              Container(
+                margin:
+                    EdgeInsets.only(top: 10, left: 40, right: 40, bottom: 10),
+                padding: EdgeInsets.all(5),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.all(
+                      Radius.circular(20)), // set rounded corner radius
+                ),
+                child: Column(
+                  children: [
+                    CampotextoUser(controllerName),
+                    CampotextoLastname(controllerLastname),
+                    CampotextoEmail(controllerEmail),
+                    CampotextoPassword(controllerPassword),
+                  ],
+                ),
+              ),
               Container(
                 //margin: EdgeInsets.only(top: 20),
                 decoration: BoxDecoration(
@@ -105,8 +119,7 @@ Widget CampotextoUser(TextEditingController controller) {
     padding: EdgeInsets.all(5),
     decoration: BoxDecoration(
       color: Colors.white,
-      borderRadius:
-          BorderRadius.all(Radius.circular(20)), // set rounded corner radius
+      // set rounded corner radius
     ),
     child: TextFormField(
       validator: (value) {
@@ -117,8 +130,11 @@ Widget CampotextoUser(TextEditingController controller) {
       controller: controller,
       decoration: InputDecoration(
         hintText: 'Nombre de usuario',
-        border: InputBorder.none,
         suffixIcon: Icon(Icons.person),
+        hintStyle: TextStyle(
+          fontSize: 17,
+          fontWeight: FontWeight.bold,
+        ),
       ),
     ),
   );
@@ -130,8 +146,7 @@ Widget CampotextoLastname(TextEditingController controller) {
     padding: EdgeInsets.all(5),
     decoration: BoxDecoration(
       color: Colors.white,
-      borderRadius:
-          BorderRadius.all(Radius.circular(20)), // set rounded corner radius
+      // set rounded corner radius
     ),
     child: TextFormField(
       validator: (value) {
@@ -142,8 +157,11 @@ Widget CampotextoLastname(TextEditingController controller) {
       controller: controller,
       decoration: InputDecoration(
         hintText: 'Apellidos',
-        border: InputBorder.none,
         suffixIcon: Icon(Icons.person),
+        hintStyle: TextStyle(
+          fontSize: 17,
+          fontWeight: FontWeight.bold,
+        ),
       ),
     ),
   );
@@ -155,14 +173,16 @@ Widget CampotextoEmail(TextEditingController controller) {
     padding: EdgeInsets.all(5),
     decoration: BoxDecoration(
       color: Colors.white,
-      borderRadius:
-          BorderRadius.all(Radius.circular(20)), // set rounded corner radius
+      // set rounded corner radius
     ),
     child: TextFormField(
       decoration: InputDecoration(
         hintText: 'Email',
-        border: InputBorder.none,
         suffixIcon: Icon(Icons.mail),
+        hintStyle: TextStyle(
+          fontSize: 17,
+          fontWeight: FontWeight.bold,
+        ),
       ),
       controller: controller,
       validator: (value) {
@@ -180,14 +200,16 @@ Widget CampotextoPassword(TextEditingController controller) {
     padding: EdgeInsets.all(5),
     decoration: BoxDecoration(
       color: Colors.white,
-      borderRadius:
-          BorderRadius.all(Radius.circular(20)), // set rounded corner radius
+      // set rounded corner radius
     ),
     child: TextFormField(
       decoration: InputDecoration(
         hintText: 'Contraseña',
-        border: InputBorder.none,
         suffixIcon: Icon(Icons.lock),
+        hintStyle: TextStyle(
+          fontSize: 17,
+          fontWeight: FontWeight.bold,
+        ),
       ),
       controller: controller,
       obscureText: true,
@@ -206,14 +228,17 @@ Widget CampotextoPasswordRepeat(TextEditingController controller) {
     padding: EdgeInsets.all(5),
     decoration: BoxDecoration(
       color: Colors.white,
-      borderRadius:
-          BorderRadius.all(Radius.circular(20)), // set rounded corner radius
+      // set rounded corner radius
     ),
     child: TextFormField(
       decoration: InputDecoration(
         hintText: 'Confirmar contraseña',
         border: InputBorder.none,
         suffixIcon: Icon(Icons.lock),
+        hintStyle: TextStyle(
+          fontSize: 17,
+          fontWeight: FontWeight.bold,
+        ),
       ),
       obscureText: true,
       controller: controller,
