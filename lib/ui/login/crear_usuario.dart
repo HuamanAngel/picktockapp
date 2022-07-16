@@ -37,29 +37,29 @@ class _RegistroUsuario extends State<Registro> {
         ],
       ),
       margin: EdgeInsets.only(top: 24, left: 100, right: 100, bottom: 24),
-      child: Column(children: [
-        Padding(
-          padding: EdgeInsets.only(bottom: 3, top: 10),
-          child: Text(
-            "Crear nueva cuenta",
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              color: Color.fromARGB(255, 0, 0, 0),
-              fontSize: 25,
-              fontFamily: 'Arial',
+      child: SingleChildScrollView(
+        child: Column(children: [
+          Padding(
+            padding: EdgeInsets.only(bottom: 3, top: 10),
+            child: Text(
+              "Crear nueva cuenta",
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: Color.fromARGB(255, 0, 0, 0),
+                fontSize: 25,
+                fontFamily: 'Arial',
+              ),
             ),
           ),
-        ),
-        Divider(
-          color: Colors.white,
-          thickness: 2.5,
-        ),
-        Form(
-          key: _formKey,
-          child: Column(
-            children: <Widget>[
-              SingleChildScrollView(
-                child: Container(
+          Divider(
+            color: Colors.white,
+            thickness: 2.5,
+          ),
+          Form(
+            key: _formKey,
+            child: Column(
+              children: <Widget>[
+                Container(
                   margin:
                       EdgeInsets.only(top: 3, left: 40, right: 40, bottom: 3),
                   alignment: Alignment.center,
@@ -78,42 +78,42 @@ class _RegistroUsuario extends State<Registro> {
                     ],
                   ),
                 ),
-              ),
-              Container(
-                //margin: EdgeInsets.only(top: 20),
-                decoration: BoxDecoration(
-                  color: Colors.blueAccent,
-                  borderRadius: BorderRadius.all(Radius.circular(10)),
-                ),
-                padding: EdgeInsets.all(3),
-                child: FlatButton(
-                    child: Text(
-                      "Registrarse",
-                      style: TextStyle(color: Colors.white, fontSize: 20),
-                    ),
-                    onPressed: () async {
-                      if (_formKey.currentState!.validate()) {
-                        User user = User(
-                            name: controllerName.text,
-                            lastname: controllerLastname.text,
-                            email: controllerEmail.text,
-                            createdAt: '',
-                            id: 1,
-                            userNivelTea: 1);
-
-                        await AuthProvider.register(
-                            user, controllerPassword.text);
-                        Scaffold.of(context).showSnackBar(SnackBar(
-                          content: Text("Usuario creado"),
-                          backgroundColor: Colors.green,
-                        ));
-                      }
-                    }),
-              )
-            ],
+                Container(
+                  //margin: EdgeInsets.only(top: 20),
+                  decoration: BoxDecoration(
+                    color: Colors.blueAccent,
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                  ),
+                  padding: EdgeInsets.all(3),
+                  child: FlatButton(
+                      child: Text(
+                        "Registrarse",
+                        style: TextStyle(color: Colors.white, fontSize: 20),
+                      ),
+                      onPressed: () async {
+                        if (_formKey.currentState!.validate()) {
+                          User user = User(
+                              name: controllerName.text,
+                              lastname: controllerLastname.text,
+                              email: controllerEmail.text,
+                              createdAt: '',
+                              id: 1,
+                              userNivelTea: 1);
+          
+                          await AuthProvider.register(
+                              user, controllerPassword.text);
+                          Scaffold.of(context).showSnackBar(SnackBar(
+                            content: Text("Usuario creado"),
+                            backgroundColor: Colors.green,
+                          ));
+                        }
+                      }),
+                )
+              ],
+            ),
           ),
-        ),
-      ]),
+        ]),
+      ),
     );
   }
 }
