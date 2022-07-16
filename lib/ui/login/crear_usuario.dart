@@ -100,8 +100,6 @@ class _RegistroUsuario extends State<Registro> {
 
                         await AuthProvider.register(
                             user, controllerPassword.text);
-                        Scaffold.of(context).showSnackBar(
-                            SnackBar(content: Text("Creando usuario")));
                         Scaffold.of(context).showSnackBar(SnackBar(
                           content: Text("Usuario creado"),
                           backgroundColor: Colors.green,
