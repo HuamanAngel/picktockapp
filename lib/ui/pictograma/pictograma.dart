@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:picktock/domain/utilities/reproducir.dart';
 import 'package:provider/provider.dart';
 import 'package:picktock/ui/pictograma/cambiarvoz.dart';
 
@@ -66,8 +67,8 @@ class _PictogramaState extends State<Pictograma> {
           ),
           Row(
             children: [
-              Picto(),
-              Picto(),
+              Picto(name:"Saludar" ),
+              Picto(name:"Bailar"),
               // Picto(),
               // Picto(),
             ],
@@ -102,22 +103,28 @@ Widget ordenar({required IconData icon, required String text}) {
         )),
   );
 }
-Widget Picto() {
+
+Widget Picto({required name}) {
   return Container(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Container(
               margin: EdgeInsets.only(top: 40),
-              child: Text('Saluda',
+              child: Text(name,
                   style: TextStyle(fontSize: 20),
                   overflow: TextOverflow.ellipsis
               )
           ),
-          Container(
-            padding: EdgeInsets.all(20.0),
-            height: 200,
-            child: Image.asset('assets/imagen.jpg'),
+          InkWell(
+            child: Container(
+              padding: EdgeInsets.all(20.0),
+              height: 200,
+              child: Image.asset('assets/imagen.jpg'),
+            ),
+            onTap: () {
+              ReproduceSound.speak(name);
+            },
           ),
 
           Container(
@@ -142,4 +149,6 @@ Widget Picto() {
   );
 }
 
-
+  // reproducirSonido({required String name}) {
+  //   ReproduceSound.speak(name);
+  // }
