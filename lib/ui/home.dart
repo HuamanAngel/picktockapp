@@ -67,7 +67,7 @@ Widget _routes({required menuProvider}) {
       ),
       child: Globales(),
     );
-  if (menuProvider.menu == "Voz")
+  /*if (menuProvider.menu == "Voz")
     return Container(
       constraints: BoxConstraints.expand(),
       decoration: const BoxDecoration(
@@ -77,8 +77,7 @@ Widget _routes({required menuProvider}) {
         ),
       ),
       child: Voz(),
-    );
-
+    );*/
   if (menuProvider.menu == "Informacion")
     return Container(
       constraints: BoxConstraints.expand(),
@@ -253,9 +252,7 @@ Widget _routes({required menuProvider}) {
       // child: Picto(name: "Saludar"),
       child: Container(child: Text("AñadirPictograma")),
     );
-
   // Widget widget  = menuRoute(context: context, textMenu: "Comunidad/Donacion", widget: Text("Donacion"));
-
   return SizedBox.shrink();
 }
 

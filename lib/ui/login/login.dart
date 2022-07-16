@@ -4,6 +4,7 @@ import 'package:picktock/data/models/user.dart';
 import 'package:picktock/domain/provider/auth_provider.dart';
 import 'package:picktock/domain/provider/menuProvider.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -28,6 +29,7 @@ class _LoginState extends State<Login> {
   Widget build(BuildContext context) {
     final authProvider = Provider.of<AuthProvider>(context);
     final menuProvider = Provider.of<MenuProvider>(context);
+    final storage = FlutterSecureStorage();
     return Container(
       decoration: BoxDecoration(
         color: Color.fromARGB(255, 255, 193, 7),
