@@ -3,6 +3,7 @@ import 'package:picktock/domain/provider/auth_provider.dart';
 import 'package:picktock/domain/provider/comunityProvider.dart';
 import 'package:provider/provider.dart';
 import 'package:picktock/domain/provider/menuProvider.dart';
+import 'package:picktock/domain/provider/pictoProvider.dart';
 import 'package:picktock/ui/home.dart';
 
 void main() {
@@ -13,7 +14,7 @@ class PickTock extends StatelessWidget {
   PickTock();
   @override
   Widget build(BuildContext context) {
-    return MultiProvider (
+    return MultiProvider(
       providers: [
         ChangeNotifierProvider<MenuProvider>(
           create: (_) => MenuProvider(),
@@ -23,6 +24,9 @@ class PickTock extends StatelessWidget {
         ),
         ChangeNotifierProvider<AuthProvider>(
           create: (_) => AuthProvider(),
+        ),
+        ChangeNotifierProvider<PictoProvider>(
+          create: (_) => PictoProvider(),
         ),
       ],
       child: MaterialApp(
