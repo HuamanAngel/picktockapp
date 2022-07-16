@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:picktock/data/models/newpicto.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:picktock/ui/addpicto/subirImagen.dart';
 
@@ -14,6 +15,10 @@ class AddPictograma extends StatefulWidget {
 
 class _AddPictograma extends State<AddPictograma> {
   final _formKey = GlobalKey<FormState>();
+  final controllerTitle = TextEditingController();
+  final controllerCat = TextEditingController();
+  final controllerVisibility = TextEditingController();
+  final controllerImagen = TextEditingController();
 
 
   @override
@@ -41,9 +46,9 @@ class _AddPictograma extends State<AddPictograma> {
           key: _formKey,
           child: Column(
             children: <Widget>[
-              CampotextoTitulo(),
-              CampotextoCategoria(),
-              CampotextoModo(),
+              CampotextoTitulo(controllerTitle),
+              CampotextoCategoria(controllerCat),
+              CampotextoModo(controllerVisibility),
               Imagen(),
 
 
@@ -62,9 +67,16 @@ class _AddPictograma extends State<AddPictograma> {
                     ),
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
+                        NewPicto newPicto = NewPicto(
+                            pic_title: controllerTitle.text,
+                            pic_visibility: controllerVisibility.text,
+                            pic_image: controllerImagen.text,
+                            cat_id: controllerCat.text);
+
                         Scaffold.of(context).showSnackBar(
-                            SnackBar(content: Text("Accesando al Sistema")));
+                            SnackBar(content: Text("Creando pictograma")));
                       }
+
                     }),
               )
             ],
@@ -75,7 +87,7 @@ class _AddPictograma extends State<AddPictograma> {
   }
 }
 
-Widget CampotextoTitulo() {
+Widget CampotextoTitulo(TextEditingController controller ) {
   return Container(
     margin: EdgeInsets.only(top: 10, left: 40, right: 40, bottom: 10),
     padding: EdgeInsets.all(5),
@@ -99,7 +111,7 @@ Widget CampotextoTitulo() {
   );
 }
 
-Widget CampotextoCategoria() {
+Widget CampotextoCategoria(TextEditingController controller) {
   return Container(
     margin: EdgeInsets.only(top: 10, left: 40, right: 40, bottom: 10),
     padding: EdgeInsets.all(5),
@@ -130,7 +142,7 @@ Widget CampotextoCategoria() {
   );
 }
 
-Widget CampotextoModo() {
+Widget CampotextoModo(TextEditingController controller) {
   return Container(
     margin: EdgeInsets.only(top: 10, left: 40, right: 40, bottom: 10),
     padding: EdgeInsets.all(5),
@@ -159,26 +171,3 @@ Widget CampotextoModo() {
   );
 }
 
-Widget CampoImagen() {
-  return Container(
-    margin: EdgeInsets.only(top: 10, left: 40, right: 40, bottom: 10),
-    padding: EdgeInsets.all(5),
-    decoration: BoxDecoration(
-      color: Colors.white,
-      borderRadius:
-      BorderRadius.all(Radius.circular(20)), // set rounded corner radius
-    ),
-    child: TextFormField(
-      validator: (value) {
-        if (value!.isEmpty) {
-          return 'Selecciona una imagen';
-        }
-      },
-      decoration: InputDecoration(
-        hintText: 'Selecciona una imagen',
-        border: InputBorder.none,
-        suffixIcon: Icon(Icons.image_rounded),
-      ),
-    ),
-  );
-}
