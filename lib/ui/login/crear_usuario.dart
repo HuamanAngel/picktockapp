@@ -36,10 +36,10 @@ class _RegistroUsuario extends State<Registro> {
               offset: Offset(10, 10))
         ],
       ),
-      margin: EdgeInsets.only(top: 50, left: 100, right: 100, bottom: 50),
+      margin: EdgeInsets.only(top: 24, left: 100, right: 100, bottom: 24),
       child: Column(children: [
         Padding(
-          padding: EdgeInsets.only(bottom: 15, top: 15),
+          padding: EdgeInsets.only(bottom: 3, top: 10),
           child: Text(
             "Crear nueva cuenta",
             style: TextStyle(
@@ -58,22 +58,25 @@ class _RegistroUsuario extends State<Registro> {
           key: _formKey,
           child: Column(
             children: <Widget>[
-              Container(
-                margin: EdgeInsets.only(top: 5, left: 40, right: 40, bottom: 5),
-                alignment: Alignment.center,
-                padding: EdgeInsets.all(5),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.all(
-                      Radius.circular(20)), // set rounded corner radius
-                ),
-                child: Column(
-                  children: [
-                    CampotextoUser(controllerName),
-                    CampotextoLastname(controllerLastname),
-                    CampotextoEmail(controllerEmail),
-                    CampotextoPassword(controllerPassword),
-                  ],
+              SingleChildScrollView(
+                child: Container(
+                  margin:
+                      EdgeInsets.only(top: 3, left: 40, right: 40, bottom: 3),
+                  alignment: Alignment.center,
+                  padding: EdgeInsets.all(4),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.all(
+                        Radius.circular(15)), // set rounded corner radius
+                  ),
+                  child: Column(
+                    children: [
+                      CampotextoUser(controllerName),
+                      CampotextoLastname(controllerLastname),
+                      CampotextoEmail(controllerEmail),
+                      CampotextoPassword(controllerPassword),
+                    ],
+                  ),
                 ),
               ),
               Container(
@@ -82,7 +85,7 @@ class _RegistroUsuario extends State<Registro> {
                   color: Colors.blueAccent,
                   borderRadius: BorderRadius.all(Radius.circular(10)),
                 ),
-                padding: EdgeInsets.all(5),
+                padding: EdgeInsets.all(3),
                 child: FlatButton(
                     child: Text(
                       "Registrarse",
@@ -117,8 +120,8 @@ class _RegistroUsuario extends State<Registro> {
 
 Widget CampotextoUser(TextEditingController controller) {
   return Container(
-    margin: EdgeInsets.only(top: 5, left: 40, right: 40, bottom: 5),
-    padding: EdgeInsets.all(5),
+    margin: EdgeInsets.only(top: 3, left: 40, right: 40, bottom: 3),
+    padding: EdgeInsets.all(4),
     decoration: BoxDecoration(
       color: Colors.white,
       // set rounded corner radius
@@ -144,7 +147,7 @@ Widget CampotextoUser(TextEditingController controller) {
 
 Widget CampotextoLastname(TextEditingController controller) {
   return Container(
-    margin: EdgeInsets.only(top: 5, left: 40, right: 40, bottom: 5),
+    margin: EdgeInsets.only(top: 3, left: 40, right: 40, bottom: 3),
     padding: EdgeInsets.all(4),
     decoration: BoxDecoration(
       color: Colors.white,
@@ -171,7 +174,7 @@ Widget CampotextoLastname(TextEditingController controller) {
 
 Widget CampotextoEmail(TextEditingController controller) {
   return Container(
-    margin: EdgeInsets.only(top: 5, left: 40, right: 40, bottom: 5),
+    margin: EdgeInsets.only(top: 3, left: 40, right: 40, bottom: 3),
     padding: EdgeInsets.all(4),
     decoration: BoxDecoration(
       color: Colors.white,
@@ -198,7 +201,7 @@ Widget CampotextoEmail(TextEditingController controller) {
 
 Widget CampotextoPassword(TextEditingController controller) {
   return Container(
-    margin: EdgeInsets.only(top: 5, left: 40, right: 40, bottom: 5),
+    margin: EdgeInsets.only(top: 3, left: 40, right: 40, bottom: 3),
     padding: EdgeInsets.all(4),
     decoration: BoxDecoration(
       color: Colors.white,
@@ -226,7 +229,7 @@ Widget CampotextoPassword(TextEditingController controller) {
 
 Widget CampotextoPasswordRepeat(TextEditingController controller) {
   return Container(
-    margin: EdgeInsets.only(top: 5, left: 40, right: 40, bottom: 5),
+    margin: EdgeInsets.only(top: 3, left: 40, right: 40, bottom: 3),
     padding: EdgeInsets.all(4),
     decoration: BoxDecoration(
       color: Colors.white,
