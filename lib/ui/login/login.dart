@@ -53,10 +53,20 @@ class _LoginState extends State<Login> {
             ),
             Form(
               key: _formKey,
-              child: Column(children: <Widget>[
-                _emailField(),
-                _passwordField(),
-              ]),
+              child: Container(
+                margin:
+                    EdgeInsets.only(top: 10, left: 40, right: 40, bottom: 10),
+                padding: EdgeInsets.all(5),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.all(
+                      Radius.circular(20)), // set rounded corner radius
+                ),
+                child: Column(children: <Widget>[
+                  _emailField(),
+                  _passwordField(),
+                ]),
+              ),
             ),
             Container(
                 decoration: BoxDecoration(
@@ -73,23 +83,20 @@ class _LoginState extends State<Login> {
                             setLoading(true);
                             User user = await AuthProvider.login(
                                 controllerEmail.text, controllerPassword.text);
-                            print(user);
+                            print(user.id);
                             // print(user.);
                             if (user.id != -1) {
                               authProvider.user = user;
                               // Redirige a la pantalla principal
                               setLoading(false);
                               menuProvider.menu = "Inicio";
-                              Scaffold.of(context)
-                                  .showSnackBar(const SnackBar(
+                              Scaffold.of(context).showSnackBar(const SnackBar(
                                 content: Text('Logeado correctamente'),
                                 backgroundColor: Colors.green,
                               ));
-
                             } else {
                               setLoading(false);
-                              Scaffold.of(context)
-                                  .showSnackBar(const SnackBar(
+                              Scaffold.of(context).showSnackBar(const SnackBar(
                                 content: Text('Credenciales no validas'),
                                 backgroundColor: Colors.red,
                               ));
@@ -146,7 +153,7 @@ class _LoginState extends State<Login> {
 
   Widget _emailField() {
     return Container(
-      margin: EdgeInsets.only(top: 20, bottom: 20, left: 40, right: 40),
+      margin: EdgeInsets.only(top: 12, bottom: 12, left: 40, right: 40),
       padding: EdgeInsets.all(10),
       decoration: BoxDecoration(
         color: Colors.white,
@@ -162,13 +169,13 @@ class _LoginState extends State<Login> {
             }
           },
           decoration: InputDecoration(
-            hintText: "Corre Electrónico",
+            hintText: "Correo Electrónico",
             suffixIcon: Icon(
               Icons.person,
               size: 35,
             ),
             hintStyle: TextStyle(
-              fontSize: 20,
+              fontSize: 18,
               fontWeight: FontWeight.bold,
             ),
           )),
@@ -177,7 +184,7 @@ class _LoginState extends State<Login> {
 
   Widget _passwordField() {
     return Container(
-      margin: EdgeInsets.only(top: 20, bottom: 20, left: 40, right: 40),
+      margin: EdgeInsets.only(top: 12, bottom: 12, left: 40, right: 40),
       padding: EdgeInsets.all(10),
       decoration: BoxDecoration(
         color: Colors.white,
@@ -191,7 +198,7 @@ class _LoginState extends State<Login> {
             size: 35,
           ),
           hintStyle: TextStyle(
-            fontSize: 20,
+            fontSize: 18,
             fontWeight: FontWeight.bold,
           ),
         ),
