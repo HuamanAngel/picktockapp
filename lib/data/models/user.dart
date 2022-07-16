@@ -1,7 +1,7 @@
 class User {
   late int id;
   late String email;
-  late dynamic token;
+  //late dynamic token;
   late String name;
   late String lastname;
   late String createdAt;
@@ -9,7 +9,7 @@ class User {
   User({
     required this.id,
     required this.email,
-    required this.token,
+    //required this.token,
     required this.name,
     required this.lastname,
     required this.createdAt,
@@ -24,7 +24,7 @@ class User {
     return User(
       id: json['id'],
       email: json['email'],
-      token: json['token'],
+      //token: json['token'],
       name: json['name'],
       lastname: json['lastname'],
       createdAt: json['created_at'],
