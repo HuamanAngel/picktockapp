@@ -18,6 +18,12 @@ class AuthProvider extends ChangeNotifier {
     User user = await httpAuthRepository.login(email, password);
     return user;
   }
+
+  static Future<bool> register(User user, String password) async {
+    HttpAuthRepository httpAuthRepository = HttpAuthRepository();
+    bool isOkay = await httpAuthRepository.register(user, password);
+    return isOkay;
+  }  
 }
 
 

@@ -12,7 +12,7 @@ class _AddCategoriaState extends State<AddCategoria> {
   Widget build(BuildContext context) {
     return Container(
         decoration: BoxDecoration(
-            color: Colors.blue.shade200,
+            color: Color.fromARGB(255, 255, 193, 7),
             borderRadius: BorderRadius.circular(50)),
         margin:
             const EdgeInsets.only(bottom: 200, left: 300, right: 300, top: 80),
