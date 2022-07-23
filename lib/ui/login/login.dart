@@ -29,7 +29,7 @@ class _LoginState extends State<Login> {
   Widget build(BuildContext context) {
     final authProvider = Provider.of<AuthProvider>(context);
     final menuProvider = Provider.of<MenuProvider>(context);
-    final storage = FlutterSecureStorage();
+    final storage = const FlutterSecureStorage();
     return Container(
       decoration: BoxDecoration(
         color: Color.fromARGB(255, 255, 193, 7),

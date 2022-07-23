@@ -48,6 +48,8 @@ class PictoRepository {
           titulo: jsonData[i]["pic_title"],
           id: i,
           creacion: jsonData[i]["created_at"],
+          catId: jsonData[i]["cat_id"],
+          picVisibility: jsonData[i]["pic_visibility"]          
         ));
       }
       return pictos;
