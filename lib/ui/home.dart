@@ -38,6 +38,7 @@ class Home extends StatelessWidget {
               Expanded(
                 child: _routes(menuProvider: menuProvider),
               ) // comunityRoute(context: context, textMenu: "contribuir"),
+
             ],
           ),
         ));
@@ -67,7 +68,7 @@ Widget _routes({required menuProvider}) {
       ),
       child: Globales(),
     );
-  if (menuProvider.menu == "Voz")
+/*  if (menuProvider.menu == "Voz")
     return Container(
       constraints: BoxConstraints.expand(),
       decoration: const BoxDecoration(
@@ -78,7 +79,7 @@ Widget _routes({required menuProvider}) {
       ),
       child: Voz(),
     );
-
+*/
   if (menuProvider.menu == "Informacion")
     return Container(
       constraints: BoxConstraints.expand(),
@@ -114,7 +115,6 @@ Widget _routes({required menuProvider}) {
       ),
       child: AddCategoria(),
     );
-
   if (menuProvider.menu == "Favoritos")
     return Container(
       constraints: BoxConstraints.expand(),
@@ -131,6 +131,7 @@ Widget _routes({required menuProvider}) {
     return Container(
       constraints: BoxConstraints.expand(),
       decoration: BoxDecoration(
+        color: Colors.amber.shade200,
         image: DecorationImage(
           image: AssetImage("assets/textures/background.jpg"),
           fit: BoxFit.cover,
@@ -160,17 +161,7 @@ Widget _routes({required menuProvider}) {
       ),
       child: Registro(),
     );
-  if (menuProvider.menu == "Agregar")
-    return Container(
-      constraints: BoxConstraints.expand(),
-      decoration: const BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage("assets/textures/background.jpg"),
-          fit: BoxFit.cover,
-        ),
-      ),
-      child: Agregar(),
-    );
+
   if (menuProvider.menu == "Configuracion")
     return Container(
       constraints: BoxConstraints.expand(),
@@ -206,7 +197,6 @@ Widget _routes({required menuProvider}) {
       ),
       child: Text("Contribuir"),
     );
-
   if (menuProvider.menu == "Comunidad/Pendiente")
     return Container(
       constraints: BoxConstraints.expand(),
@@ -219,7 +209,8 @@ Widget _routes({required menuProvider}) {
       child: PendienteComunity(),
     );
 
-  if (menuProvider.menu == "Comunidad/Donacion")
+  if (menuProvider.menu == "Comunidad/Pendiente")
+
     return Container(
       constraints: BoxConstraints.expand(),
       decoration: const BoxDecoration(
@@ -250,7 +241,7 @@ Widget _routes({required menuProvider}) {
           fit: BoxFit.cover,
         ),
       ),
-      child: Pictograma(),
+      child: AddPictograma(),
     );
 
   // Widget widget  = menuRoute(context: context, textMenu: "Comunidad/Donacion", widget: Text("Donacion"));

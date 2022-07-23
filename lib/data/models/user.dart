@@ -1,11 +1,13 @@
 class User {
   late int id;
   late String email;
+
   // String token;
   late String name;
   late String lastname;
   late String createdAt;
   late int userNivelTea;
+
   User({
     required this.id,
     required this.email,
@@ -17,7 +19,7 @@ class User {
   });
 
   User.nullable(){
-    this.id=-1;
+    this.id = -1;
   }
 
 
@@ -32,4 +34,5 @@ class User {
       userNivelTea: json['user_nivel_tea'],
     );
   }
+
 }

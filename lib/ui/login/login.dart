@@ -4,6 +4,7 @@ import 'package:picktock/data/models/user.dart';
 import 'package:picktock/domain/provider/auth_provider.dart';
 import 'package:picktock/domain/provider/menuProvider.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -28,6 +29,7 @@ class _LoginState extends State<Login> {
   Widget build(BuildContext context) {
     final authProvider = Provider.of<AuthProvider>(context);
     final menuProvider = Provider.of<MenuProvider>(context);
+    final storage = FlutterSecureStorage();
     return Container(
       decoration: BoxDecoration(
         color: Color.fromARGB(255, 255, 193, 7),
@@ -53,10 +55,20 @@ class _LoginState extends State<Login> {
             ),
             Form(
               key: _formKey,
-              child: Column(children: <Widget>[
-                _emailField(),
-                _passwordField(),
-              ]),
+              child: Container(
+                margin:
+                EdgeInsets.only(top: 10, left: 40, right: 40, bottom: 10),
+                padding: EdgeInsets.all(5),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.all(
+                      Radius.circular(20)), // set rounded corner radius
+                ),
+                child: Column(children: <Widget>[
+                  _emailField(),
+                  _passwordField(),
+                ]),
+              ),
             ),
             Container(
                 decoration: BoxDecoration(
@@ -68,76 +80,73 @@ class _LoginState extends State<Login> {
                 child: _isLoading
                     ? CircularProgressIndicator()
                     : FlatButton.icon(
-                        onPressed: () async {
-                          if (_formKey.currentState!.validate()) {
-                            setLoading(true);
-                            User user = await AuthProvider.login(
-                                controllerEmail.text, controllerPassword.text);
-                            print(user);
-                            // print(user.);
-                            if (user.id != -1) {
-                              authProvider.user = user;
-                              // Redirige a la pantalla principal
-                              setLoading(false);
-                              menuProvider.menu = "Inicio";
-                              Scaffold.of(context)
-                                  .showSnackBar(const SnackBar(
-                                content: Text('Logeado correctamente'),
-                                backgroundColor: Colors.green,
-                              ));
-
-                            } else {
-                              setLoading(false);
-                              Scaffold.of(context)
-                                  .showSnackBar(const SnackBar(
-                                content: Text('Credenciales no validas'),
-                                backgroundColor: Colors.red,
-                              ));
-                            }
-                          }
-                        },
-                        icon: Icon(
-                          Icons.arrow_forward,
-                          color: Colors.white,
-                        ),
-                        label: Text(
-                          "Iniciar Sesión",
-                          style: TextStyle(fontSize: 20, color: Colors.white),
-                        ),
-                      )),
+                  onPressed: () async {
+                    if (_formKey.currentState!.validate()) {
+                      setLoading(true);
+                      User user = await AuthProvider.login(
+                          controllerEmail.text, controllerPassword.text);
+                      print(user.id);
+                      // print(user.);
+                      if (user.id != -1) {
+                        authProvider.user = user;
+                        // Redirige a la pantalla principal
+                        setLoading(false);
+                        menuProvider.menu = "Inicio";
+                        Scaffold.of(context).showSnackBar(const SnackBar(
+                          content: Text('Logeado correctamente'),
+                          backgroundColor: Colors.green,
+                        ));
+                      } else {
+                        setLoading(false);
+                        Scaffold.of(context).showSnackBar(const SnackBar(
+                          content: Text('Credenciales no validas'),
+                          backgroundColor: Colors.red,
+                        ));
+                      }
+                    }
+                  },
+                  icon: Icon(
+                    Icons.arrow_forward,
+                    color: Colors.white,
+                  ),
+                  label: Text(
+                    "Iniciar Sesión",
+                    style: TextStyle(fontSize: 20, color: Colors.white),
+                  ),
+                )),
             Divider(
               color: Colors.black,
               thickness: 1,
             ),
-            Container(
-              padding: EdgeInsets.all(20),
-              child: Text(
-                "¿No tienes una cuenta?",
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-            Container(
-                width: 200,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    FloatingActionButton(
-                      child: Icon(FontAwesomeIcons.google),
-                      onPressed: null,
-                    ),
-                    FloatingActionButton(
-                        backgroundColor: Color(0xff3b5998),
-                        child: Icon(FontAwesomeIcons.facebook),
-                        onPressed: null),
-                    FloatingActionButton(
-                        backgroundColor: Color(0xff00aced),
-                        child: Icon(FontAwesomeIcons.twitter),
-                        onPressed: null)
-                  ],
-                ))
+            // Container(
+            //   padding: EdgeInsets.all(20),
+            //   child: Text(
+            //     "¿No tienes una cuenta?",
+            //     style: TextStyle(
+            //       fontSize: 20,
+            //       fontWeight: FontWeight.bold,
+            //     ),
+            //   ),
+            // ),
+            // Container(
+            //     width: 200,
+            //     child: Row(
+            //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //       children: <Widget>[
+            //         FloatingActionButton(
+            //           child: Icon(FontAwesomeIcons.google),
+            //           onPressed: null,
+            //         ),
+            //         FloatingActionButton(
+            //             backgroundColor: Color(0xff3b5998),
+            //             child: Icon(FontAwesomeIcons.facebook),
+            //             onPressed: null),
+            //         FloatingActionButton(
+            //             backgroundColor: Color(0xff00aced),
+            //             child: Icon(FontAwesomeIcons.twitter),
+            //             onPressed: null)
+            //       ],
+            //     ))
           ],
         ),
       ),
@@ -146,7 +155,7 @@ class _LoginState extends State<Login> {
 
   Widget _emailField() {
     return Container(
-      margin: EdgeInsets.only(top: 20, bottom: 20, left: 40, right: 40),
+      margin: EdgeInsets.only(top: 12, bottom: 12, left: 40, right: 40),
       padding: EdgeInsets.all(10),
       decoration: BoxDecoration(
         color: Colors.white,
@@ -162,13 +171,13 @@ class _LoginState extends State<Login> {
             }
           },
           decoration: InputDecoration(
-            hintText: "Corre Electrónico",
+            hintText: "Correo Electrónico",
             suffixIcon: Icon(
               Icons.person,
               size: 35,
             ),
             hintStyle: TextStyle(
-              fontSize: 20,
+              fontSize: 18,
               fontWeight: FontWeight.bold,
             ),
           )),
@@ -177,7 +186,7 @@ class _LoginState extends State<Login> {
 
   Widget _passwordField() {
     return Container(
-      margin: EdgeInsets.only(top: 20, bottom: 20, left: 40, right: 40),
+      margin: EdgeInsets.only(top: 12, bottom: 12, left: 40, right: 40),
       padding: EdgeInsets.all(10),
       decoration: BoxDecoration(
         color: Colors.white,
@@ -191,7 +200,7 @@ class _LoginState extends State<Login> {
             size: 35,
           ),
           hintStyle: TextStyle(
-            fontSize: 20,
+            fontSize: 18,
             fontWeight: FontWeight.bold,
           ),
         ),

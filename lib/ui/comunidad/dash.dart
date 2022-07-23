@@ -3,6 +3,8 @@ import 'package:picktock/domain/provider/menuProvider.dart';
 import 'package:provider/provider.dart';
 import 'package:picktock/styles/style.dart';
 import 'package:picktock/ui/widgets/title.dart';
+import 'package:picktock/ui/enviarsugerencias/enviarSugerencias.dart';
+
 class Comunidad extends StatefulWidget {
   Comunidad({Key? key}) : super(key: key);
   @override
@@ -36,6 +38,10 @@ class _ComunidadState extends State<Comunidad> {
           _buildMenuItem(
               text: "Pictogramas pendientes",
               route: "Comunidad/Pendiente",
+              MenuProvider: menuProvider,context: context),
+          _buildMenuItem(
+              text: "Enviar sugerencias",
+              route: "enviarsugerencias/enviarSugerencias",
               MenuProvider: menuProvider,context: context),
           _buildMenuItem(
               text: "!! Donación ¡¡",

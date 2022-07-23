@@ -38,14 +38,15 @@ Widget SideBar(BuildContext context, MenuProvider menuProvider) {
           color: Colors.white,
           thickness: 1,
         ),
-        // SideBarOption(
-        //     text: "Voz", icon: Icons.mic, menuProvider: menuProvider),
-        // const Divider(
-        //   color: Colors.white,
-        //   thickness: 1,
-        // ),
+
         SideBarOption(
-            text: "Registro",
+             text: "Voz", icon: Icons.mic, menuProvider: menuProvider),
+        const Divider(
+          color: Colors.white,
+          thickness: 1,
+         ),
+        SideBarOption(
+            text: "REGISTRO",
             icon: Icons.photo_library,
             menuProvider: menuProvider),
         const Divider(
@@ -55,7 +56,7 @@ Widget SideBar(BuildContext context, MenuProvider menuProvider) {
         SideBarOption(
             text: "Categoria",
             icon: Icons.category,
-            menuProvider: menuProvider),
+            menuProvider: menuProvider),      
         const Divider(
           color: Colors.white,
           thickness: 1,
@@ -67,48 +68,34 @@ Widget SideBar(BuildContext context, MenuProvider menuProvider) {
           thickness: 1,
         ),
         SideBarOption(
-            text: "Globales",
-            icon: Icons.person_pin_circle_sharp,
+            text: "Globales", icon: Icons.person_pin_circle_sharp,menuProvider: menuProvider),
+        const Divider(
+          color: Colors.white,
+          thickness: 1,
+        ),             
+
+        SideBarOptionBottom(
+            text: "Favoritos", icon: Icons.star, menuProvider: menuProvider),
+        const Divider(
+          color: Colors.white,
+          thickness: 1,
+        ),
+        SideBarOptionBottom(
+            text: "Editar", icon: Icons.edit, menuProvider: menuProvider),
+        const Divider(
+          color: Colors.white,
+          thickness: 1,
+        ),
+        SideBarOptionBottom(
+            text: "Compartir", icon: Icons.share, menuProvider: menuProvider),
+        const Divider(
+          color: Colors.white,
+          thickness: 1,
+        ),
+        SideBarOptionBottom(
+            text: "Editados",
+            icon: Icons.edit_attributes,
             menuProvider: menuProvider),
-        const Divider(
-          color: Colors.white,
-          thickness: 1,
-        ),
-        SideBarOptionBottom(
-            text: "Agregar", icon: Icons.add, menuProvider: menuProvider),
-        const Divider(
-          color: Colors.white,
-          thickness: 1,
-        ),
-        // SideBarOptionBottom(
-        //     text: "Favoritos", icon: Icons.star, menuProvider: menuProvider),
-        // const Divider(
-        //   color: Colors.white,
-        //   thickness: 1,
-        // ),
-        // SideBarOptionBottom(
-        //     text: "Editar", icon: Icons.edit, menuProvider: menuProvider),
-        // const Divider(
-        //   color: Colors.white,
-        //   thickness: 1,
-        // ),
-        // SideBarOptionBottom(
-        //     text: "Compartir", icon: Icons.share, menuProvider: menuProvider),
-        // const Divider(
-        //   color: Colors.white,
-        //   thickness: 1,
-        // ),
-        // SideBarOptionBottom(
-        //     text: "Editados",
-        //     icon: Icons.edit_attributes,
-        //     menuProvider: menuProvider),
-        // const Divider(
-        //   color: Colors.white,
-        //   thickness: 1,
-        // ),
-        const Spacer(),
-        SideBarOptionBottom(
-            text: "Agregar", icon: Icons.add, menuProvider: menuProvider),
         const Divider(
           color: Colors.white,
           thickness: 1,
@@ -121,6 +108,7 @@ Widget SideBar(BuildContext context, MenuProvider menuProvider) {
         ),
         SideBarOptionBottom(
             text: "Configuración",
+
             icon: Icons.settings,
             menuProvider: menuProvider),
         const Divider(
