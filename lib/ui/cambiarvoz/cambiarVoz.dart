@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 import 'package:provider/provider.dart';
 
 class Voz extends StatefulWidget {
@@ -14,7 +15,9 @@ class _CambiarVoz extends State<Voz> {
 
 @override
   Widget build(BuildContext context) {
-    return Container(
+  FlutterTts flutterTts = FlutterTts();
+
+  return Container(
 
       margin: EdgeInsets.only(top: 50, left: 100, right: 100, bottom: 50),
       child: Column(children: [
@@ -37,6 +40,9 @@ class _CambiarVoz extends State<Voz> {
                           children: <Widget>[
                             SimpleDialogOption(
                               onPressed: () {
+                                flutterTts.setLanguage("es-US-Standard-B");
+                                flutterTts.speak("Virgencita");
+
                                 Navigator.pop(context, Voces.masculina);
                               },
                               child: const Text('Masculina'),

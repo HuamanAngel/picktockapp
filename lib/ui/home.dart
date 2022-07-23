@@ -168,7 +168,7 @@ Widget _routes({required menuProvider}) {
           fit: BoxFit.cover,
         ),
       ),
-      child: Agregar(),
+      child: AddPictograma(),
     );
   if (menuProvider.menu == "Configuracion")
     return Container(

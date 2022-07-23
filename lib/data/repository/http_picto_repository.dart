@@ -26,6 +26,7 @@ class HttpPictoRepository extends AbstractPicto {
         dynamic jsonData = jsonDecode(response.body);
         jsonData = jsonData['message'];
         print(jsonData);
+        print(response.body);
         return true;
       } else if (response.statusCode == 422) {
         dynamic jsonData = jsonDecode(response.body);

@@ -18,10 +18,10 @@ class PictoRepository {
     String url = " ";
     if (auth) {
       url =
-      "http://picktock.alwaysdata.net/picktock-backend/public/api/auth/pictograma";
+          "http://picktock.alwaysdata.net/picktock-backend/public/api/auth/pictograma";
     } else {
       url =
-      "http://picktock.alwaysdata.net/picktock-backend/public/api/pictograma/public";
+          "http://picktock.alwaysdata.net/picktock-backend/public/api/pictograma/public";
     }
     try {
       String url = baseUri + "/api/auth/signup";
