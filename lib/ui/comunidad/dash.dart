@@ -3,6 +3,7 @@ import 'package:picktock/domain/provider/menuProvider.dart';
 import 'package:provider/provider.dart';
 import 'package:picktock/styles/style.dart';
 import 'package:picktock/ui/widgets/title.dart';
+import 'package:picktock/ui/enviarsugerencias/enviarSugerencias.dart';
 class Comunidad extends StatefulWidget {
   Comunidad({Key? key}) : super(key: key);
   @override

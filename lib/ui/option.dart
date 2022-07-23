@@ -24,12 +24,12 @@ Widget SideBar(BuildContext context, MenuProvider menuProvider) {
           color: Colors.white,
           thickness: 1,
         ),
-        SideBarOption(
+        /*SideBarOption(
             text: "Perfil", icon: Icons.person, menuProvider: menuProvider),
         const Divider(
           color: Colors.white,
           thickness: 1,
-        ),
+        ),*/
         SideBarOption(
             text: "Pictograma",
             icon: Icons.photo_library,
@@ -38,12 +38,12 @@ Widget SideBar(BuildContext context, MenuProvider menuProvider) {
           color: Colors.white,
           thickness: 1,
         ),
-        // SideBarOption(
-        //     text: "Voz", icon: Icons.mic, menuProvider: menuProvider),
-        // const Divider(
-        //   color: Colors.white,
-        //   thickness: 1,
-        // ),
+        SideBarOption(
+            text: "Voz", icon: Icons.mic, menuProvider: menuProvider),
+        const Divider(
+          color: Colors.white,
+          thickness: 1,
+        ),
         SideBarOption(
             text: "Registro",
             icon: Icons.photo_library,
@@ -80,39 +80,33 @@ Widget SideBar(BuildContext context, MenuProvider menuProvider) {
           color: Colors.white,
           thickness: 1,
         ),
-        // SideBarOptionBottom(
-        //     text: "Favoritos", icon: Icons.star, menuProvider: menuProvider),
-        // const Divider(
-        //   color: Colors.white,
-        //   thickness: 1,
-        // ),
-        // SideBarOptionBottom(
-        //     text: "Editar", icon: Icons.edit, menuProvider: menuProvider),
-        // const Divider(
-        //   color: Colors.white,
-        //   thickness: 1,
-        // ),
-        // SideBarOptionBottom(
-        //     text: "Compartir", icon: Icons.share, menuProvider: menuProvider),
-        // const Divider(
-        //   color: Colors.white,
-        //   thickness: 1,
-        // ),
-        // SideBarOptionBottom(
-        //     text: "Editados",
-        //     icon: Icons.edit_attributes,
-        //     menuProvider: menuProvider),
-        // const Divider(
-        //   color: Colors.white,
-        //   thickness: 1,
-        // ),
-        const Spacer(),
         SideBarOptionBottom(
-            text: "Agregar", icon: Icons.add, menuProvider: menuProvider),
+            text: "Favoritos", icon: Icons.star, menuProvider: menuProvider),
         const Divider(
           color: Colors.white,
           thickness: 1,
         ),
+        SideBarOptionBottom(
+            text: "Editar", icon: Icons.edit, menuProvider: menuProvider),
+        const Divider(
+          color: Colors.white,
+          thickness: 1,
+        ),
+        SideBarOptionBottom(
+            text: "Compartir", icon: Icons.share, menuProvider: menuProvider),
+        const Divider(
+          color: Colors.white,
+          thickness: 1,
+        ),
+        SideBarOptionBottom(
+            text: "Editados",
+            icon: Icons.edit_attributes,
+            menuProvider: menuProvider),
+        const Divider(
+          color: Colors.white,
+          thickness: 1,
+        ),
+        const Spacer(),
         SideBarOptionBottom(
             text: "Login", icon: Icons.exit_to_app, menuProvider: menuProvider),
         const Divider(
@@ -128,9 +122,7 @@ Widget SideBar(BuildContext context, MenuProvider menuProvider) {
           thickness: 1,
         ),
         SideBarOptionBottom(
-            text: "Informacion",
-            icon: Icons.info,
-            menuProvider: menuProvider),
+            text: "Informacion", icon: Icons.info, menuProvider: menuProvider),
       ],
     ),
   );
