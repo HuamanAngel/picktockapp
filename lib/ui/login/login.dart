@@ -118,35 +118,35 @@ class _LoginState extends State<Login> {
               color: Colors.black,
               thickness: 1,
             ),
-            Container(
-              padding: EdgeInsets.all(20),
-              child: Text(
-                "¿No tienes una cuenta?",
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-            Container(
-                width: 200,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    FloatingActionButton(
-                      child: Icon(FontAwesomeIcons.google),
-                      onPressed: null,
-                    ),
-                    FloatingActionButton(
-                        backgroundColor: Color(0xff3b5998),
-                        child: Icon(FontAwesomeIcons.facebook),
-                        onPressed: null),
-                    FloatingActionButton(
-                        backgroundColor: Color(0xff00aced),
-                        child: Icon(FontAwesomeIcons.twitter),
-                        onPressed: null)
-                  ],
-                ))
+            // Container(
+            //   padding: EdgeInsets.all(20),
+            //   child: Text(
+            //     "¿No tienes una cuenta?",
+            //     style: TextStyle(
+            //       fontSize: 20,
+            //       fontWeight: FontWeight.bold,
+            //     ),
+            //   ),
+            // ),
+            // Container(
+            //     width: 200,
+            //     child: Row(
+            //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //       children: <Widget>[
+            //         FloatingActionButton(
+            //           child: Icon(FontAwesomeIcons.google),
+            //           onPressed: null,
+            //         ),
+            //         FloatingActionButton(
+            //             backgroundColor: Color(0xff3b5998),
+            //             child: Icon(FontAwesomeIcons.facebook),
+            //             onPressed: null),
+            //         FloatingActionButton(
+            //             backgroundColor: Color(0xff00aced),
+            //             child: Icon(FontAwesomeIcons.twitter),
+            //             onPressed: null)
+            //       ],
+            //     ))
           ],
         ),
       ),

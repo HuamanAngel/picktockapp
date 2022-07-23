@@ -57,7 +57,7 @@ Widget _routes({required menuProvider}) {
       ),
       child: Sugerencia(),
     );
-  /*if (menuProvider.menu == "Globales")
+  if (menuProvider.menu == "Globales")
     return Container(
       constraints: BoxConstraints.expand(),
       decoration: const BoxDecoration(
@@ -67,7 +67,7 @@ Widget _routes({required menuProvider}) {
         ),
       ),
       child: Globales(),
-    );*/
+    );
   /*if (menuProvider.menu == "Voz")
     return Container(
       constraints: BoxConstraints.expand(),
@@ -183,7 +183,7 @@ Widget _routes({required menuProvider}) {
       child: Text("Configuracion"),
     );
 
-  /*if (menuProvider.menu == "Comunidad")
+  if (menuProvider.menu == "Comunidad")
     return Container(
       constraints: BoxConstraints.expand(),
       decoration: const BoxDecoration(
@@ -240,7 +240,7 @@ Widget _routes({required menuProvider}) {
         ),
       ),
       child: EvaluateComunity(),
-    );*/
+    );
   if (menuProvider.menu == "AñadirPictograma")
     return Container(
       constraints: BoxConstraints.expand(),
@@ -250,7 +250,8 @@ Widget _routes({required menuProvider}) {
           fit: BoxFit.cover,
         ),
       ),
-      child: Picto(),
+      // child: Picto(name: "Saludar"),
+      child: Container(child: Text("AñadirPictograma")),
     );
   // Widget widget  = menuRoute(context: context, textMenu: "Comunidad/Donacion", widget: Text("Donacion"));
   return SizedBox.shrink();

@@ -36,87 +36,92 @@ class _RegistroUsuario extends State<Registro> {
               offset: Offset(10, 10))
         ],
       ),
-      margin: EdgeInsets.only(top: 50, left: 100, right: 100, bottom: 50),
-      child: Column(children: [
-        Padding(
-          padding: EdgeInsets.only(bottom: 15, top: 15),
-          child: Text(
-            "Crear nueva cuenta",
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              color: Color.fromARGB(255, 0, 0, 0),
-              fontSize: 25,
-              fontFamily: 'Arial',
+      margin: EdgeInsets.only(top: 24, left: 100, right: 100, bottom: 24),
+      child: SingleChildScrollView(
+        child: Column(children: [
+          Padding(
+            padding: EdgeInsets.only(bottom: 3, top: 10),
+            child: Text(
+              "Crear nueva cuenta",
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: Color.fromARGB(255, 0, 0, 0),
+                fontSize: 25,
+                fontFamily: 'Arial',
+              ),
             ),
           ),
-        ),
-        Divider(
-          color: Colors.white,
-          thickness: 2.5,
-        ),
-        Form(
-          key: _formKey,
-          child: Column(
-            children: <Widget>[
-              Container(
-                margin:
-                    EdgeInsets.only(top: 10, left: 40, right: 40, bottom: 10),
-                padding: EdgeInsets.all(5),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.all(
-                      Radius.circular(20)), // set rounded corner radius
-                ),
-                child: Column(
-                  children: [
-                    CampotextoUser(controllerName),
-                    CampotextoLastname(controllerLastname),
-                    CampotextoEmail(controllerEmail),
-                    CampotextoPassword(controllerPassword),
-                  ],
-                ),
-              ),
-              Container(
-                //margin: EdgeInsets.only(top: 20),
-                decoration: BoxDecoration(
-                  color: Colors.blueAccent,
-                  borderRadius: BorderRadius.all(Radius.circular(10)),
-                ),
-                padding: EdgeInsets.all(5),
-                child: FlatButton(
-                    child: Text(
-                      "Registrarse",
-                      style: TextStyle(color: Colors.white, fontSize: 20),
-                    ),
-                    onPressed: () async {
-                      if (_formKey.currentState!.validate()) {
-                        User user = User(
-                            name: controllerName.text,
-                            lastname: controllerLastname.text,
-                            email: controllerEmail.text,
-                            createdAt: '',
-                            id: 1,
-                            userNivelTea: 1);
-
-                        await AuthProvider.register(
-                            user, controllerPassword.text);
-                        Scaffold.of(context).showSnackBar(
-                            SnackBar(content: Text("Creando usuario")));
-                      }
-                    }),
-              )
-            ],
+          Divider(
+            color: Colors.white,
+            thickness: 2.5,
           ),
-        ),
-      ]),
+          Form(
+            key: _formKey,
+            child: Column(
+              children: <Widget>[
+                Container(
+                  margin:
+                      EdgeInsets.only(top: 3, left: 40, right: 40, bottom: 3),
+                  alignment: Alignment.center,
+                  padding: EdgeInsets.all(4),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.all(
+                        Radius.circular(15)), // set rounded corner radius
+                  ),
+                  child: Column(
+                    children: [
+                      CampotextoUser(controllerName),
+                      CampotextoLastname(controllerLastname),
+                      CampotextoEmail(controllerEmail),
+                      CampotextoPassword(controllerPassword),
+                    ],
+                  ),
+                ),
+                Container(
+                  //margin: EdgeInsets.only(top: 20),
+                  decoration: BoxDecoration(
+                    color: Colors.blueAccent,
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                  ),
+                  padding: EdgeInsets.all(3),
+                  child: FlatButton(
+                      child: Text(
+                        "Registrarse",
+                        style: TextStyle(color: Colors.white, fontSize: 20),
+                      ),
+                      onPressed: () async {
+                        if (_formKey.currentState!.validate()) {
+                          User user = User(
+                              name: controllerName.text,
+                              lastname: controllerLastname.text,
+                              email: controllerEmail.text,
+                              createdAt: '',
+                              id: 1,
+                              userNivelTea: 1);
+          
+                          await AuthProvider.register(
+                              user, controllerPassword.text);
+                          Scaffold.of(context).showSnackBar(SnackBar(
+                            content: Text("Usuario creado"),
+                            backgroundColor: Colors.green,
+                          ));
+                        }
+                      }),
+                )
+              ],
+            ),
+          ),
+        ]),
+      ),
     );
   }
 }
 
 Widget CampotextoUser(TextEditingController controller) {
   return Container(
-    margin: EdgeInsets.only(top: 10, left: 40, right: 40, bottom: 10),
-    padding: EdgeInsets.all(5),
+    margin: EdgeInsets.only(top: 3, left: 40, right: 40, bottom: 3),
+    padding: EdgeInsets.all(4),
     decoration: BoxDecoration(
       color: Colors.white,
       // set rounded corner radius
@@ -142,8 +147,8 @@ Widget CampotextoUser(TextEditingController controller) {
 
 Widget CampotextoLastname(TextEditingController controller) {
   return Container(
-    margin: EdgeInsets.only(top: 10, left: 40, right: 40, bottom: 10),
-    padding: EdgeInsets.all(5),
+    margin: EdgeInsets.only(top: 3, left: 40, right: 40, bottom: 3),
+    padding: EdgeInsets.all(4),
     decoration: BoxDecoration(
       color: Colors.white,
       // set rounded corner radius
@@ -169,8 +174,8 @@ Widget CampotextoLastname(TextEditingController controller) {
 
 Widget CampotextoEmail(TextEditingController controller) {
   return Container(
-    margin: EdgeInsets.only(top: 10, left: 40, right: 40, bottom: 10),
-    padding: EdgeInsets.all(5),
+    margin: EdgeInsets.only(top: 3, left: 40, right: 40, bottom: 3),
+    padding: EdgeInsets.all(4),
     decoration: BoxDecoration(
       color: Colors.white,
       // set rounded corner radius
@@ -196,8 +201,8 @@ Widget CampotextoEmail(TextEditingController controller) {
 
 Widget CampotextoPassword(TextEditingController controller) {
   return Container(
-    margin: EdgeInsets.only(top: 10, left: 40, right: 40, bottom: 10),
-    padding: EdgeInsets.all(5),
+    margin: EdgeInsets.only(top: 3, left: 40, right: 40, bottom: 3),
+    padding: EdgeInsets.all(4),
     decoration: BoxDecoration(
       color: Colors.white,
       // set rounded corner radius
@@ -224,8 +229,8 @@ Widget CampotextoPassword(TextEditingController controller) {
 
 Widget CampotextoPasswordRepeat(TextEditingController controller) {
   return Container(
-    margin: EdgeInsets.only(top: 10, left: 40, right: 40, bottom: 10),
-    padding: EdgeInsets.all(5),
+    margin: EdgeInsets.only(top: 3, left: 40, right: 40, bottom: 3),
+    padding: EdgeInsets.all(4),
     decoration: BoxDecoration(
       color: Colors.white,
       // set rounded corner radius
