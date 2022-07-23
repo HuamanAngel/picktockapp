@@ -10,7 +10,7 @@ import 'package:picktock/ui/login/crear_usuario.dart';
 import 'package:picktock/ui/pictograma/pictograma.dart';
 import 'package:picktock/ui/comunidad/dash.dart';
 import 'package:picktock/ui/comunidad/pendiente.dart';
-import 'package:picktock/ui/categoria/categoria.dart';
+import 'package:picktock/ui/categoria/addCategorie.dart';
 import 'package:picktock/ui/login/login.dart';
 import "package:picktock/ui/informacion/informacion.dart";
 import 'package:picktock/ui/favorito/favorito.dart';
@@ -18,6 +18,7 @@ import 'package:picktock/ui/addpicto/addPicto.dart';
 import 'package:picktock/ui/cambiarvoz/cambiarVoz.dart';
 import 'package:picktock/ui/pictoglobales/seccionGlobales.dart';
 import 'package:picktock/ui/pictograma/Agregar.dart';
+import 'package:picktock/ui/categoria/categories.dart';
 
 class Home extends StatelessWidget {
   Home({Key? key}) : super(key: key);
@@ -111,7 +112,7 @@ Widget _routes({required menuProvider}) {
           fit: BoxFit.cover,
         ),
       ),
-      child: AddCategoria(),
+      child: Categories(),
     );
 
   if (menuProvider.menu == "Favoritos")
