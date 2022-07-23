@@ -48,42 +48,33 @@ class _PictogramaState extends State<Pictograma> {
                     ),
                     flex: 6,
                   ),
-                ),
-                flex: 6,
-               ),
-              ],
-          ),
-          Row(
-             children: [
-              Spacer(),
-              Container(
-                  margin: EdgeInsets.only( left: 50),
-                 child: FlatButton(
-                     child: Text(
-                       "Combinar Pictograma",
-                       style: TextStyle(color: Colors.white, fontSize: 20),
-                     ),
-                     color: Colors.green,
-                     onPressed: () {}
-                   )
-               )
-             ]
-          ),
-          Row(
-            children: [
-              Picto(name:"Saludar" ),
-              Picto(name:"Bailar"),
-              // Picto(),
-              // Picto(),
-            ],
-          ),
-          Row(
-            children: [
-              Spacer(),
-              Voz(),
-              ]
-          ),
-         /* Row(
+                ],
+              ),
+              Row(children: [
+                Spacer(),
+                Container(
+                    margin: EdgeInsets.only(left: 50),
+                    child: FlatButton(
+                        child: Text(
+                          "Combinar Pictograma",
+                          style: TextStyle(color: Colors.white, fontSize: 20),
+                        ),
+                        color: Colors.green,
+                        onPressed: () {}))
+              ]),
+              Row(
+                children: [
+                  Picto(name: "Saludar"),
+                  Picto(name: "Bailar"),
+                  // Picto(),
+                  // Picto(),
+                ],
+              ),
+              Row(children: [
+                Spacer(),
+                Voz(),
+              ]),
+              /* Row(
               child: Container(
                 child: paginacion(),
               ),
@@ -111,25 +102,22 @@ Widget ordenar({required IconData icon, required String text}) {
 Widget Picto({required name}) {
   return Container(
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          Container(
-              margin: EdgeInsets.only(top: 40),
-              child: Text(name,
-                  style: TextStyle(fontSize: 20),
-                  overflow: TextOverflow.ellipsis
-              )
-          ),
-          InkWell(
-            child: Container(
-              padding: EdgeInsets.all(20.0),
-              height: 200,
-              child: Image.asset('assets/imagen.jpg'),
-            ),
-            onTap: () {
-              ReproduceSound.speak(name);
-            },
-          ),
+    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    children: [
+      Container(
+          margin: EdgeInsets.only(top: 40),
+          child: Text(name,
+              style: TextStyle(fontSize: 20), overflow: TextOverflow.ellipsis)),
+      InkWell(
+        child: Container(
+          padding: EdgeInsets.all(20.0),
+          height: 200,
+          child: Image.asset('assets/imagen.jpg'),
+        ),
+        onTap: () {
+          ReproduceSound.speak(name);
+        },
+      ),
 
       Container(
           margin: EdgeInsets.only(top: 15, bottom: 10),

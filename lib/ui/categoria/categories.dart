@@ -17,26 +17,7 @@ class _CategoriesState extends State<Categories> {
       padding: EdgeInsets.all(10),
       margin: EdgeInsets.all(10),
       child: SingleChildScrollView(
-        child: Column(
-          children: [
-            Row(
-              children: [Picto(), Picto(), Picto()],
-            ),
-            Row(
-              children: [
-                Picto(),
-                Picto(),
-                Center(
-                  child: FloatingActionButton(
-                      onPressed: null,
-                      child: Icon(
-                        Icons.add,
-                      )),
-                )
-              ],
-            ),
-          ],
-        ),
+        child: Column(),
       ),
     );
   }
