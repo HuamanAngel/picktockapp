@@ -28,11 +28,9 @@ class _CategoriesState extends State<Categories> {
                 Picto(),
                 Center(
                   child: FloatingActionButton(
-                      hoverColor: Colors.red,
                       onPressed: null,
                       child: Icon(
                         Icons.add,
-                        color: Colors.green,
                       )),
                 )
               ],
