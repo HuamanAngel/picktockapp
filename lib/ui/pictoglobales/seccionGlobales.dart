@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 import 'package:provider/provider.dart';
 import 'package:picktock/ui/cambiarvoz/cambiarVoz.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:flutter_tts/flutter_tts.dart';
+
 
 class Globales extends StatefulWidget {
   const Globales({Key? key}) : super(key: key);
@@ -12,6 +15,10 @@ class Globales extends StatefulWidget {
 
 class _PictogramaGlobal extends State<Globales> {
   final controllerSearch = TextEditingController();
+
+
+
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -110,16 +117,25 @@ Widget ordenar({required IconData icon, required String text}) {
   );
 }
 Widget Picto() {
+  FlutterTts flutterTts = FlutterTts();
+
   return Container(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Container(
               margin: EdgeInsets.only(top: 40),
-              child: Text('Virgencita',
+              child: TextButton(
+                onPressed: () async{
+                  flutterTts.speak("Virgencita");
+                },
+                child: new Text('Virgencita'),
+              ),
+
+              /*Text('Virgencita',
                   style: TextStyle(fontSize: 20),
                   overflow: TextOverflow.ellipsis
-              )
+              )*/
           ),
           Container(
             padding: EdgeInsets.all(20.0),
@@ -136,6 +152,7 @@ Widget Picto() {
                   Text(
                     'Jose Feliciano',
                     style: TextStyle(color: Colors.grey),
+
                   ),
                   RatingBar.builder(
                     initialRating: 3,
