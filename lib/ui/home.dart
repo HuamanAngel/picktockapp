@@ -250,8 +250,8 @@ Widget _routes({required menuProvider}) {
           fit: BoxFit.cover,
         ),
       ),
-      // child: Picto(name: "Saludar"),
-      child: Container(child: Text("AñadirPictograma")),
+      child: Pictograma(),
+      
     );
   // Widget widget  = menuRoute(context: context, textMenu: "Comunidad/Donacion", widget: Text("Donacion"));
   return SizedBox.shrink();
