@@ -11,7 +11,7 @@ class HttpPictoRepository extends AbstractPicto {
   @override
   Future<bool> addpicto(NewPicto newPicto) async {
     try {
-      String url = baseUri + "/api/auth/signup";
+      String url = "http://picktockback.herokuapp.com/api/auth/pictograma";
       final response = await http.post(
         Uri.parse(url),
         headers: {
@@ -31,6 +31,7 @@ class HttpPictoRepository extends AbstractPicto {
         dynamic jsonData = jsonDecode(response.body);
         jsonData = jsonData['message'];
         print(jsonData);
+        print(response.body);
         return true;
       } else if (response.statusCode == 422) {
         dynamic jsonData = jsonDecode(response.body);

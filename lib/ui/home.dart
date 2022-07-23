@@ -17,6 +17,7 @@ import 'package:picktock/ui/favorito/favorito.dart';
 import 'package:picktock/ui/addpicto/addPicto.dart';
 import 'package:picktock/ui/cambiarvoz/cambiarVoz.dart';
 import 'package:picktock/ui/pictoglobales/seccionGlobales.dart';
+import 'package:picktock/ui/pictograma/Agregar.dart';
 
 class Home extends StatelessWidget {
   Home({Key? key}) : super(key: key);
@@ -34,7 +35,9 @@ class Home extends StatelessWidget {
           body: Row(
             children: [
               SideBar(context, menuProvider),
-              Expanded(child: _routes(menuProvider: menuProvider))              // comunityRoute(context: context, textMenu: "contribuir"),
+              Expanded(
+                child: _routes(menuProvider: menuProvider),
+              ) // comunityRoute(context: context, textMenu: "contribuir"),
             ],
           ),
         ));
@@ -51,7 +54,7 @@ Widget _routes({required menuProvider}) {
           fit: BoxFit.cover,
         ),
       ),
-      child: Text("Inicio"),
+      child: Sugerencia(),
     );
   if (menuProvider.menu == "Globales")
     return Container(
@@ -64,8 +67,17 @@ Widget _routes({required menuProvider}) {
       ),
       child: Globales(),
     );
-
-
+  /*if (menuProvider.menu == "Voz")
+    return Container(
+      constraints: BoxConstraints.expand(),
+      decoration: const BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage("assets/textures/background.jpg"),
+          fit: BoxFit.cover,
+        ),
+      ),
+      child: Voz(),
+    );*/
   if (menuProvider.menu == "Informacion")
     return Container(
       constraints: BoxConstraints.expand(),
@@ -101,17 +113,6 @@ Widget _routes({required menuProvider}) {
       ),
       child: AddCategoria(),
     );
-  if (menuProvider.menu == "Agregar")
-    return Container(
-      constraints: BoxConstraints.expand(),
-      decoration: const BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage("assets/textures/background.jpg"),
-          fit: BoxFit.cover,
-        ),
-      ),
-      child: AddPictograma(),
-    );
 
   if (menuProvider.menu == "Favoritos")
     return Container(
@@ -124,11 +125,11 @@ Widget _routes({required menuProvider}) {
         ),
       ),
       child: Favorito(),
-    );    
+    );
   if (menuProvider.menu == "Perfil")
     return Container(
       constraints: BoxConstraints.expand(),
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         image: DecorationImage(
           image: AssetImage("assets/textures/background.jpg"),
           fit: BoxFit.cover,
@@ -147,7 +148,7 @@ Widget _routes({required menuProvider}) {
       ),
       child: Pictograma(),
     );
-  if (menuProvider.menu == "REGISTRO")
+  if (menuProvider.menu == "Registro")
     return Container(
       constraints: BoxConstraints.expand(),
       decoration: const BoxDecoration(
@@ -157,6 +158,17 @@ Widget _routes({required menuProvider}) {
         ),
       ),
       child: Registro(),
+    );
+  if (menuProvider.menu == "Agregar")
+    return Container(
+      constraints: BoxConstraints.expand(),
+      decoration: const BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage("assets/textures/background.jpg"),
+          fit: BoxFit.cover,
+        ),
+      ),
+      child: AddPictograma(),
     );
   if (menuProvider.menu == "Configuracion")
     return Container(
@@ -193,17 +205,6 @@ Widget _routes({required menuProvider}) {
       ),
       child: Text("Contribuir"),
     );
-  if (menuProvider.menu == "enviarsugerencias/enviarSugerencias")
-    return Container(
-      constraints: BoxConstraints.expand(),
-      decoration: const BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage("assets/textures/background.jpg"),
-          fit: BoxFit.cover,
-        ),
-      ),
-      child: Sugerencia(),
-    );
 
   if (menuProvider.menu == "Comunidad/Pendiente")
     return Container(
@@ -239,9 +240,19 @@ Widget _routes({required menuProvider}) {
       ),
       child: EvaluateComunity(),
     );
-
+  if (menuProvider.menu == "AñadirPictograma")
+    return Container(
+      constraints: BoxConstraints.expand(),
+      decoration: const BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage("assets/textures/background.jpg"),
+          fit: BoxFit.cover,
+        ),
+      ),
+      child: Pictograma(),
+      
+    );
   // Widget widget  = menuRoute(context: context, textMenu: "Comunidad/Donacion", widget: Text("Donacion"));
-
   return SizedBox.shrink();
 }
 

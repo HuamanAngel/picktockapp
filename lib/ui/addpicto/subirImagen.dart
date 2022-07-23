@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
@@ -26,6 +28,9 @@ class _ImagenState extends State<Imagen> {
         print('No seleccionaste ninguna foto');
       }
     });
+    List bytes = await new File(pickedFile.path).readAsBytesSync();
+
+
   }
   opciones(context) {
     showDialog(

@@ -39,10 +39,6 @@ class _ComunidadState extends State<Comunidad> {
               route: "Comunidad/Pendiente",
               MenuProvider: menuProvider,context: context),
           _buildMenuItem(
-              text: "Enviar sugerencias",
-              route: "enviarsugerencias/enviarSugerencias",
-              MenuProvider: menuProvider,context: context),
-          _buildMenuItem(
               text: "!! Donación ¡¡",
               route: "Comunidad/Donacion",
               MenuProvider: menuProvider,context: context),

@@ -23,17 +23,18 @@ class HttpAuthRepository extends AbstractAuth {
           "password": password,
         }),
       );
+      print(response.statusCode);
       if (response.statusCode == 200) {
         dynamic jsonData = jsonDecode(response.body);
         jsonData = jsonData['data'];
         User user = User.fromJson(jsonData);
-        print("En caso de exito enviar a una rutae");
+        print("En caso de exito enviar a una ruta");
         return user;
       } else if (response.statusCode == 422) {
-        print("Validaciones");
+        print("Error en las Validaciones");
         return User.nullable();
-      } else {
-        print("Error no encontrado");
+      } else if (response.statusCode == 401) {
+        print("Error de credenciales");
         return User.nullable();
       }
     } catch (e) {
@@ -69,10 +70,11 @@ class HttpAuthRepository extends AbstractAuth {
         }),
       );
       print(user.email);
-      if (response.statusCode == 200) {
+      if (response.statusCode == 201) {
         dynamic jsonData = jsonDecode(response.body);
         jsonData = jsonData['message'];
         print(jsonData);
+        print("Registrado correctamente");
         return true;
       } else if (response.statusCode == 422) {
         dynamic jsonData = jsonDecode(response.body);
