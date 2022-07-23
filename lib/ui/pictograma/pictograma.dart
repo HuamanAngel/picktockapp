@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:picktock/domain/utilities/reproducir.dart';
 import 'package:provider/provider.dart';
 import 'package:picktock/ui/pictograma/cambiarvoz.dart';
 import 'package:picktock/ui/pictograma/picto.dart';
@@ -167,6 +168,8 @@ class _PictogramaState extends State<Pictograma> {
                 child: CircularProgressIndicator(),
               ),
             ),
+
+
           ),
 
 
@@ -200,44 +203,4 @@ Widget ordenar({required IconData icon, required String text}) {
         )),
   );
 }
-/*Widget Picto() {
-  return Container(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          Container(
-              margin: EdgeInsets.only(top: 40),
-              child: Text('Saluda',
-                  style: TextStyle(fontSize: 20),
-                  overflow: TextOverflow.ellipsis
-              )
-          ),
-          Container(
-            padding: EdgeInsets.all(20.0),
-            height: 200,
-            child: Image.asset('assets/imagen.jpg'),
-          ),
-
-          Container(
-              margin: EdgeInsets.only(top: 15, bottom: 10),
-              child: Text('Calificación: 3',
-                  style: TextStyle(fontSize: 20),
-                  overflow: TextOverflow.ellipsis
-              )
-          ),
-        //   Container(
-        //  child: FlatButton(
-        //   child: Text(
-        //    "Cambiar Calificación",
-        //   style: TextStyle(color: Colors.white, fontSize: 20),
-        //     ),
-        //  color: Colors.green,
-        //  onPressed: () {}
-        //  )
-          // )
-        ],
-      )
-  );
-}*/
-
 
