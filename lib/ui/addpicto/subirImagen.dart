@@ -60,7 +60,7 @@ class _ImagenState extends State<Imagen> {
                   ),
                   InkWell(
                     onTap:(){
-                      Navigator.of(context).pop(false);
+
                     },
                     child: Container(
                       padding: EdgeInsets.all(20),
