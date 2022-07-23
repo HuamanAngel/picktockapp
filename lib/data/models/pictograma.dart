@@ -3,8 +3,8 @@ class Picto {
   final String imagenURL;
   final int id;
   final String creacion;
-  final String picVisibility;
-  final String catId;
+  final dynamic picVisibility;
+  final dynamic catId;
 
   int? idPictograma;
 

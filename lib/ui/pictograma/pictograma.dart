@@ -91,10 +91,14 @@ class _PictogramaState extends State<Pictograma> {
   initState() {
     super.initState();
     token = " ";
+    _getPictos();
     // _listadoPictos = _getPictos();
-    // await Auth AuthProvider.register(user, controllerPassword.text);    
+    // await AuthProvider.register(user, controllerPassword.text);    
   }
-
+  Future<List<Picto>> _getPictos() async {
+    pictos = await PictoProvider.getPictos();
+    return pictos;
+  }
 
   @override
   Widget build(BuildContext context) {
