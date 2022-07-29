@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
@@ -7,30 +9,40 @@ ImagePicker picker = ImagePicker();
 
 class Imagen extends StatefulWidget {
   @override
-  State<Imagen> createState() => _ImagenState();
+  _ImagenState createState() => _ImagenState();
 
 }
 
 class _ImagenState extends State<Imagen> {
-  final imagen = File('image');
+
+
+  File? file;
+  dynamic _path;
+  dynamic _imagen64;
   final picker = ImagePicker();
+
   Future selImagen(op) async{
     var pickedFile;
     if (op==1){
       pickedFile = await picker.getImage(source: ImageSource.gallery);
     }
+    if(pickedFile!= null){
+      file = File(pickedFile.path);
+    }else{
+      print('No seleccionaste ninguna imagen');
+    }
+
     setState((){
-      if(pickedFile!= null){
-        final imagen = File(pickedFile.path);
-      }else{
-        print('No seleccionaste ninguna foto');
-      }
+      file = File(pickedFile!.path);
+
     });
+
+
   }
   opciones(context) {
     showDialog(
         context: context,
-        builder: (BuildContext) {
+        builder: (BuildContext context) {
           return AlertDialog(
             contentPadding: EdgeInsets.all(0),
             content: SingleChildScrollView(
@@ -43,6 +55,9 @@ class _ImagenState extends State<Imagen> {
                     },
                     child: Container(
                       padding: EdgeInsets.all(20),
+                      decoration: BoxDecoration(
+                          border: Border(bottom: BorderSide(width: 1, color: Colors.grey))
+                      ),
                       child: Row(
                           children: [
                             Expanded(
@@ -60,7 +75,8 @@ class _ImagenState extends State<Imagen> {
                   ),
                   InkWell(
                     onTap:(){
-                      Navigator.of(context).pop(false);
+                      Navigator.of(context).pop();
+
                     },
                     child: Container(
                       padding: EdgeInsets.all(20),
@@ -90,21 +106,51 @@ class _ImagenState extends State<Imagen> {
     );
   }
   Widget build(BuildContext context){
-    return Padding(
-      padding: EdgeInsets.all(20),
-      child: ElevatedButton(
-        onPressed: (){
-          opciones(context);
-          imagen == null ? Center() : Image.file(imagen);
-        },
-        child: Text('Selecciona una imagen'),
-      ),
+    return
+      Padding(
+          padding: EdgeInsets.all(20),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Container(
+                  height: 140,
+                  width: 180,
+                  color: Colors.black12,
+                  child: file == null
+                      ? Icon(
+                    Icons.image,
+                    size: 50,
+                  )
+                      : Image.file(
+                    file!,
+                    fit: BoxFit.fill,
+                  ),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    opciones(context);
+                  },
+                  child:
+                  Text('Selecciona una imagen'),
 
-    );
+                ),
+
+
+
+              ],
+
+
+            ),
+          )
+
+
+      );
+
+
+
   }
 
 }
-
 
 
 

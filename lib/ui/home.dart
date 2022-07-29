@@ -17,7 +17,6 @@ import 'package:picktock/ui/favorito/favorito.dart';
 import 'package:picktock/ui/addpicto/addPicto.dart';
 import 'package:picktock/ui/cambiarvoz/cambiarVoz.dart';
 import 'package:picktock/ui/pictoglobales/seccionGlobales.dart';
-import 'package:picktock/ui/pictograma/Agregar.dart';
 
 class Home extends StatelessWidget {
   Home({Key? key}) : super(key: key);
@@ -38,7 +37,6 @@ class Home extends StatelessWidget {
               Expanded(
                 child: _routes(menuProvider: menuProvider),
               ) // comunityRoute(context: context, textMenu: "contribuir"),
-
             ],
           ),
         ));
@@ -68,7 +66,7 @@ Widget _routes({required menuProvider}) {
       ),
       child: Globales(),
     );
-/*  if (menuProvider.menu == "Voz")
+  /*if (menuProvider.menu == "Voz")
     return Container(
       constraints: BoxConstraints.expand(),
       decoration: const BoxDecoration(
@@ -78,8 +76,7 @@ Widget _routes({required menuProvider}) {
         ),
       ),
       child: Voz(),
-    );
-*/
+    );*/
   if (menuProvider.menu == "Informacion")
     return Container(
       constraints: BoxConstraints.expand(),
@@ -115,6 +112,7 @@ Widget _routes({required menuProvider}) {
       ),
       child: AddCategoria(),
     );
+
   if (menuProvider.menu == "Favoritos")
     return Container(
       constraints: BoxConstraints.expand(),
@@ -131,7 +129,6 @@ Widget _routes({required menuProvider}) {
     return Container(
       constraints: BoxConstraints.expand(),
       decoration: BoxDecoration(
-        color: Colors.amber.shade200,
         image: DecorationImage(
           image: AssetImage("assets/textures/background.jpg"),
           fit: BoxFit.cover,
@@ -161,7 +158,17 @@ Widget _routes({required menuProvider}) {
       ),
       child: Registro(),
     );
-
+  if (menuProvider.menu == "Agregar")
+    return Container(
+      constraints: BoxConstraints.expand(),
+      decoration: const BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage("assets/textures/background.jpg"),
+          fit: BoxFit.cover,
+        ),
+      ),
+      child: AddPictograma(),
+    );
   if (menuProvider.menu == "Configuracion")
     return Container(
       constraints: BoxConstraints.expand(),
@@ -197,6 +204,7 @@ Widget _routes({required menuProvider}) {
       ),
       child: Text("Contribuir"),
     );
+
   if (menuProvider.menu == "Comunidad/Pendiente")
     return Container(
       constraints: BoxConstraints.expand(),
@@ -209,8 +217,7 @@ Widget _routes({required menuProvider}) {
       child: PendienteComunity(),
     );
 
-  if (menuProvider.menu == "Comunidad/Pendiente")
-
+  if (menuProvider.menu == "Comunidad/Donacion")
     return Container(
       constraints: BoxConstraints.expand(),
       decoration: const BoxDecoration(
@@ -232,20 +239,7 @@ Widget _routes({required menuProvider}) {
       ),
       child: EvaluateComunity(),
     );
-  if (menuProvider.menu == "AñadirPictograma")
-    return Container(
-      constraints: BoxConstraints.expand(),
-      decoration: const BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage("assets/textures/background.jpg"),
-          fit: BoxFit.cover,
-        ),
-      ),
-      child: AddPictograma(),
-    );
-
   // Widget widget  = menuRoute(context: context, textMenu: "Comunidad/Donacion", widget: Text("Donacion"));
-
   return SizedBox.shrink();
 }
 

@@ -23,13 +23,14 @@ class _LoginState extends State<Login> {
   final controllerEmail = TextEditingController();
   final controllerPassword = TextEditingController();
   bool _isLoading = false;
+
   setLoading(bool state) => setState(() => _isLoading = state);
 
   @override
   Widget build(BuildContext context) {
     final authProvider = Provider.of<AuthProvider>(context);
     final menuProvider = Provider.of<MenuProvider>(context);
-    final storage = FlutterSecureStorage();
+    final storage = const FlutterSecureStorage();
     return Container(
       decoration: BoxDecoration(
         color: Color.fromARGB(255, 255, 193, 7),

@@ -7,7 +7,6 @@ class AuthProvider extends ChangeNotifier {
   late User _user;
 
   User get user => _user;
-
   set user(User user) {
     _user = user;
     // Avisa widget que estan escuchando
@@ -26,3 +25,4 @@ class AuthProvider extends ChangeNotifier {
     return isOkay;
   }
 }
+

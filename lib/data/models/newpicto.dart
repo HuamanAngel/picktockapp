@@ -10,7 +10,6 @@ class NewPicto{
     required this.pic_image,
     required this.cat_id,
   });
-
   static NewPicto fromJson(Map<dynamic, dynamic> json) {
     return NewPicto(
       pic_title: json['pic_title'],
