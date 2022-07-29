@@ -9,8 +9,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 
 class Pictograma extends StatefulWidget {
-  const Pictograma({Key? key})
-      : super(key: key);
+  const Pictograma({Key? key}) : super(key: key);
   @override
   State<Pictograma> createState() => _PictogramaState();
 }
@@ -32,13 +31,13 @@ class _PictogramaState extends State<Pictograma> {
     });
     bool auth = (pref2.getBool("auth") ?? false);
     String url = " ";
-      if (auth) {
-        url =
-        "http://picktock.alwaysdata.net/picktock-backend/public/api/auth/pictograma";
-      } else {
-        url =
-        "http://picktock.alwaysdata.net/picktock-backend/public/api/pictograma/public";
-      }
+    if (auth) {
+      url =
+          "http://picktock.alwaysdata.net/picktock-backend/public/api/auth/pictograma";
+    } else {
+      url =
+          "http://picktock.alwaysdata.net/picktock-backend/public/api/pictograma/public";
+    }
 
     try {
       final respuesta = await http.get(
@@ -86,112 +85,94 @@ class _PictogramaState extends State<Pictograma> {
     _listadoPictos = _getPictos();
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Container(
-        padding: EdgeInsets.only(left: 10, right: 10, top: 20, bottom: 20),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Row(
-                children: [
-                  ordenar(icon: Icons.sort, text: "Alfabeto"),
-                  ordenar(icon: Icons.sort, text: "Recientes"),
-                  Expanded(
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
-                        color: Colors.white,
-                        border: Border.all(color: Colors.black26),
-                      ),
-                      child: TextField(
-                        controller: controllerSearch,
-                        keyboardType: TextInputType.text,
-                        decoration: InputDecoration(
-                          suffixIcon: IconButton(
-                            icon: Icon(Icons.clear),
-                            onPressed: () {
-                              controllerSearch.clear();
-                            },
-                          ),
-                          fillColor: Colors.red,
-                          border: OutlineInputBorder(),
-                          labelText: "Nombre del pictograma",
-                        ),
-                      ),
+      padding: EdgeInsets.only(left: 10, right: 10, top: 20, bottom: 20),
+      child: SingleChildScrollView(
+        child: Column(children: [
+          Row(children: [
+            ordenar(icon: Icons.sort, text: "Alfabeto"),
+            ordenar(icon: Icons.sort, text: "Recientes"),
+            Expanded(
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12),
+                  color: Colors.white,
+                  border: Border.all(color: Colors.black26),
+                ),
+                child: TextField(
+                  controller: controllerSearch,
+                  keyboardType: TextInputType.text,
+                  decoration: InputDecoration(
+                    suffixIcon: IconButton(
+                      icon: Icon(Icons.clear),
+                      onPressed: () {
+                        controllerSearch.clear();
+                      },
                     ),
-                    flex: 6,
+                    fillColor: Colors.red,
+                    border: OutlineInputBorder(),
+                    labelText: "Nombre del pictograma",
                   ),
                 ),
-                flex: 6,
-               ),
-              ],
-          ),
-          Row(
-             children: [
-              Spacer(),
-              Container(
-                  margin: EdgeInsets.only( left: 50),
-                 child: FlatButton(
-                     child: Text(
-                       "Combinar Pictograma",
-                       style: TextStyle(color: Colors.white, fontSize: 20),
-                     ),
-                     color: Colors.green,
-                     onPressed: () {}
-                   )
-               )
-             ]
-          ),
+              ),
+              flex: 6,
+            ),
+          ]),
+        ]),
+      ),
+    );
+    Row(children: [
+      Spacer(),
+      Container(
+          margin: EdgeInsets.only(left: 50),
+          child: FlatButton(
+              child: Text(
+                "Combinar Pictograma",
+                style: TextStyle(color: Colors.white, fontSize: 20),
+              ),
+              color: Colors.green,
+              onPressed: () {}))
+    ]);
 
-          Expanded(
-            child: Container(
-              padding: const EdgeInsets.all(10),
-              height: double.infinity,
-              width: double.infinity,
-              color: Colors.transparent, //color azul
-              child: dataDescargada
-                  ? GridView.builder(
-                  itemCount: pictos.length,
-                  gridDelegate:
-                  const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 3,
-                  ),
-                  itemBuilder: (context, index) {
-                    return Pictogr(
-                      id: index,
-                      nombre: pictos[index].titulo,
-                      rutaImagen: pictos[index].imagenURL,
-                      idPictograma:
-                      pictos[index].idPictograma,
-                      creacion: pictos[index].creacion,
-                    );
-                  })
-                  : const Center(
+    Expanded(
+      child: Container(
+        padding: const EdgeInsets.all(10),
+        height: double.infinity,
+        width: double.infinity,
+        color: Colors.transparent, //color azul
+        child: dataDescargada
+            ? GridView.builder(
+                itemCount: pictos.length,
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 3,
+                ),
+                itemBuilder: (context, index) {
+                  return Pictogr(
+                    id: index,
+                    nombre: pictos[index].titulo,
+                    rutaImagen: pictos[index].imagenURL,
+                    idPictograma: pictos[index].idPictograma,
+                    creacion: pictos[index].creacion,
+                  );
+                })
+            : const Center(
                 child: CircularProgressIndicator(),
               ),
-            ),
+      ),
+    );
 
-
-          ),
-
-
-          Row(
-            children: [
-              Spacer(),
-              Voz(),
-              ]
-          ),
-         /* Row(
+    Row(children: [
+      Spacer(),
+      Voz(),
+    ]);
+    /* Row(
               child: Container(
                 child: paginacion(),
               ),
           ),
 */
-            ],
-          ),
-        ));
   }
 }
 
@@ -207,4 +188,3 @@ Widget ordenar({required IconData icon, required String text}) {
         )),
   );
 }
-

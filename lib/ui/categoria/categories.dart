@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:picktock/ui/pictograma/pictograma.dart';
+import 'package:picktock/data/models/categorie.dart';
+import 'package:picktock/data/repository/http_cat_repository.dart';
 
 class Categories extends StatefulWidget {
   @override
@@ -17,7 +18,20 @@ class _CategoriesState extends State<Categories> {
       padding: EdgeInsets.all(10),
       margin: EdgeInsets.all(10),
       child: SingleChildScrollView(
-        child: Column(),
+        child: Column(
+          children: <Widget>[
+            Text(
+              'Categorías',
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+          ],
+        ),
       ),
     );
   }
