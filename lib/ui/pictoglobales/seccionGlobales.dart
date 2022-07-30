@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart';
+import 'package:picktock/ui/pictograma/Combinar.dart';
 import 'package:provider/provider.dart';
 import 'package:picktock/ui/cambiarvoz/cambiarVoz.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -65,17 +66,7 @@ class _PictogramaGlobal extends State<Globales> {
           Row(
               children: [
                 Spacer(),
-                Container(
-                    margin: EdgeInsets.only( left: 50),
-                    child: FlatButton(
-                        child: Text(
-                          "Combinar Pictograma",
-                          style: TextStyle(color: Colors.white, fontSize: 20),
-                        ),
-                        color: Colors.green,
-                        onPressed: () {}
-                    )
-                )
+                Combinar()
               ]
           ),
           Row(

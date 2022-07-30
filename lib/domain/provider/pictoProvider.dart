@@ -26,4 +26,6 @@ class PictoProvider extends ChangeNotifier {
     List<Picto> pictos = await httpPictoRepository.getPictos();
     return pictos;
   }
+
+
 }

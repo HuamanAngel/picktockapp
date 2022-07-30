@@ -3,15 +3,12 @@ class Picto {
   final String imagenURL;
   final int id;
   final String creacion;
-  int? idPictograma;
 
   Picto({
     required this.titulo,
     required this.imagenURL,
     required this.id,
-    required this.creacion,
-    this.idPictograma,
-
+    required this.creacion
   });
   static Picto fromJson(Map<dynamic, dynamic> json) {
     return Picto(
