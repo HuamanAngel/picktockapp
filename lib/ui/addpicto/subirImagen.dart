@@ -1,9 +1,11 @@
 import 'dart:convert';
+import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:image_picker_web/image_picker_web.dart';
 import 'dart:io';
 ImagePicker picker = ImagePicker();
 
@@ -14,8 +16,55 @@ class Imagen extends StatefulWidget {
 }
 
 class _ImagenState extends State<Imagen> {
+  bool imageAvailable = false;
+  late Uint8List imageFile;
 
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.all(20),
+      child: SingleChildScrollView(
+      child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              height: 140,
+              width: 180,
+              color: Colors.black12,
 
+              child: imageAvailable ? Image.memory(imageFile) : const SizedBox(),
+            ),
+            GestureDetector(
+              onTap: () async {
+                final image = await ImagePickerWeb.getImageAsBytes();
+
+                setState(() {
+                  imageFile = image!;
+                  imageAvailable = true;
+                });
+              },
+              child: Container(
+                height: 50,
+                width: 200,
+                color: Colors.blue,
+                
+                child: Center(
+                  child: Text("Selecciona una imagen",
+                    style: TextStyle(
+                      fontSize:16,
+                      color:Colors.white,
+                    ),
+                    textAlign:TextAlign.center,),
+                ),
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+/*
   File? file;
   dynamic _path;
   dynamic _imagen64;
@@ -149,7 +198,7 @@ class _ImagenState extends State<Imagen> {
 
 
   }
-
+*/
 }
 
 
