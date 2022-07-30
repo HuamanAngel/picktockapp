@@ -82,8 +82,7 @@ class _PictogramaGlobal extends State<Globales> {
             children: [
               Picto(),
               Picto(),
-              Picto(),
-              Picto(),
+
             ],
           ),
           Row(
@@ -118,29 +117,95 @@ Widget ordenar({required IconData icon, required String text}) {
 }
 Widget Picto() {
   FlutterTts flutterTts = FlutterTts();
+  return
+    Card(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+      margin: EdgeInsets.all(15),
+      elevation: 10,
 
-  return Container(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          Container(
-              margin: EdgeInsets.only(top: 40),
+      // Dentro de esta propiedad usamos ClipRRect
+      child: ClipRRect(
+
+        // Los bordes del contenido del card se cortan usando BorderRadius
+        borderRadius: BorderRadius.circular(30),
+
+        // EL widget hijo que será recortado segun la propiedad anterior
+        child: Column(
+          children: <Widget>[
+            Container(
+              padding: EdgeInsets.all(10),
               child: TextButton(
                 onPressed: () async{
                   flutterTts.speak("Virgencita");
                 },
                 child: new Text('Virgencita'),
               ),
+            ),
 
-              /*Text('Virgencita',
-                  style: TextStyle(fontSize: 20),
-                  overflow: TextOverflow.ellipsis
-              )*/
-          ),
-          Container(
-            padding: EdgeInsets.all(20.0),
-            child: Image.asset('assets/imagen.jpg'),
-          ),
+
+            // Usamos el widget Image para mostrar una imagen
+            Container(
+              padding: EdgeInsets.all(20.0),
+              child: Image.asset('assets/imagen.jpg', width: 150),
+            ),
+
+            Container(
+              margin: EdgeInsets.only(bottom: 5),
+              child: Column(
+                children: [
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.person,
+                        size: 15,
+                        color: Colors.grey,
+                      ),
+                      Text(
+                        'Jose Feliciano',
+                        style: TextStyle(color: Colors.grey),
+
+                      ),
+                    ],
+                  ),
+
+
+                  Container(
+                    child: RatingBar.builder(
+                      initialRating: 3,
+                      minRating: 1,
+                      itemSize: 20,
+                      direction: Axis.horizontal,
+                      allowHalfRating: true,
+                      itemCount: 5,
+                      itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
+                      itemBuilder: (context, _) => Icon(
+                        Icons.star,
+                        color: Colors.amber,
+
+                      ),
+                      onRatingUpdate: (rating) {
+                        print(rating);
+                      },
+                    ),),
+                ],
+              ),
+            ),
+
+
+
+            // Usamos Container para el contenedor de la descripción
+
+          ],
+        ),
+      ));
+  /*
+  FlutterTts flutterTts = FlutterTts();
+
+  return Container(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+
           Container(
               margin: EdgeInsets.only(top: 5),
               child: Row(
@@ -177,6 +242,6 @@ Widget Picto() {
 
         ],
       )
-  );
+  );*/
 }
 

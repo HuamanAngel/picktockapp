@@ -48,7 +48,7 @@ class _ImagenState extends State<Imagen> {
                 height: 50,
                 width: 200,
                 color: Colors.blue,
-                
+
                 child: Center(
                   child: Text("Selecciona una imagen",
                     style: TextStyle(
