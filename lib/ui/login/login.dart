@@ -23,13 +23,14 @@ class _LoginState extends State<Login> {
   final controllerEmail = TextEditingController();
   final controllerPassword = TextEditingController();
   bool _isLoading = false;
+
   setLoading(bool state) => setState(() => _isLoading = state);
 
   @override
   Widget build(BuildContext context) {
     final authProvider = Provider.of<AuthProvider>(context);
     final menuProvider = Provider.of<MenuProvider>(context);
-    final storage = FlutterSecureStorage();
+    final storage = const FlutterSecureStorage();
     return Container(
       decoration: BoxDecoration(
         color: Color.fromARGB(255, 255, 193, 7),
@@ -57,7 +58,7 @@ class _LoginState extends State<Login> {
               key: _formKey,
               child: Container(
                 margin:
-                    EdgeInsets.only(top: 10, left: 40, right: 40, bottom: 10),
+                EdgeInsets.only(top: 10, left: 40, right: 40, bottom: 10),
                 padding: EdgeInsets.all(5),
                 decoration: BoxDecoration(
                   color: Colors.white,
@@ -80,40 +81,40 @@ class _LoginState extends State<Login> {
                 child: _isLoading
                     ? CircularProgressIndicator()
                     : FlatButton.icon(
-                        onPressed: () async {
-                          if (_formKey.currentState!.validate()) {
-                            setLoading(true);
-                            User user = await AuthProvider.login(
-                                controllerEmail.text, controllerPassword.text);
-                            print(user.id);
-                            // print(user.);
-                            if (user.id != -1) {
-                              authProvider.user = user;
-                              // Redirige a la pantalla principal
-                              setLoading(false);
-                              menuProvider.menu = "Inicio";
-                              Scaffold.of(context).showSnackBar(const SnackBar(
-                                content: Text('Logeado correctamente'),
-                                backgroundColor: Colors.green,
-                              ));
-                            } else {
-                              setLoading(false);
-                              Scaffold.of(context).showSnackBar(const SnackBar(
-                                content: Text('Credenciales no validas'),
-                                backgroundColor: Colors.red,
-                              ));
-                            }
-                          }
-                        },
-                        icon: Icon(
-                          Icons.arrow_forward,
-                          color: Colors.white,
-                        ),
-                        label: Text(
-                          "Iniciar Sesión",
-                          style: TextStyle(fontSize: 20, color: Colors.white),
-                        ),
-                      )),
+                  onPressed: () async {
+                    if (_formKey.currentState!.validate()) {
+                      setLoading(true);
+                      User user = await AuthProvider.login(
+                          controllerEmail.text, controllerPassword.text);
+                      print(user.id);
+                      // print(user.);
+                      if (user.id != -1) {
+                        authProvider.user = user;
+                        // Redirige a la pantalla principal
+                        setLoading(false);
+                        menuProvider.menu = "Inicio";
+                        Scaffold.of(context).showSnackBar(const SnackBar(
+                          content: Text('Logeado correctamente'),
+                          backgroundColor: Colors.green,
+                        ));
+                      } else {
+                        setLoading(false);
+                        Scaffold.of(context).showSnackBar(const SnackBar(
+                          content: Text('Credenciales no validas'),
+                          backgroundColor: Colors.red,
+                        ));
+                      }
+                    }
+                  },
+                  icon: Icon(
+                    Icons.arrow_forward,
+                    color: Colors.white,
+                  ),
+                  label: Text(
+                    "Iniciar Sesión",
+                    style: TextStyle(fontSize: 20, color: Colors.white),
+                  ),
+                )),
             Divider(
               color: Colors.black,
               thickness: 1,

@@ -14,7 +14,7 @@ class _AboutUsState extends State<AboutUs> {
         borderRadius: BorderRadius.circular(50),
       ),
       margin:
-          const EdgeInsets.symmetric(vertical: 20, horizontal: 50),
+      const EdgeInsets.symmetric(vertical: 20, horizontal: 50),
       child: SingleChildScrollView(
         child: Column(children: [
           Padding(

@@ -130,8 +130,8 @@ Widget SideBar(BuildContext context, MenuProvider menuProvider) {
 
 Widget SideBarOption(
     {required String text,
-    required IconData icon,
-    required MenuProvider menuProvider}) {
+      required IconData icon,
+      required MenuProvider menuProvider}) {
   return InkWell(
     onTap: () {
       menuProvider.menu = text;
@@ -148,8 +148,8 @@ Widget SideBarOption(
 
 Widget SideBarOptionBottom(
     {required String text,
-    required IconData icon,
-    required MenuProvider menuProvider}) {
+      required IconData icon,
+      required MenuProvider menuProvider}) {
   return InkWell(
     onTap: () {
       menuProvider.menu = text;

@@ -61,7 +61,7 @@ class _RegistroUsuario extends State<Registro> {
               children: <Widget>[
                 Container(
                   margin:
-                      EdgeInsets.only(top: 3, left: 40, right: 40, bottom: 3),
+                  EdgeInsets.only(top: 3, left: 40, right: 40, bottom: 3),
                   alignment: Alignment.center,
                   padding: EdgeInsets.all(4),
                   decoration: BoxDecoration(
@@ -99,7 +99,7 @@ class _RegistroUsuario extends State<Registro> {
                               createdAt: '',
                               id: 1,
                               userNivelTea: 1);
-          
+
                           await AuthProvider.register(
                               user, controllerPassword.text);
                           Scaffold.of(context).showSnackBar(SnackBar(

@@ -17,7 +17,6 @@ import 'package:picktock/ui/favorito/favorito.dart';
 import 'package:picktock/ui/addpicto/addPicto.dart';
 import 'package:picktock/ui/cambiarvoz/cambiarVoz.dart';
 import 'package:picktock/ui/pictoglobales/seccionGlobales.dart';
-import 'package:picktock/ui/pictograma/Agregar.dart';
 
 class Home extends StatelessWidget {
   Home({Key? key}) : super(key: key);
@@ -168,7 +167,7 @@ Widget _routes({required menuProvider}) {
           fit: BoxFit.cover,
         ),
       ),
-      child: Agregar(),
+      child: AddPictograma(),
     );
   if (menuProvider.menu == "Configuracion")
     return Container(
@@ -239,18 +238,6 @@ Widget _routes({required menuProvider}) {
         ),
       ),
       child: EvaluateComunity(),
-    );
-  if (menuProvider.menu == "AñadirPictograma")
-    return Container(
-      constraints: BoxConstraints.expand(),
-      decoration: const BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage("assets/textures/background.jpg"),
-          fit: BoxFit.cover,
-        ),
-      ),
-      child: Pictograma(),
-      
     );
   // Widget widget  = menuRoute(context: context, textMenu: "Comunidad/Donacion", widget: Text("Donacion"));
   return SizedBox.shrink();
