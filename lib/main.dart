@@ -34,6 +34,11 @@ class PickTock extends StatelessWidget {
         title: "PickTock",
         theme: ThemeData(
           primarySwatch: Colors.blue,
+          dividerTheme: const DividerThemeData(
+            thickness: 1,
+            color: Colors.white,
+            space: 0,
+          ),
         ),
         home: const Home(),
       ),
