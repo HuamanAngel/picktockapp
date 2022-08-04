@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:picktock/domain/provider/auth_provider.dart';
 import 'package:picktock/domain/provider/comunityProvider.dart';
 import 'package:provider/provider.dart';
@@ -10,11 +11,15 @@ void main() {
   runApp(const PickTock());
 }
 class PickTock extends StatelessWidget {
-  const PickTock({ Key? key }) : super(key: key);
+  const PickTock({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return MultiProvider (
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.landscapeLeft,
+      DeviceOrientation.landscapeRight,
+    ]);
+    return MultiProvider(
       providers: [
         ChangeNotifierProvider<MenuProvider>(
           create: (_) => MenuProvider(),

@@ -8,33 +8,35 @@ class SideBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
+      curve: Curves.ease,
       duration: const Duration(milliseconds: 300),
       width: menuProvider.isMenuOpen ? 200 : 40,
       decoration: const BoxDecoration(
         color: Colors.blue,
-        // color: Color.fromARGB(255, 177, 147, 57),
       ),
       child: ListView(
         children: [
           GestureDetector(
             onTap: menuProvider.switchOpen,
             child: SizedBox(
-                height: 48,
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: menuProvider.isMenuOpen
-                      ? MainAxisAlignment.center
-                      : MainAxisAlignment.start,
-                  children: [
-                    const Padding(
-                      padding: EdgeInsets.only(left: 8.0, right: 8.0),
-                      child:  Icon(Icons.menu),
-                    ),
-                    if (menuProvider.isMenuOpen)
-                      const Expanded(
-                        child: FittedBox(
-                          fit: BoxFit.scaleDown,
+              height: 48,
+              child: Row(
+                mainAxisSize: MainAxisSize.max,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: menuProvider.isMenuOpen
+                    ? MainAxisAlignment.center
+                    : MainAxisAlignment.start,
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.only(left: 8.0, right: 8.0),
+                    child: Icon(Icons.menu),
+                  ),
+                  if (menuProvider.isMenuOpen)
+                    const Expanded(
+                      child: FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child: Padding(
+                          padding: EdgeInsets.only(right: 8.0),
                           child: Text(
                             "PickTock",
                             style: TextStyle(
@@ -44,8 +46,10 @@ class SideBar extends StatelessWidget {
                           ),
                         ),
                       ),
-                  ],
-                )),
+                    ),
+                ],
+              ),
+            ),
           ),
           SideBarOption(
               text: "Inicio", icon: Icons.home, menuProvider: menuProvider),
@@ -82,17 +86,13 @@ class SideBar extends StatelessWidget {
               text: "Agregar", icon: Icons.add, menuProvider: menuProvider),
           const Divider(),
           SideBarOption(
-              text: "Favoritos",
-              icon: Icons.star,
-              menuProvider: menuProvider),
+              text: "Favoritos", icon: Icons.star, menuProvider: menuProvider),
           const Divider(),
           SideBarOption(
               text: "Editar", icon: Icons.edit, menuProvider: menuProvider),
           const Divider(),
           SideBarOption(
-              text: "Compartir",
-              icon: Icons.share,
-              menuProvider: menuProvider),
+              text: "Compartir", icon: Icons.share, menuProvider: menuProvider),
           const Divider(),
           SideBarOption(
               text: "Editados",
@@ -138,19 +138,25 @@ class SideBarOption extends StatelessWidget {
         menuProvider.menu = text;
       },
       child: Container(
-        color: menuProvider.menu==text? Colors.blue.shade800: Colors.blue,
+        color: menuProvider.menu == text ? Colors.blue.shade800 : Colors.blue,
         padding: const EdgeInsets.all(8),
         child: Row(
           mainAxisAlignment: menuProvider.isMenuOpen
               ? MainAxisAlignment.spaceBetween
               : MainAxisAlignment.end,
           children: [
-            if (menuProvider.isMenuOpen)
-              Text(
+            Expanded(
+              child: Text(
                 text,
-                style: TextStyle(color: menuProvider.menu==text? Colors.black: Colors.white),
+                style: TextStyle(
+                    overflow: TextOverflow.ellipsis,
+                    color: menuProvider.menu == text
+                        ? Colors.black
+                        : Colors.white),
               ),
-            Icon(icon, color: menuProvider.menu==text? Colors.black: Colors.white),
+            ),
+            Icon(icon,
+                color: menuProvider.menu == text ? Colors.black : Colors.white),
           ],
         ),
       ),

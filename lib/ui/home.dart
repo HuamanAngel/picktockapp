@@ -5,7 +5,7 @@ import 'package:picktock/ui/enviarsugerencias/enviarSugerencias.dart';
 import 'package:picktock/ui/option.dart';
 import 'package:picktock/ui/perfil/dash.dart';
 import 'package:provider/provider.dart';
-import 'package:picktock/ui/login/crear_usuario.dart';
+import 'package:picktock/ui/login/register_page.dart';
 import 'package:picktock/ui/pictograma/pictograma.dart';
 import 'package:picktock/ui/comunidad/dash.dart';
 import 'package:picktock/ui/comunidad/pendiente.dart';
@@ -23,13 +23,21 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     final menuProvider = Provider.of<MenuProvider>(context);
     return Scaffold(
-      body: Row(
-        children: [
-          SideBar(menuProvider: menuProvider),
-          Expanded(
-            child: Routes(menuProvider: menuProvider),
-          ) // comunityRoute(context: context, textMenu: "contribuir"),
-        ],
+      body: Container(
+        color: Colors.blue.shade400,
+        child: SafeArea(
+          child: Row(
+            children: [
+              SideBar(menuProvider: menuProvider),
+              Expanded(
+                child: Container(
+                  color: const Color.fromARGB(255, 255, 237, 187),
+                  child: Routes(menuProvider: menuProvider),
+                ),
+              )
+            ],
+          ),
+        ),
       ),
     );
   }
@@ -41,218 +49,43 @@ class Routes extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (menuProvider.menu == "Inicio") {
-      return Container(
-        constraints: const BoxConstraints.expand(),
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage("assets/textures/background.jpg"),
-            fit: BoxFit.cover,
-          ),
-        ),
-        child: Sugerencia(),
-      );
+    switch (menuProvider.menu) {
+      case "Inicio":
+        return Sugerencia();
+      case "Globales":
+        return const Globales();
+      case "Informacion":
+        return AboutUs();
+      case "Login":
+        return Login();
+      case "Categoria":
+        return AddCategoria();
+      case "Favoritos":
+        return Favorito();
+      case "Perfil":
+        return Perfil();
+      case "Pictograma":
+        return const Pictograma();
+      case "Registro":
+        return const RegisterPage();
+      case "Agregar":
+        return Agregar();
+      case "Configuracion":
+        return const Text("Configuracion");
+      case "Comunidad":
+        return Comunidad();
+      case "Comunidad/Contribuir":
+        return const Text("Contribuir");
+      case "Comunidad/Pendiente":
+        return PendienteComunity();
+      case "Comunidad/Donacion":
+        return const Text("Donacion");
+      case "Comunidad/Pendiente/idpictograma":
+        return EvaluateComunity();
+      case "AñadirPictograma":
+        return const Pictograma();
+      default:
+        return const RegisterPage();
     }
-    if (menuProvider.menu == "Globales") {
-      return Container(
-        constraints: const BoxConstraints.expand(),
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage("assets/textures/background.jpg"),
-            fit: BoxFit.cover,
-          ),
-        ),
-        child: const  Globales(),
-      );
-    }
-    if (menuProvider.menu == "Informacion") {
-      return Container(
-        constraints: const BoxConstraints.expand(),
-        decoration: BoxDecoration(
-          color: Colors.amber.shade100,
-          image: const DecorationImage(
-            image: AssetImage("assets/textures/background.jpg"),
-            fit: BoxFit.cover,
-          ),
-        ),
-        child: AboutUs(),
-      );
-    }
-    if (menuProvider.menu == "Login") {
-      return Container(
-        constraints: const BoxConstraints.expand(),
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage("assets/textures/background.jpg"),
-            fit: BoxFit.cover,
-          ),
-        ),
-        child: Login(),
-      );
-    }
-
-    if (menuProvider.menu == "Categoria") {
-      return Container(
-        constraints: const BoxConstraints.expand(),
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage("assets/textures/background.jpg"),
-            fit: BoxFit.cover,
-          ),
-        ),
-        child: AddCategoria(),
-      );
-    }
-
-    if (menuProvider.menu == "Favoritos") {
-      return Container(
-        constraints: const BoxConstraints.expand(),
-        decoration: BoxDecoration(
-          color: Colors.amber.shade200,
-          image: const DecorationImage(
-            image: AssetImage("assets/textures/background.jpg"),
-            fit: BoxFit.cover,
-          ),
-        ),
-        child: Favorito(),
-      );
-    }
-    if (menuProvider.menu == "Perfil") {
-      return Container(
-        constraints: const BoxConstraints.expand(),
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage("assets/textures/background.jpg"),
-            fit: BoxFit.cover,
-          ),
-        ),
-        child: Perfil(),
-      );
-    }
-    if (menuProvider.menu == "Pictograma") {
-      return Container(
-        constraints: const BoxConstraints.expand(),
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage("assets/textures/background.jpg"),
-            fit: BoxFit.cover,
-          ),
-        ),
-        child: const Pictograma(),
-      );
-    }
-    if (menuProvider.menu == "Registro") {
-      return Container(
-        constraints: const BoxConstraints.expand(),
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage("assets/textures/background.jpg"),
-            fit: BoxFit.cover,
-          ),
-        ),
-        child: Registro(),
-      );
-    }
-    if (menuProvider.menu == "Agregar") {
-      return Container(
-        constraints: const BoxConstraints.expand(),
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage("assets/textures/background.jpg"),
-            fit: BoxFit.cover,
-          ),
-        ),
-        child: Agregar(),
-      );
-    }
-    if (menuProvider.menu == "Configuracion") {
-      return Container(
-        constraints: const BoxConstraints.expand(),
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage("assets/textures/background.jpg"),
-            fit: BoxFit.cover,
-          ),
-        ),
-        child: const Text("Configuracion"),
-      );
-    }
-
-    if (menuProvider.menu == "Comunidad") {
-      return Container(
-        constraints: const BoxConstraints.expand(),
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage("assets/textures/background.jpg"),
-            fit: BoxFit.cover,
-          ),
-        ),
-        child: Comunidad(),
-      );
-    }
-
-    if (menuProvider.menu == "Comunidad/Contribuir") {
-      return Container(
-        constraints: const BoxConstraints.expand(),
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage("assets/textures/background.jpg"),
-            fit: BoxFit.cover,
-          ),
-        ),
-        child: const Text("Contribuir"),
-      );
-    }
-
-    if (menuProvider.menu == "Comunidad/Pendiente") {
-      return Container(
-        constraints: const BoxConstraints.expand(),
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage("assets/textures/background.jpg"),
-            fit: BoxFit.cover,
-          ),
-        ),
-        child: PendienteComunity(),
-      );
-    }
-
-    if (menuProvider.menu == "Comunidad/Donacion") {
-      return Container(
-        constraints: const BoxConstraints.expand(),
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage("assets/textures/background.jpg"),
-            fit: BoxFit.cover,
-          ),
-        ),
-        child: const Text("Donacion"),
-      );
-    }
-    if (menuProvider.menu == "Comunidad/Pendiente/idpictograma") {
-      return Container(
-        constraints: const BoxConstraints.expand(),
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage("assets/textures/background.jpg"),
-            fit: BoxFit.cover,
-          ),
-        ),
-        child: EvaluateComunity(),
-      );
-    }
-    if (menuProvider.menu == "AñadirPictograma") {
-      return Container(
-        constraints: const BoxConstraints.expand(),
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage("assets/textures/background.jpg"),
-            fit: BoxFit.cover,
-          ),
-        ),
-        child: const Pictograma(),
-      );
-    }
-    return const SizedBox.shrink();
   }
 }
