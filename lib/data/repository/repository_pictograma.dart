@@ -10,7 +10,7 @@ class PictoRepository {
   Future<SharedPreferences> preferencias = SharedPreferences.getInstance();
   String? token;
   List<Picto> pictos = [];
-  @override
+  
   Future<List<Picto>> getPictos() async {
     final SharedPreferences pref2 = await preferencias;
     token = (pref2.getString("token") ?? 's');
@@ -33,7 +33,7 @@ class PictoRepository {
           /*'Authorization': "Bearer $token",*/
         },
       );
-      Map valor = jsonDecode(response.body);
+      // Map valor = jsonDecode(response.body);
       if (response.statusCode == 201) {
       } else if (response.statusCode == 422) {
       } else if (response.statusCode == 401) {

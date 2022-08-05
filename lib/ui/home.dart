@@ -2,7 +2,7 @@ import 'package:picktock/domain/provider/menuProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:picktock/ui/comunidad/evaluar.dart';
 import 'package:picktock/ui/enviarsugerencias/enviarSugerencias.dart';
-import 'package:picktock/ui/option.dart';
+import 'package:picktock/ui/side_bar.dart';
 import 'package:picktock/ui/perfil/dash.dart';
 import 'package:provider/provider.dart';
 import 'package:picktock/ui/login/register_page.dart';

@@ -17,7 +17,7 @@ class User {
   });
 
   User.nullable() {
-    this.id = -1;
+    id = -1;
   }
 
   static User fromJson(Map<dynamic, dynamic> json) {

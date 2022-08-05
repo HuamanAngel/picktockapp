@@ -18,35 +18,35 @@ class SideBar extends StatelessWidget {
         children: [
           GestureDetector(
             onTap: menuProvider.switchOpen,
-            child: SizedBox(
+            child: Container(
               height: 48,
+              color: Colors.transparent,
               child: Row(
                 mainAxisSize: MainAxisSize.max,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: menuProvider.isMenuOpen
                     ? MainAxisAlignment.center
                     : MainAxisAlignment.start,
-                children: [
-                  const Padding(
+                children: const [
+                  Padding(
                     padding: EdgeInsets.only(left: 8.0, right: 8.0),
                     child: Icon(Icons.menu),
                   ),
-                  if (menuProvider.isMenuOpen)
-                    const Expanded(
-                      child: FittedBox(
-                        fit: BoxFit.scaleDown,
-                        child: Padding(
-                          padding: EdgeInsets.only(right: 8.0),
-                          child: Text(
-                            "PickTock",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 40,
-                                fontWeight: FontWeight.bold),
-                          ),
+                  Expanded(
+                    child: FittedBox(
+                      fit: BoxFit.scaleDown,
+                      child: Padding(
+                        padding: EdgeInsets.only(right: 8.0),
+                        child: Text(
+                          "PickTock",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 40,
+                              fontWeight: FontWeight.bold),
                         ),
                       ),
                     ),
+                  ),
                 ],
               ),
             ),
@@ -149,14 +149,16 @@ class SideBarOption extends StatelessWidget {
               child: Text(
                 text,
                 style: TextStyle(
-                    overflow: TextOverflow.ellipsis,
-                    color: menuProvider.menu == text
-                        ? Colors.black
-                        : Colors.white),
+                  overflow: TextOverflow.ellipsis,
+                  color:
+                      menuProvider.menu == text ? Colors.black : Colors.white,
+                ),
               ),
             ),
-            Icon(icon,
-                color: menuProvider.menu == text ? Colors.black : Colors.white),
+            Icon(
+              icon,
+              color: menuProvider.menu == text ? Colors.black : Colors.white,
+            ),
           ],
         ),
       ),

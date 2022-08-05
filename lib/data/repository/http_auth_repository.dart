@@ -1,11 +1,13 @@
 import 'dart:convert';
 
+import 'package:picktock/data/models/failure.dart';
 import 'package:picktock/styles/style.dart';
 import 'package:picktock/data/models/user.dart';
 import 'package:picktock/domain/repository/abstract_auth.dart';
 import 'package:http/http.dart' as http;
 
 class HttpAuthRepository extends AbstractAuth {
+  late Failure _failure;
   @override
   Future<User> login(String email, String password) async {
     try {
@@ -28,20 +30,23 @@ class HttpAuthRepository extends AbstractAuth {
         dynamic jsonData = jsonDecode(response.body);
         jsonData = jsonData['data'];
         User user = User.fromJson(jsonData);
-        print("En caso de exito enviar a una ruta");
         return user;
-      } else if (response.statusCode == 422) {
-        print("Error en las Validaciones");
-        return User.nullable();
-      } else if (response.statusCode == 401) {
-        print("Error de credenciales");
-        return User.nullable();
+      } else {
+        _failure = Failure("jsonDecode(response.body)", response.statusCode);
+        print(_failure);
+        throw _failure;
       }
-    } catch (e) {
-      throw Exception(e);
+      // } else if (response.statusCode == 422) {
+      //   print("Error en las Validaciones");
+      //   return User.nullable();
+      // } else if (response.statusCode == 401) {
+      //   print("Error de credenciales");
+      //   return User.nullable();
+      // }
+    } on Failure catch (e) {
+      _failure = Failure("Final", 0);
+      rethrow;
     }
-
-    throw UnimplementedError();
   }
 
   @override
@@ -52,43 +57,35 @@ class HttpAuthRepository extends AbstractAuth {
 
   @override
   Future<bool> register(User user, String password) async {
-    try {
-      String url = baseUri + "/api/auth/signup";
-      final response = await http.post(
-        Uri.parse(url),
-        headers: {
-          'Content-type': 'application/json',
-          "Accept": "application/json",
-          // 'Authorization': "Bearer $token",
-        },
-        body: jsonEncode({
-          "name": user.name,
-          "lastname": user.lastname,
-          "email": user.email,
-          "password": password,
-          "user_nivel_tea": user.userNivelTea
-        }),
-      );
-      print(user.email);
-      if (response.statusCode == 201) {
-        dynamic jsonData = jsonDecode(response.body);
-        jsonData = jsonData['message'];
-        print(jsonData);
-        print("Registrado correctamente");
-        return true;
-      } else if (response.statusCode == 422) {
-        dynamic jsonData = jsonDecode(response.body);
-        print(jsonData);
-        print("Error en Validaciones");
-        return false;
-      } else {
-        dynamic jsonData = jsonDecode(response.body);
-        print(jsonData);
-        print("Error no encontrado");
-        return false;
-      }
-    } catch (e) {
-      throw Exception(e);
+    String url = baseUri + "/api/auth/signup";
+    final response = await http.post(
+      Uri.parse(url),
+      headers: {
+        'Content-type': 'application/json',
+        "Accept": "application/json",
+      },
+      body: jsonEncode({
+        "name": user.name,
+        "lastname": user.lastname,
+        "email": user.email,
+        "password": password,
+        "user_nivel_tea": user.userNivelTea
+      }),
+    );
+    dynamic jsonData = jsonDecode(response.body);
+    if (response.statusCode == 201) {
+      jsonData = jsonData['message'];
+      return true;
+    } else if (response.statusCode == 422) {
+      _failure = Failure(jsonData["errors"]["email"][0], response.statusCode);
+      print("""
+      $jsonData
+      Failure: ${_failure.message}
+      """);
+      throw _failure;
+    } else {
+      _failure = Failure("Error no encontrado", response.statusCode);
+      throw _failure;
     }
   }
 }
