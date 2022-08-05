@@ -21,7 +21,7 @@ class _PictogramaGlobal extends State<Globales> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SingleChildScrollView(
       padding: EdgeInsets.only(left: 10, right: 10, top: 20, bottom: 20),
       child: Column(
         children: [
