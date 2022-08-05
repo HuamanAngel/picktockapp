@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 
+
+// Solo pasar el texto o el child, no ambos
 class CustomButton extends StatelessWidget {
   final void Function() function;
-  final String text;
-  const CustomButton({Key? key, required this.function, required this.text}) : super(key: key);
+  final String? text;
+  final Widget? child;
+  const CustomButton({Key? key, required this.function, this.text, this.child})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -24,15 +28,18 @@ class CustomButton extends StatelessWidget {
               ),
             ),
           ),
-          TextButton(
-            style: TextButton.styleFrom(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
-              primary: Colors.white,
-              textStyle: const TextStyle(fontSize: 16),
+          if (child != null) Center(child: child!),
+          if (text != null)
+            TextButton(
+              style: TextButton.styleFrom(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
+                primary: Colors.white,
+                textStyle: const TextStyle(fontSize: 16),
+              ),
+              onPressed: function,
+              child: Text(text!),
             ),
-            onPressed: function,
-            child: Text(text),
-          ),
         ],
       ),
     );

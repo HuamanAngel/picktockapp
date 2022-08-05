@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.14)
-project(picktock LANGUAGES CXX)
+project(picktockapp LANGUAGES CXX)
 
-set(BINARY_NAME "picktock")
+set(BINARY_NAME "picktockapp")
 
 cmake_policy(SET CMP0063 NEW)
 

@@ -10,7 +10,7 @@ import 'package:picktock/ui/pictograma/pictograma.dart';
 import 'package:picktock/ui/comunidad/dash.dart';
 import 'package:picktock/ui/comunidad/pendiente.dart';
 import 'package:picktock/ui/categoria/categoria.dart';
-import 'package:picktock/ui/login/login.dart';
+import 'package:picktock/ui/login/login_page.dart';
 import "package:picktock/ui/informacion/informacion.dart";
 import 'package:picktock/ui/favorito/favorito.dart';
 import 'package:picktock/ui/pictoglobales/seccionGlobales.dart';
@@ -57,7 +57,7 @@ class Routes extends StatelessWidget {
       case "Informacion":
         return AboutUs();
       case "Login":
-        return Login();
+        return const LoginPage();
       case "Categoria":
         return AddCategoria();
       case "Favoritos":
