@@ -1,4 +1,4 @@
-import 'package:picktock/domain/provider/menuProvider.dart';
+import 'package:picktock/domain/provider/menu_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:picktock/ui/comunidad/evaluar.dart';
 import 'package:picktock/ui/enviarsugerencias/enviarSugerencias.dart';
@@ -62,8 +62,14 @@ class Routes extends StatelessWidget {
         return AddCategoria();
       case "Favoritos":
         return Favorito();
-      case "Perfil":
-        return Perfil();
+      case "Mi perfil":
+        if (menuProvider.authPageState == AuthPageState.login) {
+          return const LoginPage();
+        } else if (menuProvider.authPageState == AuthPageState.register) {
+          return const RegisterPage();
+        } else {
+          return Perfil();
+        }
       case "Pictograma":
         return const Pictograma();
       case "Registro":

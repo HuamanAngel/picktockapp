@@ -1,11 +1,9 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:picktock/domain/utilities/reproducir.dart';
 import 'package:picktock/ui/pictograma/cambiarvoz.dart';
 import 'package:picktock/ui/widgets/w_pictograma.dart';
 import 'package:picktock/data/models/pictograma.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:picktock/domain/provider/pictoProvider.dart';
+import 'package:picktock/domain/provider/picto_provider.dart';
 
 class Pictograma extends StatefulWidget {
   const Pictograma({Key? key})

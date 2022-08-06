@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:picktock/domain/provider/menuProvider.dart';
+import 'package:picktock/domain/provider/menu_provider.dart';
 
 class SideBar extends StatelessWidget {
   final MenuProvider menuProvider;
@@ -59,14 +59,9 @@ class SideBar extends StatelessWidget {
               icon: Icons.photo_library,
               menuProvider: menuProvider),
           const Divider(),
-          SideBarOption(
-              text: "Voz", icon: Icons.mic, menuProvider: menuProvider),
-          const Divider(),
-          SideBarOption(
-              text: "Registro",
-              icon: Icons.photo_library,
-              menuProvider: menuProvider),
-          const Divider(),
+          // SideBarOption(
+          //     text: "Voz", icon: Icons.mic, menuProvider: menuProvider),
+          // const Divider(),
           SideBarOption(
               text: "Categoria",
               icon: Icons.category,
@@ -84,25 +79,24 @@ class SideBar extends StatelessWidget {
           const Divider(),
           SideBarOption(
               text: "Agregar", icon: Icons.add, menuProvider: menuProvider),
+          // const Divider(),
+          // SideBarOption(
+          //     text: "Favoritos", icon: Icons.star, menuProvider: menuProvider),
+          // const Divider(),
+          // SideBarOption(
+          //     text: "Editar", icon: Icons.edit, menuProvider: menuProvider),
+          // const Divider(),
+          // SideBarOption(
+          //     text: "Compartir", icon: Icons.share, menuProvider: menuProvider),
+          // const Divider(),
+          // SideBarOption(
+          //     text: "Editados",
+          //     icon: Icons.edit_attributes,
+          //     menuProvider: menuProvider),
           const Divider(),
           SideBarOption(
-              text: "Favoritos", icon: Icons.star, menuProvider: menuProvider),
-          const Divider(),
-          SideBarOption(
-              text: "Editar", icon: Icons.edit, menuProvider: menuProvider),
-          const Divider(),
-          SideBarOption(
-              text: "Compartir", icon: Icons.share, menuProvider: menuProvider),
-          const Divider(),
-          SideBarOption(
-              text: "Editados",
-              icon: Icons.edit_attributes,
-              menuProvider: menuProvider),
-          const Divider(),
-          const Spacer(),
-          SideBarOption(
-              text: "Login",
-              icon: Icons.exit_to_app,
+              text: "Mi perfil",
+              icon: Icons.person,
               menuProvider: menuProvider),
           const Divider(),
           SideBarOption(

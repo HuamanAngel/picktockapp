@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:picktock/data/models/failure.dart';
 import 'package:picktock/data/models/user.dart';
 import 'package:picktock/data/repository/http_auth_repository.dart';
 import 'package:picktock/domain/repository/abstract_auth.dart';
 
+
 class AuthProvider extends ChangeNotifier {
   // Estado actual
   late User _user;
+
 
   User get user => _user;
   set user(User user) {

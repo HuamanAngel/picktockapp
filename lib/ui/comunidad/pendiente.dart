@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:picktock/styles/style.dart';
 import 'package:picktock/ui/widgets/title.dart';
 import 'package:provider/provider.dart';
-import 'package:picktock/domain/provider/menuProvider.dart';
+import 'package:picktock/domain/provider/menu_provider.dart';
 
 
 class PendienteComunity extends StatefulWidget {

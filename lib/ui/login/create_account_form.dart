@@ -2,23 +2,33 @@ import 'package:flutter/material.dart';
 import 'package:picktock/data/models/failure.dart';
 import 'package:picktock/data/models/user.dart';
 import 'package:picktock/domain/provider/auth_provider.dart';
+import 'package:picktock/domain/provider/menu_provider.dart';
 import 'package:picktock/ui/widgets/custom_button.dart';
 import 'package:picktock/ui/widgets/custom_text_form_field.dart';
+import 'package:provider/provider.dart';
 
-class CreateAccountForm extends StatelessWidget {
-  final AuthProvider authProvider = AuthProvider();
-  CreateAccountForm({
+class CreateAccountForm extends StatefulWidget {
+  const CreateAccountForm({
     Key? key,
   }) : super(key: key);
+
+  @override
+  State<CreateAccountForm> createState() => _CreateAccountFormState();
+}
+
+class _CreateAccountFormState extends State<CreateAccountForm> {
+  final AuthProvider authProvider = AuthProvider();
 
   final _formKey = GlobalKey<FormState>();
   final controllerName = TextEditingController();
   final controllerLastname = TextEditingController();
   final controllerEmail = TextEditingController();
   final controllerPassword = TextEditingController();
+  bool _isLoading = false;
 
   @override
   Widget build(BuildContext context) {
+    final menuProvider = Provider.of<MenuProvider>(context);
     return Form(
       key: _formKey,
       child: Column(
@@ -86,12 +96,40 @@ class CreateAccountForm extends StatelessWidget {
               ],
             ),
           ),
+          SizedBox(
+            height: 16,
+            width: double.infinity,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  "¿Ya tienes una cuenta? ",
+                  style: TextStyle(color: Colors.blue.shade900),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    menuProvider.authPageState = AuthPageState.login;
+                  },
+                  child: Text("Inicia sesión",
+                      style: TextStyle(
+                        decoration: TextDecoration.underline,
+                        color: Colors.blue.shade900,
+                        fontWeight: FontWeight.bold,
+                      )),
+                ),
+              ],
+            ),
+          ),
           Padding(
             padding: const EdgeInsets.only(top: 10, bottom: 20),
             child: CustomButton(
+              loading: _isLoading,
               text: 'Registrarse',
               function: () async {
                 if (_formKey.currentState!.validate()) {
+                  setState(() {
+                    _isLoading = true;
+                  });
                   User user = User(
                     name: controllerName.text,
                     lastname: controllerLastname.text,
@@ -102,13 +140,20 @@ class CreateAccountForm extends StatelessWidget {
                   );
                   try {
                     await AuthProvider.register(user, controllerPassword.text);
+                    setState(() {
+                      _isLoading = false;
+                    });
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(
                         content: Text("Usuario creado"),
                         backgroundColor: Colors.green,
                       ),
                     );
+                    menuProvider.authPageState = AuthPageState.login;
                   } on Failure catch (e) {
+                    setState(() {
+                      _isLoading = false;
+                    });
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
                         content: Text(e.message),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:picktock/data/models/user.dart';
 import 'package:picktock/domain/provider/auth_provider.dart';
-import 'package:picktock/domain/provider/menuProvider.dart';
+import 'package:picktock/domain/provider/menu_provider.dart';
 import 'package:picktock/ui/widgets/custom_button.dart';
 import 'package:picktock/ui/widgets/custom_text_form_field.dart';
 import 'package:provider/provider.dart';
@@ -45,14 +45,33 @@ class _LoginFormState extends State<LoginForm> {
               icon: Icons.lock,
               validator: (String? s) {},
             ),
-            const SizedBox(height: 10),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "¿No tienes una cuenta? ",
+                    style: TextStyle(color: Colors.blue.shade900),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      menuProvider.authPageState = AuthPageState.register;
+                    },
+                    child: Text(
+                      "Regístrate",
+                      style: TextStyle(
+                          decoration: TextDecoration.underline,
+                          color: Colors.blue.shade900,
+                          fontWeight: FontWeight.bold,)
+                    ),
+                  ),
+                ],
+              ),
+            ),
             CustomButton(
-              text: !_isLoading ? "Iniciar sesión" : null,
-              child: _isLoading
-                  ? const CircularProgressIndicator(
-                      valueColor: AlwaysStoppedAnimation(Colors.white),
-                    )
-                  : null,
+              text: "Iniciar sesión",
+              loading: _isLoading,
               function: () async {
                 if (_formKey.currentState!.validate()) {
                   setLoading(true);

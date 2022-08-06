@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:picktock/domain/provider/auth_provider.dart';
-import 'package:picktock/domain/provider/comunityProvider.dart';
+import 'package:picktock/domain/provider/comunity_provider.dart';
 import 'package:provider/provider.dart';
-import 'package:picktock/domain/provider/menuProvider.dart';
-import 'package:picktock/domain/provider/pictoProvider.dart';
+import 'package:picktock/domain/provider/menu_provider.dart';
+import 'package:picktock/domain/provider/picto_provider.dart';
 import 'package:picktock/ui/home.dart';
 
 void main() {
