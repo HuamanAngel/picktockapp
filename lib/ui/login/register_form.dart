@@ -5,30 +5,96 @@ import 'package:picktock/domain/provider/auth_provider.dart';
 import 'package:picktock/domain/provider/menu_provider.dart';
 import 'package:picktock/ui/widgets/custom_button.dart';
 import 'package:picktock/ui/widgets/custom_text_form_field.dart';
+import 'package:picktock/ui/widgets/password_text_form_field.dart';
+import 'package:picktock/utils/validators.dart';
 import 'package:provider/provider.dart';
 
-class CreateAccountForm extends StatefulWidget {
-  const CreateAccountForm({
+class RegisterForm extends StatefulWidget {
+  const RegisterForm({
     Key? key,
   }) : super(key: key);
 
   @override
-  State<CreateAccountForm> createState() => _CreateAccountFormState();
+  State<RegisterForm> createState() => _RegisterFormState();
 }
 
-class _CreateAccountFormState extends State<CreateAccountForm> {
+class _RegisterFormState extends State<RegisterForm> {
   final AuthProvider authProvider = AuthProvider();
 
+  bool _isLoading = false;
   final _formKey = GlobalKey<FormState>();
   final controllerName = TextEditingController();
   final controllerLastname = TextEditingController();
   final controllerEmail = TextEditingController();
   final controllerPassword = TextEditingController();
-  bool _isLoading = false;
+  List<FocusNode> _focusNodes = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _focusNodes = [
+      FocusNode(),
+      FocusNode(),
+      FocusNode(),
+      FocusNode(),
+      FocusNode(),
+    ];
+  }
+
+  @override
+  void dispose() {
+    controllerName.dispose();
+    controllerLastname.dispose();
+    controllerEmail.dispose();
+    controllerPassword.dispose();
+    for (var node in _focusNodes) {
+      node.dispose();
+    }
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     final menuProvider = Provider.of<MenuProvider>(context);
+    Future<void> onSubmit() async {
+      if (_formKey.currentState!.validate()) {
+        setState(() {
+          _isLoading = true;
+        });
+        User user = User(
+          name: controllerName.text,
+          lastname: controllerLastname.text,
+          email: controllerEmail.text,
+          createdAt: '',
+          id: 1,
+          userNivelTea: 1,
+        );
+        try {
+          await AuthProvider.register(user, controllerPassword.text);
+          setState(() {
+            _isLoading = false;
+          });
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text("Usuario creado"),
+              backgroundColor: Colors.green,
+            ),
+          );
+          menuProvider.authPageState = AuthPageState.login;
+        } on Failure catch (e) {
+          setState(() {
+            _isLoading = false;
+          });
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(e.message),
+              backgroundColor: Colors.red,
+            ),
+          );
+        }
+      }
+    }
+
     return Form(
       key: _formKey,
       child: Column(
@@ -50,6 +116,7 @@ class _CreateAccountFormState extends State<CreateAccountForm> {
                             return 'Ingrese el nombre de usuario';
                           }
                         },
+                        focusNodes: [_focusNodes[0], _focusNodes[1]],
                       ),
                     ),
                     const SizedBox(width: 10),
@@ -64,6 +131,7 @@ class _CreateAccountFormState extends State<CreateAccountForm> {
                             return 'Ingrese el nombre de usuario';
                           }
                         },
+                        focusNodes: [_focusNodes[1], _focusNodes[2]],
                       ),
                     ),
                   ],
@@ -74,31 +142,25 @@ class _CreateAccountFormState extends State<CreateAccountForm> {
                   icon: Icons.email,
                   hintText: 'Correo',
                   validator: (value) {
-                    if (!_isValidEmail(value.toString())) {
+                    if (!isValidEmail(value!)) {
                       return 'Ingrese un email válido';
                     }
                   },
+                  focusNodes: [_focusNodes[2], _focusNodes[3]],
                 ),
                 const SizedBox(height: 10),
-                CustomTextFormField(
+                PasswordTextFormField(
                   controller: controllerPassword,
-                  icon: Icons.lock,
-                  hintText: 'Contraseña',
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return 'Ingrese una contraseña';
-                    }
-                    if (value.length < 6) {
-                      return 'Su contraseña debe tener al menos 6 caracteres';
-                    }
-                  },
+                  formKey: _formKey,
+                  focusNodes: [_focusNodes[3], _focusNodes[4]],
+                  onSubmit: onSubmit,
                 ),
               ],
             ),
           ),
-          SizedBox(
-            height: 16,
-            width: double.infinity,
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            // width: double.infinity,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -110,12 +172,14 @@ class _CreateAccountFormState extends State<CreateAccountForm> {
                   onTap: () {
                     menuProvider.authPageState = AuthPageState.login;
                   },
-                  child: Text("Inicia sesión",
-                      style: TextStyle(
-                        decoration: TextDecoration.underline,
-                        color: Colors.blue.shade900,
-                        fontWeight: FontWeight.bold,
-                      )),
+                  child: Text(
+                    "Inicia sesión",
+                    style: TextStyle(
+                      decoration: TextDecoration.underline,
+                      color: Colors.blue.shade900,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                 ),
               ],
             ),
@@ -123,56 +187,14 @@ class _CreateAccountFormState extends State<CreateAccountForm> {
           Padding(
             padding: const EdgeInsets.only(top: 10, bottom: 20),
             child: CustomButton(
+              focus: _focusNodes[4],
               loading: _isLoading,
               text: 'Registrarse',
-              function: () async {
-                if (_formKey.currentState!.validate()) {
-                  setState(() {
-                    _isLoading = true;
-                  });
-                  User user = User(
-                    name: controllerName.text,
-                    lastname: controllerLastname.text,
-                    email: controllerEmail.text,
-                    createdAt: '',
-                    id: 1,
-                    userNivelTea: 1,
-                  );
-                  try {
-                    await AuthProvider.register(user, controllerPassword.text);
-                    setState(() {
-                      _isLoading = false;
-                    });
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text("Usuario creado"),
-                        backgroundColor: Colors.green,
-                      ),
-                    );
-                    menuProvider.authPageState = AuthPageState.login;
-                  } on Failure catch (e) {
-                    setState(() {
-                      _isLoading = false;
-                    });
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text(e.message),
-                        backgroundColor: Colors.red,
-                      ),
-                    );
-                  }
-                }
-              },
+              function: onSubmit,
             ),
           ),
         ],
       ),
     );
   }
-}
-
-bool _isValidEmail(String str) {
-  final RegExp _emailRegExp = RegExp(
-      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9\-\_]+(\.[a-zA-Z]+)*$");
-  return _emailRegExp.hasMatch(str.toLowerCase());
 }

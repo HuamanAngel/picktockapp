@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:picktock/ui/extensions/content_wrapper.dart';
-import 'package:picktock/ui/login/create_account_form.dart';
+import 'package:picktock/ui/login/register_form.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);
@@ -29,7 +29,7 @@ class _RegisterPageUsuario extends State<RegisterPage> {
         color: Colors.white,
         thickness: 2.0,
       ),
-      CreateAccountForm(),
-    ].wrapContainer(context);
+      const RegisterForm(),
+    ].wrapContainer();
   }
 }

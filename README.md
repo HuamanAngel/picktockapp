@@ -4,7 +4,14 @@ A new Flutter project.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+###Para ejecutar en windows
+Actualizar Visual Studio 2022
+Reiniciar computadora
+flutter clean
+flutter pub get
+flutter run -d windows
+
+Nota: Los textformfields no funcionan bien en la versión de windows
 
 A few resources to get you started if this is your first Flutter project:
 

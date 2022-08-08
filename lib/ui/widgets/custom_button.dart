@@ -2,14 +2,16 @@ import 'package:flutter/material.dart';
 
 // Solo pasar el texto o el child, no ambos
 class CustomButton extends StatelessWidget {
-  final void Function() function;
+  final Future<void> Function() function;
+  final FocusNode focus;
   final String text;
   final bool loading;
   const CustomButton(
       {Key? key,
       required this.function,
       required this.text,
-      required this.loading})
+      required this.loading,
+      required this.focus,})
       : super(key: key);
 
   @override
@@ -33,6 +35,7 @@ class CustomButton extends StatelessWidget {
             ),
           ),
           TextButton(
+            focusNode: focus,
             style: TextButton.styleFrom(
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
               primary: loading ? Colors.transparent : Colors.white,

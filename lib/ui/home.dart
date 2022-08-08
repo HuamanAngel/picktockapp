@@ -21,18 +21,32 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final menuProvider = Provider.of<MenuProvider>(context);
+    MenuProvider menuProvider = Provider.of<MenuProvider>(context);
+    double width = MediaQuery.of(context).size.width;
     return Scaffold(
       body: Container(
-        color: Colors.blue.shade400,
+        color: Colors.blue.shade400, //Notification bar color
         child: SafeArea(
           child: Row(
             children: [
               SideBar(menuProvider: menuProvider),
               Expanded(
                 child: Container(
-                  color: const Color.fromARGB(255, 255, 237, 187),
-                  child: Routes(menuProvider: menuProvider),
+                  color: const Color.fromARGB(255, 255, 237, 187), //Background color
+                  child: Center(
+                    child: AnimatedContainer(
+                      // color: Colors.black,
+                      curve: Curves.ease,
+                      duration: const Duration(milliseconds: 300),
+                      // height: MediaQuery.of(context).size.height,
+                      width: (width < 600)
+                          ? menuProvider.isMenuOpen
+                              ? width - 240
+                              : width - 80
+                          : width - 240,
+                      child: Routes(menuProvider: menuProvider),
+                    ),
+                  ),
                 ),
               )
             ],
@@ -55,7 +69,7 @@ class Routes extends StatelessWidget {
       case "Globales":
         return const Globales();
       case "Informacion":
-        return AboutUs();
+        return const AboutUs();
       case "Login":
         return const LoginPage();
       case "Categoria":
@@ -76,7 +90,7 @@ class Routes extends StatelessWidget {
         return const RegisterPage();
       case "Agregar":
         return Agregar();
-      case "Configuracion":
+      case "Configuración":
         return const Text("Configuracion");
       case "Comunidad":
         return Comunidad();
@@ -91,7 +105,7 @@ class Routes extends StatelessWidget {
       case "AñadirPictograma":
         return const Pictograma();
       default:
-        return const RegisterPage();
+        return const Text("No definido");
     }
   }
 }
