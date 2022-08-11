@@ -5,20 +5,20 @@ import 'package:picktock/data/repository/http_picto_repository.dart';
 
 class PictoProvider extends ChangeNotifier {
   // Estado actual
-  late NewPicto _newPicto;
+  late Picto _newPicto;
 
-  NewPicto get newPicto => _newPicto;
-  set newPicto(NewPicto newPicto) {
+  Picto get newPicto => _newPicto;
+  set newPicto(Picto newPicto) {
     _newPicto = newPicto;
     // Avisa widget que estan escuchando
     notifyListeners();
   }
 
-  static Future<bool> register(NewPicto newPicto) async {
-    // HttpPictoRepository httpPictoRepository = HttpPictoRepository();
-    // bool isOkay = await httpPictoRepository.addpicto(newPicto);
-    // return isOkay;
-    return true;
+  static Future<bool> addpicto(Picto newPicto) async {
+    HttpPictoRepository httpPictoRepository = HttpPictoRepository();
+    bool isOkay = await httpPictoRepository.addpicto(newPicto);
+    return isOkay;
+    //return true;
   }
 
   static Future<List<Picto>> getPictos() async {

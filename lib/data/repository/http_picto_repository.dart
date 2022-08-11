@@ -13,7 +13,7 @@ class HttpPictoRepository extends AbstractPicto {
     try {
       String url = baseUri + "/api/auth/pictograma";
       String token =
-          "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI1IiwianRpIjoiOTdlNjQyM2VlMzVlNGQyZGFiNTBmYzMxNTI3Yzk0ZTVlMTkyOTg1N2ZhZDRkMzM3YTQzMmJjZmFmYzI2NTQ0MjlkNDZjNTIwZDM3NGIyMGUiLCJpYXQiOjE2NTc5OTE2ODguNjAxNjI0LCJuYmYiOjE2NTc5OTE2ODguNjAxNjI2LCJleHAiOjE2ODk1Mjc2ODguNDQxODUzLCJzdWIiOiI0Iiwic2NvcGVzIjpbXX0.X7hP9yBjBD3u4ff9Hr0Wiy11myRWjIQf2Ay_enNd4s0P5El_lKeQqwcel2Y9olWskXu1mCLaLB6qBpQXiDmHgTPl_49AJ0bTDl4DjagAmmD10RHDkkuEGzqhCBIUAytMeq5eWv01jvy_CJIGT4hpbFCIwWBj__s_DyJTpcp4HM9uS-EzXJAs_CH3uSXxnoFbDW0ShYPZ9KRGKomIlvfkLaf73AsKeo7VoKKQXe1JwAISPhCoijqTa8om1N9GnCHLExG3dnRkz6UU9NGuTTTlZ0urnxlDl6CZle1MCuoMkAMpkZto2AeqhklXxb-h7k_KZJWXMKocpBKf6EI5bNE8nqlACYd9xUJOWCujf5bVACqGIfwUoMzwsvYBsoJfi33UGFtpbrRQf1p61re0-v0DHW79oe3kFxYLwjLzZD4oKpoIel-Japjcn_kQY0VeEZt0_cZaG_GJPEPprqLWEZkPRk9nnqq1nWqgA1rrivaVJ34OflRB2MRI1Dr41g3JfQxqkNScpShFrGkWmND9MT2F-IuH6vDqr83uMBPpKiMLzwEybe9v8UBItF9R4zWxrHkVkA5mcLNlZqmPxug62S2nyveXthRtvMjGS9LGy6aOSHxo3t91liGuXiRCX6MhDsY5BE13pVGidiW_-uGjgDBa2OrVPsZjjMVANhJOMN9WivQ";
+          "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI1IiwianRpIjoiNDkwYWJkYTQ0NmVjMGEwZjcwMmQxODM4MTI4NjliOGFjNWEyOWViMGQ5YmRhNWY1NTJjMDg5ZDA5YTIyZWM5NWRhMjQ4YmEyNWIwMTgzNDMiLCJpYXQiOjE2NTkxNTQ3MDEuMjY3MzAyLCJuYmYiOjE2NTkxNTQ3MDEuMjY3MzA0LCJleHAiOjE2OTA2OTA3MDEuMDkwNTUsInN1YiI6IjQiLCJzY29wZXMiOltdfQ.Fdt8lrVLuFwJswUXIH5l0D4t67LotDmg_bZLEJCg3Y_ByXJ9OuDA8iPJs15mIR1---8u0-pV9yAMOvVW_VcmGRKPjRO98mBsHiODBci87KQWxd8Ry5ix9Edx4TxVpQgxr5qogohzMGbvBgOxZxoHeojpqCAF2XacDEpK2brF-hTLAExSFNb8NhlmD2ErTZvNU66SOCwxTu9wNt2zLOwvD7kNlo4kL8lrv6B2NWZRcZlX5D5EElWWTFJj79SUNUl_x-eT-6F8tBzplHdEA5_3oguVAXsyS5DUJlAqWHIdKjcUTkBWskcZ0Pd0ILD9llhM0P-mL-9x8WE8oySP5PG_VDDiCjPMgG-3KQR-PuJJkf-hBAXXYJn98zrH_uRhawG9Zfcg3ejEnPRQ7FHkappM39A5xSdXQHe7Ta77Rn-djLoddUr87Uao0g-bvXNFMPx9k6OoYUBe07Ww2OWJrdVyteM3wnz8863-6JZLI483GuXIBNlR3ViOvSbb0n35fX0rnZKffYSv7q1nzplppgtsHo5Mg2bpHHe2CjqEcxs-pdXbhq8-DIeZSgyJhPPvlFaDmiejf38NQI16sQ3lUU9BbVfBtX8dTYCsnE_xIe_ewPsCTSZFqWfe7lrx8bS3eiJVfkfwwOeECgEO1ilwy3yCVom7GAN4vh43zEtDm2UwNXM";
       final response = await http.post(
         Uri.parse(url),
         headers: {
@@ -45,6 +45,7 @@ class HttpPictoRepository extends AbstractPicto {
         dynamic jsonData = jsonDecode(response.body);
         print(jsonData);
         print("Error no encontrado");
+        print(response.statusCode);
         return false;
       }
     } catch (e) {

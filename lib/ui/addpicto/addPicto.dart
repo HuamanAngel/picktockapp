@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:picktock/data/models/newpicto.dart';
+import 'package:picktock/data/models/pictograma.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:picktock/ui/addpicto/subirImagen.dart';
+import 'package:picktock/domain/provider/pictoProvider.dart';
 
 ImagePicker picker = ImagePicker();
 
@@ -61,14 +63,18 @@ class _AddPictograma extends State<AddPictograma> {
                           "Añadir",
                           style: TextStyle(color: Colors.white, fontSize: 20),
                         ),
-                        onPressed: () {
+                        onPressed: () async {
                           if (_formKey.currentState!.validate()) {
-                            NewPicto newPicto = NewPicto(
-                                pic_title: controllerTitle.text,
-                                pic_visibility: controllerVisibility.text,
-                                pic_image: controllerImagen.text,
-                                cat_id: controllerCat.text);
+                            Picto newPicto = Picto(
+                              titulo: controllerTitle.text,
+                              picVisibility: controllerVisibility.text,
+                              imagenURL: controllerImagen.text,
+                              catId: controllerCat.text,
+                              id: 1,
+                              creacion: DateTime.now().toString(),
+                            );
 
+                            await PictoProvider.addpicto(newPicto);
                             Scaffold.of(context).showSnackBar(
                                 SnackBar(content: Text("Creando pictograma")));
                           }
