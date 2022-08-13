@@ -8,8 +8,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:picktock/domain/provider/pictoProvider.dart';
 
 class Pictograma extends StatefulWidget {
-  const Pictograma({Key? key})
-      : super(key: key);
+  const Pictograma({Key? key}) : super(key: key);
   @override
   State<Pictograma> createState() => _PictogramaState();
 }
@@ -27,6 +26,7 @@ class _PictogramaState extends State<Pictograma> {
     token = " ";
     _getPictos();
   }
+
   Future<List<Picto>> _getPictos() async {
     pictos = await PictoProvider.getPictos();
     setState(() => dataDescargada = true);
@@ -34,15 +34,15 @@ class _PictogramaState extends State<Pictograma> {
   }
 
   @override
-  Widget build(BuildContext context) {    
+  Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.only(left: 10, right: 10, top: 20, bottom: 20),
       child: Column(
         children: [
           Row(
             children: [
-              ordenar(icon: Icons.sort,text: "Alfabeto"),              
-              ordenar(icon: Icons.sort,text: "Recientes"),              
+              ordenar(icon: Icons.sort, text: "Alfabeto"),
+              ordenar(icon: Icons.sort, text: "Recientes"),
               Expanded(
                 child: Container(
                   decoration: BoxDecoration(
@@ -67,26 +67,21 @@ class _PictogramaState extends State<Pictograma> {
                   ),
                 ),
                 flex: 6,
-               ),
-              ],
+              ),
+            ],
           ),
-          Row(
-             children: [
-              Spacer(),
-              Container(
-                  margin: EdgeInsets.only( left: 50),
-                 child: FlatButton(
-                     child: Text(
-                       "Combinar Pictograma",
-                       style: TextStyle(color: Colors.white, fontSize: 20),
-                     ),
-                     color: Colors.green,
-                     onPressed: () {}
-                   )
-               )
-             ]
-          ),
-
+          Row(children: [
+            Spacer(),
+            Container(
+                margin: EdgeInsets.only(left: 50),
+                child: FlatButton(
+                    child: Text(
+                      "Combinar Pictograma",
+                      style: TextStyle(color: Colors.white, fontSize: 20),
+                    ),
+                    color: Colors.green,
+                    onPressed: () {}))
+          ]),
           Expanded(
             child: Container(
               padding: const EdgeInsets.all(10),
@@ -95,35 +90,29 @@ class _PictogramaState extends State<Pictograma> {
               color: Colors.transparent, //color azul
               child: dataDescargada
                   ? GridView.builder(
-                  itemCount: pictos.length,
-                  gridDelegate:
-                  const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 3,
-                  ),
-                  itemBuilder: (context, index) {
-                    return WidgetPictogr(
-                      id: pictos[index].id,
-                      nombre: pictos[index].titulo,
-                      rutaImagen: pictos[index].imagenURL,
-                      idPictograma: pictos[index].id,
-                      creacion: pictos[index].creacion,
-                    );
-                  })
+                      itemCount: pictos.length,
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 3,
+                      ),
+                      itemBuilder: (context, index) {
+                        return WidgetPictogr(
+                          id: pictos[index].id,
+                          nombre: pictos[index].titulo,
+                          rutaImagen: pictos[index].imagenURL,
+                          idPictograma: pictos[index].id,
+                          creacion: pictos[index].creacion,
+                        );
+                      })
                   : const Center(
-                child: CircularProgressIndicator(),
-              ),
+                      child: CircularProgressIndicator(),
+                    ),
             ),
-
-
           ),
-
-
-          Row(
-            children: [
-              Spacer(),
-              Voz(),
-              ]
-          ),
+          Row(children: [
+            Spacer(),
+            Voz(),
+          ]),
         ],
       ),
     );
@@ -142,4 +131,3 @@ Widget ordenar({required IconData icon, required String text}) {
         )),
   );
 }
-

@@ -14,7 +14,7 @@ class PickTock extends StatelessWidget {
   PickTock();
   @override
   Widget build(BuildContext context) {
-    return MultiProvider (
+    return MultiProvider(
       providers: [
         ChangeNotifierProvider<MenuProvider>(
           create: (_) => MenuProvider(),
