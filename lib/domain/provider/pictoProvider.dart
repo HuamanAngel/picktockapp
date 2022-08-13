@@ -14,9 +14,11 @@ class PictoProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  static Future<bool> addpicto(Picto newPicto) async {
+  static Future<bool> addpicto(String titulo, String visibilidad,
+      dynamic imagen, String categoria) async {
     HttpPictoRepository httpPictoRepository = HttpPictoRepository();
-    bool isOkay = await httpPictoRepository.addpicto(newPicto);
+    bool isOkay = await httpPictoRepository.addpicto(
+        titulo, visibilidad, imagen, categoria);
     return isOkay;
     //return true;
   }

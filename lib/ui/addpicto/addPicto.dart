@@ -19,6 +19,8 @@ class _AddPictograma extends State<AddPictograma> {
   final controllerCat = TextEditingController();
   final controllerVisibility = TextEditingController();
   final controllerImagen = TextEditingController();
+  dynamic imagen64;
+  dynamic imagenpath;
 
   @override
   Widget build(BuildContext context) {
@@ -67,14 +69,15 @@ class _AddPictograma extends State<AddPictograma> {
                           if (_formKey.currentState!.validate()) {
                             Picto newPicto = Picto(
                               titulo: controllerTitle.text,
-                              picVisibility: controllerVisibility.text,
+                              picVisibility: modeC,
                               imagenURL: controllerImagen.text,
-                              catId: controllerCat.text,
+                              catId: modeCat,
                               id: 1,
                               creacion: DateTime.now().toString(),
                             );
 
-                            await PictoProvider.addpicto(newPicto);
+                            await PictoProvider.addpicto(controllerTitle.text,
+                                getimage(), modeC, modeCat);
                             Scaffold.of(context).showSnackBar(
                                 SnackBar(content: Text("Creando pictograma")));
                           }
@@ -88,86 +91,98 @@ class _AddPictograma extends State<AddPictograma> {
       ),
     );
   }
-}
 
-Widget CampotextoTitulo(TextEditingController controller) {
-  return Container(
-    margin: EdgeInsets.only(top: 10, left: 40, right: 40, bottom: 10),
-    padding: EdgeInsets.all(5),
-    decoration: BoxDecoration(
-      color: Colors.white,
-      borderRadius:
-          BorderRadius.all(Radius.circular(20)), // set rounded corner radius
-    ),
-    child: TextFormField(
-      validator: (value) {
-        if (value!.isEmpty) {
-          return 'Ingrese el titulo del pictograma';
-        }
-      },
-      decoration: InputDecoration(
-        hintText: 'Titulo de pictograma',
-        border: InputBorder.none,
-        suffixIcon: Icon(Icons.text_fields),
+  Widget CampotextoTitulo(TextEditingController controller) {
+    return Container(
+      margin: EdgeInsets.only(top: 10, left: 40, right: 40, bottom: 10),
+      padding: EdgeInsets.all(5),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius:
+            BorderRadius.all(Radius.circular(20)), // set rounded corner radius
       ),
-    ),
-  );
-}
+      child: TextFormField(
+        validator: (value) {
+          if (value!.isEmpty) {
+            return 'Ingrese el titulo del pictograma';
+          }
+        },
+        controller: controller,
+        decoration: InputDecoration(
+          hintText: 'Titulo de pictograma',
+          border: InputBorder.none,
+          suffixIcon: Icon(Icons.text_fields),
+        ),
+      ),
+    );
+  }
 
-Widget CampotextoCategoria(TextEditingController controller) {
-  return Container(
-    margin: EdgeInsets.only(top: 10, left: 40, right: 40, bottom: 10),
-    padding: EdgeInsets.all(5),
-    decoration: BoxDecoration(
-      color: Colors.white,
-      borderRadius:
-          BorderRadius.all(Radius.circular(20)), // set rounded corner radius
-    ),
-    child: DropdownButtonFormField(
-      icon: const Icon(Icons.category),
-      elevation: 16,
-      onChanged: (String? newValue) {
-        // setState(() {
-        //   dropdownValue = newValue!;
-        // });
-      },
-      hint: Text("Categoria"),
-      items: <String>['Actividades', 'Animales', 'Emociones']
-          .map<DropdownMenuItem<String>>((String value) {
-        return DropdownMenuItem<String>(
-          value: value,
-          child: Text(value),
-        );
-      }).toList(),
-    ),
-  );
-}
+  List<DropdownMenuItem<String>> get CategoryItems {
+    List<DropdownMenuItem<String>> menuItems = [
+      const DropdownMenuItem(child: Text("Actividades"), value: "1"),
+      const DropdownMenuItem(child: Text("Animales"), value: "2"),
+      const DropdownMenuItem(child: Text("Emociones"), value: "3"),
+    ];
+    return menuItems;
+  }
 
-Widget CampotextoModo(TextEditingController controller) {
-  return Container(
-    margin: EdgeInsets.only(top: 10, left: 40, right: 40, bottom: 10),
-    padding: EdgeInsets.all(5),
-    decoration: BoxDecoration(
-      color: Colors.white,
-      borderRadius:
-          BorderRadius.all(Radius.circular(20)), // set rounded corner radius
-    ),
-    child: DropdownButtonFormField(
-      icon: const Icon(Icons.privacy_tip_outlined),
-      elevation: 16,
-      onChanged: (String? newValue) {
-        // setState(() {
-        //   dropdownValue = newValue!;
-        // });
-      },
-      hint: Text("Modo"),
-      items: <String>['Privado', 'Publico']
-          .map<DropdownMenuItem<String>>((String value) {
-        return DropdownMenuItem<String>(
-          value: value,
-          child: Text(value),
-        );
-      }).toList(),
-    ),
-  );
+  String modeCat = "1";
+
+  Widget CampotextoCategoria(TextEditingController controller) {
+    return Container(
+      margin: EdgeInsets.only(top: 10, left: 40, right: 40, bottom: 10),
+      padding: EdgeInsets.all(5),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius:
+            BorderRadius.all(Radius.circular(20)), // set rounded corner radius
+      ),
+      child: DropdownButtonFormField(
+        icon: const Icon(Icons.category),
+        elevation: 16,
+        value: modeCat,
+        onChanged: (String? newValue) {
+          setState(() {
+            modeCat = newValue!;
+          });
+        },
+        hint: Text("Categoria"),
+        items: CategoryItems,
+      ),
+    );
+  }
+
+  List<DropdownMenuItem<String>> get dropdownItems {
+    List<DropdownMenuItem<String>> menuItems = [
+      const DropdownMenuItem(child: Text("Publico"), value: "1"),
+      const DropdownMenuItem(child: Text("Privado"), value: "2"),
+    ];
+    return menuItems;
+  }
+
+  String modeC = "2";
+
+  Widget CampotextoModo(TextEditingController controller) {
+    return Container(
+      margin: EdgeInsets.only(top: 10, left: 40, right: 40, bottom: 10),
+      padding: EdgeInsets.all(5),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius:
+            BorderRadius.all(Radius.circular(20)), // set rounded corner radius
+      ),
+      child: DropdownButtonFormField(
+        icon: const Icon(Icons.privacy_tip_outlined),
+        elevation: 16,
+        value: modeC,
+        onChanged: (String? newValue) {
+          setState(() {
+            modeC = newValue!;
+          });
+        },
+        hint: Text("Modo"),
+        items: dropdownItems,
+      ),
+    );
+  }
 }

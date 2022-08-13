@@ -7,12 +7,13 @@ import 'package:provider/provider.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:image_picker_web/image_picker_web.dart';
 import 'dart:io';
+
 ImagePicker picker = ImagePicker();
+late dynamic imagenG;
 
 class Imagen extends StatefulWidget {
   @override
   _ImagenState createState() => _ImagenState();
-
 }
 
 class _ImagenState extends State<Imagen> {
@@ -24,7 +25,7 @@ class _ImagenState extends State<Imagen> {
     return Padding(
       padding: EdgeInsets.all(20),
       child: SingleChildScrollView(
-      child: Column(
+        child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -32,15 +33,13 @@ class _ImagenState extends State<Imagen> {
               height: 140,
               width: 180,
               color: Colors.black12,
-
-              child: imageAvailable ? Image.memory(imageFile) : const SizedBox(),
+              child: imageAvailable ? Image.memory(imagenG) : const SizedBox(),
             ),
             GestureDetector(
               onTap: () async {
                 final image = await ImagePickerWeb.getImageAsBytes();
-
                 setState(() {
-                  imageFile = image!;
+                  imagenG = image!;
                   imageAvailable = true;
                 });
               },
@@ -48,14 +47,15 @@ class _ImagenState extends State<Imagen> {
                 height: 50,
                 width: 200,
                 color: Colors.blue,
-                
                 child: Center(
-                  child: Text("Selecciona una imagen",
+                  child: Text(
+                    "Selecciona una imagen",
                     style: TextStyle(
-                      fontSize:16,
-                      color:Colors.white,
+                      fontSize: 16,
+                      color: Colors.white,
                     ),
-                    textAlign:TextAlign.center,),
+                    textAlign: TextAlign.center,
+                  ),
                 ),
               ),
             )
@@ -64,6 +64,11 @@ class _ImagenState extends State<Imagen> {
       ),
     );
   }
+}
+
+dynamic getimage() {
+  return imagenG;
+}
 /*
   File? file;
   dynamic _path;
@@ -199,17 +204,4 @@ class _ImagenState extends State<Imagen> {
 
   }
 */
-}
-
-
-
-
-
-
-
-
-
-
-
-
 
