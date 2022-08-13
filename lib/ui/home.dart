@@ -168,7 +168,7 @@ Widget _routes({required menuProvider}) {
           fit: BoxFit.cover,
         ),
       ),
-      child: Agregar(),
+      child: AddCategoria(),
     );
   if (menuProvider.menu == "Configuracion")
     return Container(
@@ -250,7 +250,6 @@ Widget _routes({required menuProvider}) {
         ),
       ),
       child: Pictograma(),
-      
     );
   // Widget widget  = menuRoute(context: context, textMenu: "Comunidad/Donacion", widget: Text("Donacion"));
   return SizedBox.shrink();
