@@ -1,276 +1,115 @@
-import 'package:picktock/domain/provider/menuProvider.dart';
+import 'package:picktock/domain/provider/menu_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:picktock/ui/addpicto/addPicto.dart';
+import 'package:picktock/ui/cambiarvoz/cambiarVoz.dart';
 import 'package:picktock/ui/comunidad/evaluar.dart';
 import 'package:picktock/ui/enviarsugerencias/enviarSugerencias.dart';
-import 'package:picktock/ui/option.dart';
+import 'package:picktock/ui/side_bar.dart';
 import 'package:picktock/ui/perfil/dash.dart';
 import 'package:provider/provider.dart';
-// import 'package:picktock/ui/ejemplo/Ejemplo2.dart';
-import 'package:picktock/ui/login/crear_usuario.dart';
+import 'package:picktock/ui/login/register_page.dart';
 import 'package:picktock/ui/pictograma/pictograma.dart';
 import 'package:picktock/ui/comunidad/dash.dart';
 import 'package:picktock/ui/comunidad/pendiente.dart';
 import 'package:picktock/ui/categoria/categoria.dart';
-import 'package:picktock/ui/login/login.dart';
+import 'package:picktock/ui/login/login_page.dart';
 import "package:picktock/ui/informacion/informacion.dart";
 import 'package:picktock/ui/favorito/favorito.dart';
-import 'package:picktock/ui/addpicto/addPicto.dart';
-import 'package:picktock/ui/cambiarvoz/cambiarVoz.dart';
 import 'package:picktock/ui/pictoglobales/seccionGlobales.dart';
 import 'package:picktock/ui/pictograma/Agregar.dart';
 
 class Home extends StatelessWidget {
-  Home({Key? key}) : super(key: key);
+  const Home({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final menuProvider = Provider.of<MenuProvider>(context);
-    return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: "Login de acceso !!!",
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
-        home: Scaffold(
-          body: Row(
+    MenuProvider menuProvider = Provider.of<MenuProvider>(context);
+    double width = MediaQuery.of(context).size.width;
+    return Scaffold(
+      body: Container(
+        color: Colors.blue.shade400, //Notification bar color
+        child: SafeArea(
+          child: Row(
             children: [
-              SideBar(context, menuProvider),
+              SideBar(menuProvider: menuProvider),
               Expanded(
-                child: _routes(menuProvider: menuProvider),
-              ) // comunityRoute(context: context, textMenu: "contribuir"),
+                child: Container(
+                  color: const Color.fromARGB(255, 255, 237, 187), //Background color
+                  child: Center(
+                    child: AnimatedContainer(
+                      // color: Colors.black,
+                      curve: Curves.ease,
+                      duration: const Duration(milliseconds: 300),
+                      // height: MediaQuery.of(context).size.height,
+                      width: (width < 600)
+                          ? menuProvider.isMenuOpen
+                              ? width - 240
+                              : width - 80
+                          : width - 240,
+                      child: Routes(menuProvider: menuProvider),
+                    ),
+                  ),
+                ),
+              )
             ],
           ),
-        ));
+        ),
+      ),
+    );
   }
 }
 
-Widget _routes({required menuProvider}) {
-  if (menuProvider.menu == "Inicio")
-    return Container(
-      constraints: BoxConstraints.expand(),
-      decoration: const BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage("assets/textures/background.jpg"),
-          fit: BoxFit.cover,
-        ),
-      ),
-      child: Sugerencia(),
-    );
-  if (menuProvider.menu == "Globales")
-    return Container(
-      constraints: BoxConstraints.expand(),
-      decoration: const BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage("assets/textures/background.jpg"),
-          fit: BoxFit.cover,
-        ),
-      ),
-      child: Globales(),
-    );
-  /*if (menuProvider.menu == "Voz")
-    return Container(
-      constraints: BoxConstraints.expand(),
-      decoration: const BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage("assets/textures/background.jpg"),
-          fit: BoxFit.cover,
-        ),
-      ),
-      child: Voz(),
-    );*/
-  if (menuProvider.menu == "Informacion")
-    return Container(
-      constraints: BoxConstraints.expand(),
-      decoration: BoxDecoration(
-        color: Colors.amber.shade100,
-        image: DecorationImage(
-          image: AssetImage("assets/textures/background.jpg"),
-          fit: BoxFit.cover,
-        ),
-      ),
-      child: AboutUs(),
-    );
-  if (menuProvider.menu == "Login")
-    return Container(
-      constraints: BoxConstraints.expand(),
-      decoration: const BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage("assets/textures/background.jpg"),
-          fit: BoxFit.cover,
-        ),
-      ),
-      child: Login(),
-    );
-
-  if (menuProvider.menu == "Categoria")
-    return Container(
-      constraints: BoxConstraints.expand(),
-      decoration: const BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage("assets/textures/background.jpg"),
-          fit: BoxFit.cover,
-        ),
-      ),
-      child: AddCategoria(),
-    );
-
-  if (menuProvider.menu == "Favoritos")
-    return Container(
-      constraints: BoxConstraints.expand(),
-      decoration: BoxDecoration(
-        color: Colors.amber.shade200,
-        image: DecorationImage(
-          image: AssetImage("assets/textures/background.jpg"),
-          fit: BoxFit.cover,
-        ),
-      ),
-      child: Favorito(),
-    );
-  if (menuProvider.menu == "Perfil")
-    return Container(
-      constraints: BoxConstraints.expand(),
-      decoration: BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage("assets/textures/background.jpg"),
-          fit: BoxFit.cover,
-        ),
-      ),
-      child: Perfil(),
-    );
-  if (menuProvider.menu == "Pictograma")
-    return Container(
-      constraints: BoxConstraints.expand(),
-      decoration: const BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage("assets/textures/background.jpg"),
-          fit: BoxFit.cover,
-        ),
-      ),
-      child: Pictograma(),
-    );
-  if (menuProvider.menu == "Registro")
-    return Container(
-      constraints: BoxConstraints.expand(),
-      decoration: const BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage("assets/textures/background.jpg"),
-          fit: BoxFit.cover,
-        ),
-      ),
-      child: Registro(),
-    );
-  if (menuProvider.menu == "Agregar")
-    return Container(
-      constraints: BoxConstraints.expand(),
-      decoration: const BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage("assets/textures/background.jpg"),
-          fit: BoxFit.cover,
-        ),
-      ),
-      child: AddPictograma(),
-    );
-  if (menuProvider.menu == "Configuracion")
-    return Container(
-      constraints: BoxConstraints.expand(),
-      decoration: const BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage("assets/textures/background.jpg"),
-          fit: BoxFit.cover,
-        ),
-      ),
-      child: Text("Configuracion"),
-    );
-
-  if (menuProvider.menu == "Comunidad")
-    return Container(
-      constraints: BoxConstraints.expand(),
-      decoration: const BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage("assets/textures/background.jpg"),
-          fit: BoxFit.cover,
-        ),
-      ),
-      child: Comunidad(),
-    );
-
-  if (menuProvider.menu == "Comunidad/Contribuir")
-    return Container(
-      constraints: BoxConstraints.expand(),
-      decoration: const BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage("assets/textures/background.jpg"),
-          fit: BoxFit.cover,
-        ),
-      ),
-      child: Text("Contribuir"),
-    );
-
-  if (menuProvider.menu == "Comunidad/Pendiente")
-    return Container(
-      constraints: BoxConstraints.expand(),
-      decoration: const BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage("assets/textures/background.jpg"),
-          fit: BoxFit.cover,
-        ),
-      ),
-      child: PendienteComunity(),
-    );
-
-  if (menuProvider.menu == "Comunidad/Donacion")
-    return Container(
-      constraints: BoxConstraints.expand(),
-      decoration: const BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage("assets/textures/background.jpg"),
-          fit: BoxFit.cover,
-        ),
-      ),
-      child: Text("Donacion"),
-    );
-  if (menuProvider.menu == "Comunidad/Pendiente/idpictograma")
-    return Container(
-      constraints: BoxConstraints.expand(),
-      decoration: const BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage("assets/textures/background.jpg"),
-          fit: BoxFit.cover,
-        ),
-      ),
-      child: EvaluateComunity(),
-    );
-  if (menuProvider.menu == "AñadirPictograma")
-    return Container(
-      constraints: BoxConstraints.expand(),
-      decoration: const BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage("assets/textures/background.jpg"),
-          fit: BoxFit.cover,
-        ),
-      ),
-      child: Pictograma(),
-    );
-  // Widget widget  = menuRoute(context: context, textMenu: "Comunidad/Donacion", widget: Text("Donacion"));
-  return SizedBox.shrink();
-}
-
-// Rutas comunity
-Widget menuRoute(
-    {required context, required textMenu, required Widget widget}) {
-  final menuProvider = Provider.of<MenuProvider>(context);
-  if (menuProvider.menu == textMenu) {
-    return (Container(
-      constraints: BoxConstraints.expand(),
-      decoration: const BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage("assets/textures/background.jpg"),
-          fit: BoxFit.cover,
-        ),
-      ),
-      child: widget,
-    ));
-  } else {
-    return SizedBox.shrink();
+class Routes extends StatelessWidget {
+  final MenuProvider menuProvider;
+  const Routes({Key? key, required this.menuProvider}) : super(key: key);
+  
+  @override
+  Widget build(BuildContext context) {
+    switch (menuProvider.menu) {
+      case "Inicio":
+        return Sugerencia();
+      case "Globales":
+        return const Globales();
+      case "Informacion":
+        return const AboutUs();
+      case "Voz":
+        return Voz();
+      case "Login":
+        return const LoginPage();
+      case "Categoria":
+        return AddCategoria();
+      case "Favoritos":
+        return Favorito();
+      case "Mi perfil":
+        if (menuProvider.authPageState == AuthPageState.login) {
+          return const LoginPage();
+        } else if (menuProvider.authPageState == AuthPageState.register) {
+          return const RegisterPage();
+        } else {
+          return Perfil();
+        }
+      case "Pictograma":
+        return const Pictograma();
+      case "Registro":
+        return const RegisterPage();
+      case "Agregar":
+        return AddPictograma();
+      case "Configuración":
+        return const Text("Configuracion");
+      case "Comunidad":
+        return Comunidad();
+      case "Comunidad/Contribuir":
+        return const Text("Contribuir");
+      case "Comunidad/Pendiente":
+        return PendienteComunity();
+      case "Comunidad/Donacion":
+        return const Text("Donacion");
+      case "Comunidad/Pendiente/idpictograma":
+        return EvaluateComunity();
+      case "AñadirPictograma":
+        return const Pictograma();
+      default:
+        return const Text("No definido");
+    }
   }
 }

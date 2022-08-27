@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:image_picker_web/image_picker_web.dart';
 import 'dart:io';
 
 ImagePicker picker = ImagePicker();
@@ -20,10 +19,20 @@ class _ImagenState extends State<Imagen> {
   bool imageAvailable = false;
   late Uint8List imageFile;
 
+  _getImage() async {
+    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+    if (pickedFile != null) {
+      setState(() {
+        imagenG = pickedFile.readAsBytes();
+        imageAvailable = true;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(20),
+      padding: const EdgeInsets.all(20),
       child: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -36,13 +45,8 @@ class _ImagenState extends State<Imagen> {
               child: imageAvailable ? Image.memory(imagenG) : const SizedBox(),
             ),
             GestureDetector(
-              onTap: () async {
-                final image = await ImagePickerWeb.getImageAsBytes();
-                setState(() {
-                  imagenG = image!;
-                  imageAvailable = true;
-                });
-              },
+              onTap: _getImage, 
+
               child: Container(
                 height: 50,
                 width: 200,

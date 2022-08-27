@@ -7,10 +7,10 @@ class WidgetPictogr extends StatefulWidget {
   final String nombre;
   final String creacion;
 
-  int? idPictograma;
+  final int? idPictograma;
   // int idPic;
 
-  WidgetPictogr({
+  const WidgetPictogr({
     Key? key,
     required this.id,
     required this.nombre,
@@ -38,17 +38,16 @@ class _PictogrState extends State<WidgetPictogr> {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () => {ReproduceSound.speak(widget.nombre)},
-      child: Container(
-          child: Column(
+      child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Container(
-              margin: EdgeInsets.only(top: 40),
+              margin: const EdgeInsets.only(top: 40),
               child: Text(widget.nombre,
-                  style: TextStyle(fontSize: 20),
+                  style: const TextStyle(fontSize: 20),
                   overflow: TextOverflow.ellipsis)),
           Container(
-            padding: EdgeInsets.all(20.0),
+            padding: const EdgeInsets.all(20.0),
             child: Image.network(
               widget.rutaImagen,
               width: MediaQuery.of(context).size.width / 5 * 4 / 3 - 10,
@@ -57,7 +56,7 @@ class _PictogrState extends State<WidgetPictogr> {
             ),
           ),
         ],
-      )),
+      ),
     );
   }
 }

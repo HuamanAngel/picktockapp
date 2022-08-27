@@ -1,4 +1,4 @@
-import 'package:picktock/data/models/newpicto.dart';
+// import 'package:picktock/data/models/newpicto.dart';
 import 'package:picktock/data/models/pictograma.dart';
 
 abstract class AbstractPicto {

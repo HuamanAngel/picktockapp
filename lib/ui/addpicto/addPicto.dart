@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:picktock/domain/provider/picto_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:picktock/data/models/newpicto.dart';
 import 'package:picktock/data/models/pictograma.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:picktock/ui/addpicto/subirImagen.dart';
-import 'package:picktock/domain/provider/pictoProvider.dart';
 
 ImagePicker picker = ImagePicker();
 

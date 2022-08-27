@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-
-
 class ComunityProvider extends ChangeNotifier{
   String _menu = "dash";
   String get menu => _menu;

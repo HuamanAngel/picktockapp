@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:picktock/domain/provider/menuProvider.dart';
+import 'package:picktock/domain/provider/menu_provider.dart';
 TextEditingController emailController = TextEditingController();
 TextEditingController passwordController = TextEditingController();
 

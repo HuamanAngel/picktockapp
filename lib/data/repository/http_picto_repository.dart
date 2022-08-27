@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:picktock/domain/repository/abstract_picto.dart';
 import 'package:picktock/styles/style.dart';
 // import 'package:picktock/data/models/newpicto.dart';
-import 'package:picktock/domain/repository/abstract_auth.dart';
 import 'package:picktock/data/models/pictograma.dart';
 import 'package:http/http.dart' as http;
 
